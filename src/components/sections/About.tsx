@@ -104,9 +104,20 @@ export function About() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ delay: 0.5 + i * 0.1 }}
+                    onMouseMove={(e) => {
+                      const r = e.currentTarget.getBoundingClientRect();
+                      const rx = ((e.clientY - r.top) / r.height - 0.5) * -14;
+                      const ry = ((e.clientX - r.left) / r.width - 0.5) * 14;
+                      e.currentTarget.style.transform = `perspective(600px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(6px)`;
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = "perspective(600px) rotateX(0deg) rotateY(0deg) translateZ(0px)";
+                    }}
                     style={{
                       padding: "1rem 1.1rem", borderRadius: 16,
                       background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.06)",
+                      transition: "transform 0.15s ease, box-shadow 0.15s ease",
+                      cursor: "default",
                     }}
                   >
                     <Icon size={17} style={{ color: v.color, marginBottom: 8 }} />
