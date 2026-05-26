@@ -40,7 +40,7 @@ export function Navbar() {
           maxWidth: "82rem",
           margin: "0 auto",
           padding: "0 1.5rem",
-          height: 76,
+          height: 100,
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
