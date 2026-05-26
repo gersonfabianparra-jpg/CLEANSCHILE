@@ -14,12 +14,12 @@ export function LogoMark({ size = 38 }: { size?: number }) {
 }
 
 export function Logo({ compact = false }: { compact?: boolean }) {
-  const h = compact ? 36 : 44;
+  const h = compact ? 52 : 60;
   return (
     <Image
       src="/logo.png"
       alt="CleanSchile Detailing Car"
-      width={h * 2.8}
+      width={h}
       height={h}
       style={{ objectFit: "contain" }}
       priority
