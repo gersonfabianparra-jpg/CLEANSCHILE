@@ -3,6 +3,7 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { ArrowDown, Zap } from "lucide-react";
+import { LogoMark } from "@/components/ui/Logo";
 
 const ROTATING_WORDS = ["Detailing", "Protección", "Perfección", "Excelencia", "Precisión"];
 
@@ -182,6 +183,17 @@ export function Hero() {
           />
         ))}
 
+        {/* LogoMark — marca de agua gigante centrada */}
+        <div style={{
+          position: "absolute", top: "50%", left: "50%",
+          transform: "translate(-50%, -50%)",
+          opacity: 0.025,
+          pointerEvents: "none",
+          userSelect: "none",
+        }}>
+          <LogoMark size={600} />
+        </div>
+
         {/* Bottom fade */}
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 200, background: "linear-gradient(0deg, #020208 0%, transparent 100%)" }} />
       </div>
@@ -190,18 +202,21 @@ export function Hero() {
       <motion.div
         style={{ y, opacity, position: "relative", zIndex: 10, maxWidth: "80rem", margin: "0 auto", padding: "7rem 1.5rem 0", textAlign: "center" }}
       >
-        {/* Badge */}
+        {/* Badge — logo + tagline */}
         <motion.div
           initial={{ opacity: 0, y: -20, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          style={{ display: "inline-flex", alignItems: "center", gap: 12, marginBottom: 40 }}
+          style={{ display: "inline-flex", alignItems: "center", gap: 16, marginBottom: 40 }}
         >
-          <div style={{ height: 1, width: 48, background: "linear-gradient(90deg, transparent, #3B82F6)" }} />
-          <span style={{ fontFamily: "var(--font-space)", fontSize: 11, letterSpacing: "0.35em", color: "rgba(203,213,225,0.55)", textTransform: "uppercase" }}>
-            Taller Premium · La Cisterna, Santiago
-          </span>
-          <div style={{ height: 1, width: 48, background: "linear-gradient(270deg, transparent, #3B82F6)" }} />
+          <div style={{ height: 1, width: 40, background: "linear-gradient(90deg, transparent, #06B6D4)" }} />
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <LogoMark size={28} />
+            <span style={{ fontFamily: "var(--font-space)", fontSize: 11, letterSpacing: "0.35em", color: "rgba(203,213,225,0.5)", textTransform: "uppercase" as const }}>
+              Taller Premium · La Cisterna
+            </span>
+          </div>
+          <div style={{ height: 1, width: 40, background: "linear-gradient(270deg, transparent, #06B6D4)" }} />
         </motion.div>
 
         {/* CLEANS */}

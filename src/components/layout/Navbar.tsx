@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
+import { Logo } from "@/components/ui/Logo";
 
 const links = [
   { href: "#servicios", label: "Servicios" },
@@ -22,76 +23,121 @@ export function Navbar() {
   return (
     <>
       <ScrollProgress />
-      <header className="fixed top-0 left-0 right-0 z-50">
-        {/* Animated backdrop on scroll */}
+      <header style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 50 }}>
+        {/* Backdrop on scroll */}
         <motion.div
-          className="absolute inset-0 glass-strong"
-          style={{ opacity: navOpacity }}
+          style={{
+            position: "absolute", inset: 0, opacity: navOpacity,
+            background: "rgba(4,4,18,0.88)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            borderBottom: "1px solid rgba(255,255,255,0.05)",
+          }}
         />
 
-        <div className="relative max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div style={{
+          position: "relative",
+          maxWidth: "82rem",
+          margin: "0 auto",
+          padding: "0 1.5rem",
+          height: 64,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}>
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative w-10 h-10">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-neon-blue via-neon-violet to-neon-pink opacity-70 blur-sm group-hover:blur-md transition-all" />
-              <div className="relative w-10 h-10 rounded-full bg-surface border border-white/10 flex items-center justify-center">
-                <span className="font-bebas text-lg text-gold-light tracking-wider">C</span>
-              </div>
-            </div>
-            <div className="flex flex-col -space-y-1">
-              <span className="font-bebas text-xl tracking-[0.15em] text-white leading-none">CLEANS</span>
-              <span className="font-bebas text-xl tracking-[0.15em] gold-text leading-none">CHILE</span>
-            </div>
+          <Link href="/" style={{ textDecoration: "none" }}>
+            <Logo compact />
           </Link>
 
-          {/* Desktop Links */}
-          <nav className="hidden md:flex items-center gap-8">
+          {/* Desktop nav links */}
+          <nav style={{ display: "flex", alignItems: "center", gap: 32 }} className="hidden md:flex">
             {links.map((link, i) => (
               <motion.div
                 key={link.href}
-                initial={{ opacity: 0, y: -10 }}
+                initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.08, duration: 0.4 }}
+                transition={{ delay: i * 0.07, duration: 0.4 }}
               >
                 <Link
                   href={link.href}
-                  className="font-space text-sm text-chrome/60 hover:text-white transition-colors duration-300 relative group"
+                  style={{
+                    fontFamily: "var(--font-space)",
+                    fontSize: 13,
+                    color: "rgba(203,213,225,0.6)",
+                    textDecoration: "none",
+                    position: "relative",
+                    transition: "color 0.3s",
+                  }}
+                  className="group hover:text-white"
                 >
                   {link.label}
-                  <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-gradient-to-r from-neon-blue to-neon-violet group-hover:w-full transition-all duration-300" />
+                  <span style={{
+                    position: "absolute",
+                    bottom: -2, left: 0,
+                    height: 1,
+                    width: 0,
+                    background: "linear-gradient(90deg, #06B6D4, #3B82F6)",
+                    transition: "width 0.3s",
+                  }}
+                    className="group-hover:w-full"
+                  />
                 </Link>
               </motion.div>
             ))}
           </nav>
 
-          {/* CTA */}
-          <div className="hidden md:flex items-center gap-3">
+          {/* CTA group */}
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }} className="hidden md:flex">
             <a
               href="tel:+56952095222"
-              className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-space text-chrome/70 hover:text-white transition-colors border border-white/10 hover:border-white/20"
+              style={{
+                display: "flex", alignItems: "center", gap: 7,
+                padding: "0.5rem 1rem",
+                borderRadius: 999,
+                fontFamily: "var(--font-space)", fontSize: 12,
+                color: "rgba(203,213,225,0.65)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                textDecoration: "none",
+                transition: "all 0.3s",
+              }}
             >
-              <Phone size={14} />
-              <span>+569 5209 5222</span>
+              <Phone size={13} />
+              +569 5209 5222
             </a>
             <a
               href="#contacto"
-              className="relative px-5 py-2 rounded-full font-space text-sm font-medium text-black overflow-hidden group"
+              style={{
+                position: "relative",
+                display: "inline-flex", alignItems: "center",
+                padding: "0.55rem 1.25rem",
+                borderRadius: 999,
+                fontFamily: "var(--font-space)", fontSize: 12, fontWeight: 700,
+                color: "#000",
+                background: "linear-gradient(135deg, #EAB308, #FDE047)",
+                textDecoration: "none",
+                letterSpacing: "0.03em",
+                transition: "filter 0.3s",
+              }}
             >
-              <span className="absolute inset-0 bg-gradient-to-r from-gold to-gold-light group-hover:brightness-110 transition-all" />
-              <span className="relative">Cotizar Ahora</span>
+              Cotizar
             </a>
           </div>
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden text-chrome/70 hover:text-white transition-colors"
             onClick={() => setIsOpen(!isOpen)}
+            style={{
+              background: "none", border: "none", cursor: "pointer",
+              color: "rgba(203,213,225,0.7)", padding: 4,
+            }}
+            className="md:hidden"
           >
             {isOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile menu */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -99,19 +145,28 @@ export function Navbar() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden glass-strong border-t border-white/[0.05]"
+              style={{
+                background: "rgba(4,4,18,0.96)",
+                backdropFilter: "blur(24px)",
+                borderTop: "1px solid rgba(255,255,255,0.05)",
+                overflow: "hidden",
+              }}
             >
-              <div className="px-6 py-6 flex flex-col gap-5">
+              <div style={{ padding: "1.5rem", display: "flex", flexDirection: "column", gap: 20 }}>
                 {links.map((link, i) => (
                   <motion.div
                     key={link.href}
-                    initial={{ opacity: 0, x: -20 }}
+                    initial={{ opacity: 0, x: -16 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.06 }}
                   >
                     <Link
                       href={link.href}
-                      className="font-space text-base text-chrome/70 hover:text-white transition-colors"
+                      style={{
+                        fontFamily: "var(--font-space)", fontSize: 15,
+                        color: "rgba(203,213,225,0.7)",
+                        textDecoration: "none",
+                      }}
                       onClick={() => setIsOpen(false)}
                     >
                       {link.label}
@@ -120,8 +175,17 @@ export function Navbar() {
                 ))}
                 <a
                   href="#contacto"
-                  className="mt-2 text-center py-3 rounded-full bg-gradient-to-r from-gold to-gold-light font-space font-medium text-black text-sm"
                   onClick={() => setIsOpen(false)}
+                  style={{
+                    textAlign: "center",
+                    padding: "0.85rem",
+                    borderRadius: 999,
+                    fontFamily: "var(--font-space)", fontSize: 13, fontWeight: 700,
+                    color: "#000",
+                    background: "linear-gradient(135deg, #EAB308, #FDE047)",
+                    textDecoration: "none",
+                    marginTop: 4,
+                  }}
                 >
                   Cotizar Ahora
                 </a>
