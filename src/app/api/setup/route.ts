@@ -2,18 +2,24 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import bcrypt from "bcryptjs";
 
-// One-time admin creation. Returns 400 if admin already exists.
+// Creates admin if none exists, or resets password if one does.
 export async function POST() {
   try {
-    const count = await prisma.admin.count();
-    if (count > 0) {
-      return NextResponse.json({ error: "Admin ya existe." }, { status: 400 });
-    }
     const password = await bcrypt.hash("CleanSchile2025!", 12);
+    const existing = await prisma.admin.findFirst();
+
+    if (existing) {
+      await prisma.admin.update({
+        where: { id: existing.id },
+        data: { email: "nicolas@cleanschile.cl", password },
+      });
+      return NextResponse.json({ ok: true, action: "updated", email: "nicolas@cleanschile.cl", password: "CleanSchile2025!" });
+    }
+
     await prisma.admin.create({
       data: { email: "nicolas@cleanschile.cl", password },
     });
-    return NextResponse.json({ ok: true, email: "nicolas@cleanschile.cl", password: "CleanSchile2025!" });
+    return NextResponse.json({ ok: true, action: "created", email: "nicolas@cleanschile.cl", password: "CleanSchile2025!" });
   } catch (e) {
     return NextResponse.json({ error: String(e) }, { status: 500 });
   }
