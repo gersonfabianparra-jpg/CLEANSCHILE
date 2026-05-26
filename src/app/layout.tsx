@@ -3,7 +3,6 @@ import { Bebas_Neue, Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { CustomCursor } from "@/components/ui/CustomCursor";
 import { Toaster } from "react-hot-toast";
 
 const bebasNeue = Bebas_Neue({
@@ -47,9 +46,8 @@ export default function RootLayout({
   return (
     <html lang="es" className="scroll-smooth">
       <body
-        className={`${bebasNeue.variable} ${spaceGrotesk.variable} ${inter.variable} font-inter bg-black text-white antialiased overflow-x-hidden`}
+        className={`${bebasNeue.variable} ${spaceGrotesk.variable} ${inter.variable} font-inter bg-midnight text-white antialiased overflow-x-hidden`}
       >
-        <CustomCursor />
         <Navbar />
         <main>{children}</main>
         <Footer />
@@ -57,9 +55,9 @@ export default function RootLayout({
           position="bottom-right"
           toastOptions={{
             style: {
-              background: "#0D0D10",
+              background: "#0D0D1A",
               color: "#fff",
-              border: "1px solid rgba(201,168,76,0.3)",
+              border: "1px solid rgba(234,179,8,0.25)",
               borderRadius: "12px",
             },
           }}

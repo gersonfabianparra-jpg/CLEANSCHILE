@@ -3,112 +3,129 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
-const stats = [
+const STATS = [
   { value: 500, suffix: "+", label: "Vehículos Detallados", color: "#3B82F6" },
   { value: 98, suffix: "%", label: "Clientes Satisfechos", color: "#8B5CF6" },
   { value: 5, suffix: "+", label: "Años de Experiencia", color: "#EAB308" },
   { value: 1, suffix: " Día", label: "Entrega Express", color: "#EC4899" },
 ];
 
-function AnimatedCounter({
-  value,
-  suffix,
-  color,
-  active,
-}: {
-  value: number;
-  suffix: string;
-  color: string;
-  active: boolean;
-}) {
+function Counter({ value, suffix, color, active }: { value: number; suffix: string; color: string; active: boolean }) {
   const [count, setCount] = useState(0);
-
   useEffect(() => {
     if (!active) return;
-    let start = 0;
-    const duration = 1800;
-    const step = 16;
-    const increment = value / (duration / step);
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= value) {
-        setCount(value);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
+    let n = 0;
+    const dur = 2000, step = 14;
+    const inc = value / (dur / step);
+    const t = setInterval(() => {
+      n += inc;
+      if (n >= value) { setCount(value); clearInterval(t); }
+      else setCount(Math.floor(n));
     }, step);
-    return () => clearInterval(timer);
+    return () => clearInterval(t);
   }, [active, value]);
 
   return (
-    <span className="font-bebas tabular-nums" style={{ color }}>
-      {count}
-      {suffix}
+    <span style={{ color, fontFamily: "var(--font-bebas)", fontVariantNumeric: "tabular-nums" }}>
+      {count}{suffix}
     </span>
   );
 }
 
 export function Stats() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section className="relative py-24 overflow-hidden bg-midnight">
-      <div className="section-divider" />
+    <section style={{ position: "relative", overflow: "hidden", background: "linear-gradient(180deg, #040412 0%, #060618 50%, #040412 100%)" }}>
+      {/* Top / bottom dividers */}
+      <div style={{ height: 1, background: "linear-gradient(90deg, transparent, rgba(59,130,246,0.25), rgba(139,92,246,0.25), transparent)" }} />
 
-      <div className="relative max-w-7xl mx-auto px-6 py-16">
-        <div
-          ref={ref}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:divide-x lg:divide-white/[0.05]"
+      {/* Background ghost text */}
+      <div style={{
+        position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center",
+        pointerEvents: "none", userSelect: "none",
+      }}>
+        <span style={{
+          fontFamily: "var(--font-bebas)",
+          fontSize: "28vw",
+          color: "rgba(255,255,255,0.012)",
+          lineHeight: 1,
+          whiteSpace: "nowrap",
+        }}>
+          DATOS
+        </span>
+      </div>
+
+      <div ref={ref} style={{ maxWidth: "82rem", margin: "0 auto", padding: "5rem 0" }}>
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(4, 1fr)",
+          gap: 0,
+        }}
+          className="grid-cols-2 lg:grid-cols-4"
         >
-          {stats.map((stat, i) => (
+          {STATS.map((s, i) => (
             <motion.div
-              key={stat.label}
+              key={s.label}
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: i * 0.12, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="text-center group px-6"
+              transition={{ delay: i * 0.12, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              style={{
+                padding: "3rem 2rem",
+                textAlign: "center",
+                position: "relative",
+                borderLeft: i === 0 ? "none" : "1px solid rgba(255,255,255,0.05)",
+              }}
             >
-              {/* Number */}
-              <div className="relative text-[clamp(3.5rem,7vw,6.5rem)] leading-none mb-1 inline-block">
-                <AnimatedCounter
-                  value={stat.value}
-                  suffix={stat.suffix}
-                  color={stat.color}
-                  active={inView}
-                />
-                {/* Glow behind */}
+              {/* Colored top accent bar */}
+              <motion.div
+                initial={{ scaleX: 0 }}
+                animate={inView ? { scaleX: 1 } : {}}
+                transition={{ delay: i * 0.12 + 0.3, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                style={{
+                  position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)",
+                  width: 48, height: 2,
+                  background: s.color,
+                  transformOrigin: "center",
+                }}
+              />
+
+              {/* Giant number */}
+              <div style={{ position: "relative", lineHeight: 1, marginBottom: "0.75rem" }}>
+                <div style={{ fontSize: "clamp(4rem, 9vw, 8rem)" }}>
+                  <Counter value={s.value} suffix={s.suffix} color={s.color} active={inView} />
+                </div>
+                {/* Glow */}
                 <motion.div
-                  animate={inView ? { opacity: 0.1 } : { opacity: 0 }}
+                  animate={inView ? { opacity: 0.08 } : { opacity: 0 }}
                   transition={{ delay: i * 0.12 + 0.6, duration: 1 }}
-                  className="absolute inset-0 blur-3xl pointer-events-none"
-                  style={{ background: stat.color }}
+                  style={{
+                    position: "absolute", inset: 0,
+                    background: s.color,
+                    filter: "blur(40px)",
+                    pointerEvents: "none",
+                  }}
                 />
               </div>
 
               {/* Label */}
-              <p className="font-space text-chrome/40 text-xs tracking-wider uppercase mt-1">
-                {stat.label}
+              <p style={{
+                fontFamily: "var(--font-space)",
+                fontSize: 11,
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+                color: "rgba(203,213,225,0.35)",
+                margin: 0,
+              }}>
+                {s.label}
               </p>
-
-              {/* Underline */}
-              <motion.div
-                initial={{ scaleX: 0 }}
-                animate={inView ? { scaleX: 1 } : {}}
-                transition={{ delay: i * 0.12 + 0.4, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="mx-auto mt-3 h-px w-12"
-                style={{
-                  background: `linear-gradient(90deg, transparent, ${stat.color}, transparent)`,
-                  transformOrigin: "center",
-                }}
-              />
             </motion.div>
           ))}
         </div>
       </div>
 
-      <div className="section-divider" />
+      <div style={{ height: 1, background: "linear-gradient(90deg, transparent, rgba(139,92,246,0.25), rgba(59,130,246,0.25), transparent)" }} />
     </section>
   );
 }
