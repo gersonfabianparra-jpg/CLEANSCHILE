@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Award, GraduationCap, Target, Heart } from "lucide-react";
+import Image from "next/image";
 
 const VALUES = [
   { icon: Target, label: "Precisión", desc: "Cada detalle importa. Trabajamos con estándares de la industria automotriz de alto rendimiento.", color: "#3B82F6" },
@@ -126,57 +127,39 @@ export function About() {
           >
             <div style={{
               position: "relative", aspectRatio: "3/4", borderRadius: 32, overflow: "hidden",
-              background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.06)",
+              border: "1px solid rgba(255,255,255,0.08)",
             }}>
-              {/* Gradient fill */}
+              {/* Real car photo */}
+              <Image
+                src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&auto=format&fit=crop&q=85"
+                alt="Detailing profesional CleanSchile"
+                fill
+                style={{ objectFit: "cover", objectPosition: "center" }}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+
+              {/* Overlay */}
               <div style={{
                 position: "absolute", inset: 0,
-                background: "linear-gradient(135deg, rgba(59,130,246,0.12) 0%, rgba(139,92,246,0.12) 50%, rgba(236,72,153,0.08) 100%)",
+                background: "linear-gradient(180deg, rgba(4,4,18,0.15) 0%, rgba(4,4,18,0.7) 100%)",
               }} />
 
-              {/* Orbital rings */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                style={{ position: "absolute", top: "22%", left: "22%", width: 130, height: 130, borderRadius: "50%", border: "1px solid rgba(59,130,246,0.1)" }}
-              />
-              <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                style={{ position: "absolute", bottom: "22%", right: "18%", width: 180, height: 180, borderRadius: "50%", border: "1px solid rgba(139,92,246,0.1)" }}
-              />
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
-                style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 260, height: 260, borderRadius: "50%", border: "1px solid rgba(236,72,153,0.05)" }}
-              />
-
-              {/* Center */}
-              <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12 }}>
-                <div style={{
-                  width: 88, height: 88, borderRadius: "50%",
-                  background: "linear-gradient(135deg, #3B82F6, #8B5CF6, #EC4899)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  boxShadow: "0 0 60px rgba(139,92,246,0.35)",
-                }}>
-                  <span style={{ fontFamily: "var(--font-bebas)", fontSize: "2.2rem", color: "#fff" }}>NR</span>
-                </div>
-                <p style={{ fontFamily: "var(--font-bebas)", fontSize: "1.6rem", color: "#fff", letterSpacing: "0.05em", margin: 0 }}>NICOLÁS RAMÍREZ</p>
-                <p style={{ fontFamily: "var(--font-space)", color: "rgba(203,213,225,0.45)", fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", margin: 0 }}>
-                  CEO · CleanSchile · 2018
-                </p>
-              </div>
+              {/* Top accent line matching logo cyan */}
+              <div style={{
+                position: "absolute", top: 0, left: 0, right: 0, height: 3,
+                background: "linear-gradient(90deg, #06B6D4, #F97316)",
+              }} />
 
               {/* Bottom info strip */}
               <div style={{
                 position: "absolute", bottom: 0, left: 0, right: 0, padding: "1.25rem 1.5rem",
-                background: "rgba(4,4,18,0.88)", backdropFilter: "blur(24px)",
+                background: "rgba(4,4,18,0.82)", backdropFilter: "blur(24px)",
                 borderTop: "1px solid rgba(255,255,255,0.06)",
                 display: "flex", alignItems: "center", justifyContent: "space-between",
               }}>
                 <div>
                   <p style={{ fontFamily: "var(--font-space)", fontWeight: 600, color: "#fff", fontSize: 13, margin: "0 0 2px" }}>Ing. Industrial</p>
-                  <p style={{ fontFamily: "var(--font-inter)", color: "rgba(203,213,225,0.4)", fontSize: 11, margin: 0 }}>Fundador &amp; CEO</p>
+                  <p style={{ fontFamily: "var(--font-inter)", color: "rgba(203,213,225,0.4)", fontSize: 11, margin: 0 }}>Fundador &amp; CEO · desde 2018</p>
                 </div>
                 <div style={{ textAlign: "right" }}>
                   <p style={{

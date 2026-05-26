@@ -327,6 +327,39 @@ export function Contact() {
           </motion.div>
         </div>
       </div>
+      {/* Google Maps */}
+      <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+        <div style={{ maxWidth: "82rem", margin: "0 auto", padding: "0 1.5rem 5rem" }}>
+          <div style={{ borderRadius: 24, overflow: "hidden", border: "1px solid rgba(255,255,255,0.07)", position: "relative" }}>
+            {/* Top accent */}
+            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: "linear-gradient(90deg, #06B6D4, #F97316)", zIndex: 1 }} />
+            {/* Info overlay */}
+            <div style={{
+              position: "absolute", bottom: 20, left: 20, zIndex: 1,
+              background: "rgba(4,4,18,0.88)", backdropFilter: "blur(20px)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              borderRadius: 14, padding: "12px 18px",
+              display: "flex", alignItems: "center", gap: 10,
+            }}>
+              <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#06B6D4", flexShrink: 0, boxShadow: "0 0 10px #06B6D4" }} />
+              <div>
+                <p style={{ fontFamily: "var(--font-space)", fontWeight: 600, fontSize: 12, color: "#fff", margin: 0 }}>CleanSchile Detailing Car</p>
+                <p style={{ fontFamily: "var(--font-inter)", fontSize: 11, color: "rgba(203,213,225,0.45)", margin: 0 }}>Uruguay #530, La Cisterna · Santiago</p>
+              </div>
+            </div>
+            <iframe
+              src="https://maps.google.com/maps?q=Uruguay+530,+La+Cisterna,+Santiago,+Chile&t=&z=16&ie=UTF8&iwloc=&output=embed"
+              width="100%"
+              height="380"
+              style={{ border: 0, display: "block", filter: "invert(90%) hue-rotate(180deg) saturate(0.7) brightness(0.85)" }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="CleanSchile ubicación"
+            />
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

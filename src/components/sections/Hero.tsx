@@ -10,7 +10,7 @@ const ROTATING_WORDS = ["Detailing", "Protección", "Perfección", "Excelencia",
 function RotatingWord() {
   const [index, setIndex] = useState(0);
   useEffect(() => {
-    const t = setInterval(() => setIndex((i) => (i + 1) % ROTATING_WORDS.length), 2200);
+    const t = setInterval(() => setIndex((i) => (i + 1) % ROTATING_WORDS.length), 4000);
     return () => clearInterval(t);
   }, []);
   return (
@@ -183,17 +183,6 @@ export function Hero() {
           />
         ))}
 
-        {/* LogoMark — marca de agua gigante centrada */}
-        <div style={{
-          position: "absolute", top: "50%", left: "50%",
-          transform: "translate(-50%, -50%)",
-          opacity: 0.025,
-          pointerEvents: "none",
-          userSelect: "none",
-        }}>
-          <LogoMark size={600} />
-        </div>
-
         {/* Bottom fade */}
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 200, background: "linear-gradient(0deg, #020208 0%, transparent 100%)" }} />
       </div>
@@ -318,7 +307,8 @@ export function Hero() {
               borderRadius: 999,
               fontFamily: "var(--font-space)", fontWeight: 700, fontSize: 13,
               color: "#fff",
-              background: "linear-gradient(135deg, #F97316, #EAB308)",
+              background: "linear-gradient(135deg, #EAB308 0%, #FDE047 50%, #EAB308 100%)",
+              boxShadow: "0 0 40px rgba(234,179,8,0.4)",
               textDecoration: "none",
               letterSpacing: "0.03em",
             }}>

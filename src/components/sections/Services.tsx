@@ -3,6 +3,13 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Sparkles, Shield, Sofa, TrendingUp, Wrench, Car } from "lucide-react";
+import Image from "next/image";
+
+const PHOTOS = [
+  { src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&auto=format&fit=crop&q=80", label: "Detailing Exterior" },
+  { src: "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=600&auto=format&fit=crop&q=80", label: "Full Interior" },
+  { src: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&auto=format&fit=crop&q=80", label: "Sellado Cerámico" },
+];
 
 const SERVICES = [
   {
@@ -247,6 +254,33 @@ export function Services() {
           >
             Consultar por un servicio →
           </a>
+        </motion.div>
+
+        {/* Photo strip */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, duration: 0.7 }}
+          style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 12, marginTop: "3rem" }}
+          className="grid-cols-1 md:grid-cols-3"
+        >
+          {PHOTOS.map((p) => (
+            <div key={p.label} style={{ position: "relative", borderRadius: 16, overflow: "hidden", aspectRatio: "16/9" }}>
+              <Image src={p.src} alt={p.label} fill style={{ objectFit: "cover" }} sizes="33vw" />
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, transparent 40%, rgba(4,4,18,0.75) 100%)" }} />
+              <div style={{
+                position: "absolute", bottom: 0, left: 0, right: 0, height: 3,
+                background: "linear-gradient(90deg, #06B6D4, #F97316)",
+              }} />
+              <p style={{
+                position: "absolute", bottom: 10, left: 14,
+                fontFamily: "var(--font-space)", fontSize: 11, fontWeight: 600,
+                color: "rgba(255,255,255,0.8)", letterSpacing: "0.08em",
+                textTransform: "uppercase", margin: 0,
+              }}>{p.label}</p>
+            </div>
+          ))}
         </motion.div>
       </div>
     </section>
