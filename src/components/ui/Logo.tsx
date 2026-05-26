@@ -14,7 +14,7 @@ export function LogoMark({ size = 38 }: { size?: number }) {
 }
 
 export function Logo({ compact = false }: { compact?: boolean }) {
-  const h = compact ? 52 : 60;
+  const h = compact ? 80 : 96;
   return (
     <Image
       src="/logo.png"
