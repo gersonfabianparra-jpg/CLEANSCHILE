@@ -1,11 +1,13 @@
 import Image from "next/image";
 
+// Logo PNG is 1700×563 (3:1 ratio) after trimming transparent padding
+
 export function LogoMark({ size = 38 }: { size?: number }) {
   return (
     <Image
       src="/logo.png"
       alt="CleanSchile"
-      width={size}
+      width={size * 3}
       height={size}
       style={{ objectFit: "contain" }}
       priority
@@ -14,12 +16,12 @@ export function LogoMark({ size = 38 }: { size?: number }) {
 }
 
 export function Logo({ compact = false }: { compact?: boolean }) {
-  const h = compact ? 180 : 200;
+  const h = compact ? 52 : 64;
   return (
     <Image
       src="/logo.png"
       alt="CleanSchile Detailing Car"
-      width={h}
+      width={h * 3}
       height={h}
       style={{ objectFit: "contain" }}
       priority
@@ -32,8 +34,8 @@ export function LogoFull() {
     <Image
       src="/logo.png"
       alt="CleanSchile Detailing Car"
-      width={260}
-      height={90}
+      width={300}
+      height={100}
       style={{ objectFit: "contain" }}
       priority
     />
