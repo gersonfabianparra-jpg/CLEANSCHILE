@@ -3,6 +3,7 @@ import { Bebas_Neue, Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { Providers } from "@/components/Providers";
 import { Toaster } from "react-hot-toast";
 
 const bebasNeue = Bebas_Neue({
@@ -48,20 +49,22 @@ export default function RootLayout({
       <body
         className={`${bebasNeue.variable} ${spaceGrotesk.variable} ${inter.variable} font-inter bg-midnight text-white antialiased overflow-x-hidden`}
       >
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-        <Toaster
-          position="bottom-right"
-          toastOptions={{
-            style: {
-              background: "#0D0D1A",
-              color: "#fff",
-              border: "1px solid rgba(234,179,8,0.25)",
-              borderRadius: "12px",
-            },
-          }}
-        />
+        <Providers>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+          <Toaster
+            position="bottom-right"
+            toastOptions={{
+              style: {
+                background: "#0D0D1A",
+                color: "#fff",
+                border: "1px solid rgba(234,179,8,0.25)",
+                borderRadius: "12px",
+              },
+            }}
+          />
+        </Providers>
       </body>
     </html>
   );

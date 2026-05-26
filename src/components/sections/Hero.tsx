@@ -64,8 +64,8 @@ const BEAMS = [
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 700], [0, -180]);
-  const opacity = useTransform(scrollY, [0, 500], [1, 0]);
+  const y = useTransform(scrollY, [0, 900], [0, -120]);
+  const opacity = useTransform(scrollY, [400, 1100], [1, 0]);
 
   return (
     <section
@@ -208,43 +208,52 @@ export function Hero() {
           <div style={{ height: 1, width: 40, background: "linear-gradient(270deg, transparent, #06B6D4)" }} />
         </motion.div>
 
-        {/* CLEANS */}
+        {/* CLEANS — outline ghost */}
         <div style={{ overflow: "hidden" }}>
           <motion.h1
             initial={{ y: "110%" }}
             animate={{ y: "0%" }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
             style={{
               fontFamily: "var(--font-bebas)",
-              fontSize: "clamp(5.5rem, 20vw, 19rem)",
-              lineHeight: 0.88,
-              letterSpacing: "-0.01em",
+              fontSize: "clamp(5.5rem, 21vw, 21rem)",
+              lineHeight: 0.9,
+              letterSpacing: "-0.02em",
               margin: 0,
-              background: "linear-gradient(135deg, #94A3B8 0%, #F1F5F9 25%, #CBD5E1 50%, #F8FAFC 70%, #94A3B8 100%)",
-              backgroundSize: "300% auto",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              animation: "shimmer 4s linear infinite",
+              color: "transparent",
+              WebkitTextStroke: "2px rgba(180,210,240,0.38)",
             }}
           >
             CLEANS
           </motion.h1>
         </div>
 
-        {/* CHILE */}
+        {/* Neon separator */}
+        <motion.div
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={{ scaleX: 1, opacity: 1 }}
+          transition={{ delay: 0.7, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            height: 3, margin: "0.4rem 0",
+            background: "linear-gradient(90deg, transparent 0%, #06B6D4 30%, #F97316 70%, transparent 100%)",
+            transformOrigin: "left",
+            boxShadow: "0 0 24px rgba(6,182,212,0.5), 0 0 48px rgba(249,115,22,0.3)",
+          }}
+        />
+
+        {/* CHILE — solid gold */}
         <div style={{ overflow: "hidden" }}>
           <motion.h1
             initial={{ y: "110%" }}
             animate={{ y: "0%" }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
             style={{
               fontFamily: "var(--font-bebas)",
-              fontSize: "clamp(5.5rem, 20vw, 19rem)",
-              lineHeight: 0.88,
-              letterSpacing: "-0.01em",
+              fontSize: "clamp(5.5rem, 21vw, 21rem)",
+              lineHeight: 0.9,
+              letterSpacing: "-0.02em",
               margin: 0,
-              background: "linear-gradient(105deg, #A16207 0%, #EAB308 25%, #FDE047 50%, #EAB308 75%, #A16207 100%)",
+              background: "linear-gradient(105deg, #A16207 0%, #EAB308 30%, #FDE047 55%, #EAB308 75%, #A16207 100%)",
               backgroundSize: "300% auto",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
