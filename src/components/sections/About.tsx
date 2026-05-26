@@ -4,11 +4,11 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Award, GraduationCap, Target, Heart } from "lucide-react";
 
-const values = [
-  { icon: Target, label: "Precisión", desc: "Cada detalle importa. Trabajamos con estándares de la industria automotriz de alto rendimiento." },
-  { icon: Award, label: "Calidad", desc: "Solo usamos productos de categoría profesional, pH-neutros y certificados." },
-  { icon: GraduationCap, label: "Expertise", desc: "Formación continua en las últimas técnicas de detailing y nanotecnología." },
-  { icon: Heart, label: "Pasión", desc: "Fundada por amor al mundo automotriz. Tu vehículo lo tratamos como si fuera el nuestro." },
+const VALUES = [
+  { icon: Target, label: "Precisión", desc: "Cada detalle importa. Trabajamos con estándares de la industria automotriz de alto rendimiento.", color: "#3B82F6" },
+  { icon: Award, label: "Calidad", desc: "Solo usamos productos de categoría profesional, pH-neutros y certificados de marcas líderes.", color: "#EAB308" },
+  { icon: GraduationCap, label: "Expertise", desc: "Formación continua en las últimas técnicas de detailing y nanotecnología cerámica.", color: "#8B5CF6" },
+  { icon: Heart, label: "Pasión", desc: "\"Trato tu vehículo como si fuera el mío.\" — Nicolás Ramírez", color: "#EC4899" },
 ];
 
 export function About() {
@@ -16,67 +16,86 @@ export function About() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="nosotros" className="relative py-32 bg-midnight overflow-hidden">
-      {/* Large ghost text */}
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 font-bebas text-[20vw] text-white/[0.015] leading-none select-none pointer-events-none">
-        CEO
+    <section id="nosotros" style={{ position: "relative", background: "#040412", overflow: "hidden" }}>
+      {/* Ghost text */}
+      <div style={{
+        position: "absolute", right: 0, top: "50%", transform: "translateY(-50%)",
+        fontFamily: "var(--font-bebas)", fontSize: "20vw", color: "rgba(255,255,255,0.013)",
+        lineHeight: 1, userSelect: "none", pointerEvents: "none", whiteSpace: "nowrap",
+      }}>
+        2018
       </div>
 
-      <div ref={ref} className="relative max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div ref={ref} style={{ position: "relative", maxWidth: "82rem", margin: "0 auto", padding: "8rem 1.5rem" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}
+          className="grid-cols-1 lg:grid-cols-2">
+
           {/* Left */}
           <div>
             <motion.span
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}
-              className="inline-block font-space text-xs text-neon-pink tracking-[0.4em] uppercase mb-4"
+              style={{ display: "inline-block", fontFamily: "var(--font-space)", fontSize: 11, color: "#EC4899", letterSpacing: "0.4em", textTransform: "uppercase", marginBottom: "1rem" }}
             >
               Quiénes somos
             </motion.span>
 
-            <div className="overflow-hidden mb-6">
+            <div style={{ overflow: "hidden", marginBottom: "1.5rem" }}>
               <motion.h2
                 initial={{ y: 60 }}
                 animate={inView ? { y: 0 } : {}}
                 transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className="font-bebas text-[clamp(3rem,7vw,6rem)] leading-none"
+                style={{ fontFamily: "var(--font-bebas)", fontSize: "clamp(3rem,7vw,6rem)", lineHeight: 0.95, margin: 0, color: "#fff" }}
               >
                 NICOLÁS<br />
-                <span className="gold-text">RAMÍREZ</span>
+                <span style={{
+                  background: "linear-gradient(135deg, #A16207 0%, #EAB308 50%, #FDE047 75%, #EAB308 90%, #CA8A04 100%)",
+                  WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
+                }}>
+                  RAMÍREZ
+                </span>
               </motion.h2>
             </div>
 
+            {/* UNAB badge */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neon-blue/10 border border-neon-blue/20 mb-6"
+              style={{
+                display: "inline-flex", alignItems: "center", gap: 8,
+                padding: "6px 14px", borderRadius: 999,
+                background: "rgba(59,130,246,0.08)", border: "1px solid rgba(59,130,246,0.2)",
+                marginBottom: "1.5rem",
+              }}
             >
-              <GraduationCap size={14} className="text-neon-blue" />
-              <span className="font-space text-neon-blue text-xs font-medium">Ingeniero Industrial · CEO & Fundador</span>
+              <GraduationCap size={14} style={{ color: "#3B82F6" }} />
+              <span style={{ fontFamily: "var(--font-space)", fontSize: 11, color: "#3B82F6", fontWeight: 600 }}>
+                Ing. Industrial · Universidad Andrés Bello · CEO &amp; Fundador
+              </span>
             </motion.div>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="font-inter text-chrome/50 text-base leading-relaxed mb-5"
+              style={{ fontFamily: "var(--font-inter)", fontSize: 15, color: "rgba(203,213,225,0.5)", lineHeight: 1.8, marginBottom: "1.25rem" }}
             >
-              Nicolás fundó CleanSchile después de experimentar en carne propia la falta de opciones de calidad en el mercado automotriz chileno. Como Ingeniero Industrial, aplicó metodologías de procesos y control de calidad al mundo del detailing.
+              Nicolás fundó CleanSchile en 2018 después de experimentar en carne propia la falta de opciones de calidad en el mercado automotriz chileno. Como Ingeniero Industrial de la Universidad Andrés Bello, aplicó metodologías de procesos y control de calidad al mundo del detailing.
             </motion.p>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="font-inter text-chrome/50 text-base leading-relaxed mb-8"
+              style={{ fontFamily: "var(--font-inter)", fontSize: 15, color: "rgba(203,213,225,0.5)", lineHeight: 1.8, marginBottom: "2.5rem" }}
             >
-              Hoy, CleanSchile es sinónimo de excelencia en La Cisterna, con cientos de clientes satisfechos que confían su vehículo a nuestro equipo.
+              Hoy, con más de 300 vehículos atendidos y 5 marcas premium de referencia, CleanSchile es sinónimo de excelencia en La Cisterna.
             </motion.p>
 
             {/* Values grid */}
-            <div className="grid grid-cols-2 gap-4">
-              {values.map((v, i) => {
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+              {VALUES.map((v, i) => {
                 const Icon = v.icon;
                 return (
                   <motion.div
@@ -84,65 +103,88 @@ export function About() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ delay: 0.5 + i * 0.1 }}
-                    className="p-4 rounded-xl bg-surface border border-white/[0.06] group hover:border-white/10 transition-all duration-300"
+                    style={{
+                      padding: "1rem 1.1rem", borderRadius: 16,
+                      background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.06)",
+                    }}
                   >
-                    <Icon size={18} className="text-gold mb-2" />
-                    <p className="font-space font-semibold text-white text-sm mb-1">{v.label}</p>
-                    <p className="font-inter text-chrome/35 text-xs leading-relaxed">{v.desc}</p>
+                    <Icon size={17} style={{ color: v.color, marginBottom: 8 }} />
+                    <p style={{ fontFamily: "var(--font-space)", fontWeight: 600, color: "#fff", fontSize: 13, margin: "0 0 4px" }}>{v.label}</p>
+                    <p style={{ fontFamily: "var(--font-inter)", color: "rgba(203,213,225,0.35)", fontSize: 12, lineHeight: 1.6, margin: 0 }}>{v.desc}</p>
                   </motion.div>
                 );
               })}
             </div>
           </div>
 
-          {/* Right — Visual */}
+          {/* Right — Visual card */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="relative"
+            style={{ position: "relative" }}
           >
-            <div className="relative aspect-[3/4] rounded-3xl overflow-hidden bg-surface border border-white/[0.06]">
+            <div style={{
+              position: "relative", aspectRatio: "3/4", borderRadius: 32, overflow: "hidden",
+              background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.06)",
+            }}>
               {/* Gradient fill */}
-              <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/15 via-neon-violet/15 to-neon-pink/10" />
+              <div style={{
+                position: "absolute", inset: 0,
+                background: "linear-gradient(135deg, rgba(59,130,246,0.12) 0%, rgba(139,92,246,0.12) 50%, rgba(236,72,153,0.08) 100%)",
+              }} />
 
-              {/* Animated orbital rings */}
+              {/* Orbital rings */}
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full border border-neon-blue/10"
+                style={{ position: "absolute", top: "22%", left: "22%", width: 130, height: 130, borderRadius: "50%", border: "1px solid rgba(59,130,246,0.1)" }}
               />
               <motion.div
                 animate={{ rotate: -360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute bottom-1/4 right-1/4 w-48 h-48 rounded-full border border-neon-violet/10"
+                style={{ position: "absolute", bottom: "22%", right: "18%", width: 180, height: 180, borderRadius: "50%", border: "1px solid rgba(139,92,246,0.1)" }}
               />
               <motion.div
                 animate={{ rotate: 360 }}
-                transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full border border-neon-pink/[0.06]"
+                transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+                style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 260, height: 260, borderRadius: "50%", border: "1px solid rgba(236,72,153,0.05)" }}
               />
 
-              {/* Center content */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-neon-blue via-neon-violet to-neon-pink opacity-80 flex items-center justify-center shadow-glow-violet">
-                  <span className="font-bebas text-4xl text-white">NR</span>
+              {/* Center */}
+              <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12 }}>
+                <div style={{
+                  width: 88, height: 88, borderRadius: "50%",
+                  background: "linear-gradient(135deg, #3B82F6, #8B5CF6, #EC4899)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  boxShadow: "0 0 60px rgba(139,92,246,0.35)",
+                }}>
+                  <span style={{ fontFamily: "var(--font-bebas)", fontSize: "2.2rem", color: "#fff" }}>NR</span>
                 </div>
-                <p className="font-bebas text-2xl text-white tracking-wider">NICOLÁS RAMÍREZ</p>
-                <p className="font-space text-chrome/50 text-xs tracking-widest uppercase">CEO · CleanSchile</p>
+                <p style={{ fontFamily: "var(--font-bebas)", fontSize: "1.6rem", color: "#fff", letterSpacing: "0.05em", margin: 0 }}>NICOLÁS RAMÍREZ</p>
+                <p style={{ fontFamily: "var(--font-space)", color: "rgba(203,213,225,0.45)", fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", margin: 0 }}>
+                  CEO · CleanSchile · 2018
+                </p>
               </div>
 
-              {/* Bottom overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 glass-strong">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="font-space font-semibold text-white text-sm">Ing. Industrial</p>
-                    <p className="font-inter text-chrome/40 text-xs">Fundador & CEO</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="font-bebas text-2xl text-gold">5+</p>
-                    <p className="font-inter text-chrome/40 text-xs">años exp.</p>
-                  </div>
+              {/* Bottom info strip */}
+              <div style={{
+                position: "absolute", bottom: 0, left: 0, right: 0, padding: "1.25rem 1.5rem",
+                background: "rgba(4,4,18,0.88)", backdropFilter: "blur(24px)",
+                borderTop: "1px solid rgba(255,255,255,0.06)",
+                display: "flex", alignItems: "center", justifyContent: "space-between",
+              }}>
+                <div>
+                  <p style={{ fontFamily: "var(--font-space)", fontWeight: 600, color: "#fff", fontSize: 13, margin: "0 0 2px" }}>Ing. Industrial</p>
+                  <p style={{ fontFamily: "var(--font-inter)", color: "rgba(203,213,225,0.4)", fontSize: 11, margin: 0 }}>Fundador &amp; CEO</p>
+                </div>
+                <div style={{ textAlign: "right" }}>
+                  <p style={{
+                    fontFamily: "var(--font-bebas)", fontSize: "2rem", margin: "0 0 2px",
+                    background: "linear-gradient(135deg, #EAB308, #FDE047)",
+                    WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
+                  }}>5+</p>
+                  <p style={{ fontFamily: "var(--font-inter)", color: "rgba(203,213,225,0.4)", fontSize: 11, margin: 0 }}>años exp.</p>
                 </div>
               </div>
             </div>
@@ -151,15 +193,24 @@ export function About() {
             <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-6 -left-6 p-4 rounded-2xl glass-strong border border-gold/20"
+              style={{
+                position: "absolute", bottom: -20, left: -20,
+                padding: "14px 18px", borderRadius: 20,
+                background: "rgba(4,4,18,0.88)", backdropFilter: "blur(24px)",
+                border: "1px solid rgba(234,179,8,0.2)",
+              }}
             >
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center">
-                  <Award size={18} className="text-gold" />
+              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                <div style={{
+                  width: 40, height: 40, borderRadius: "50%",
+                  background: "rgba(234,179,8,0.1)", border: "1px solid rgba(234,179,8,0.25)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                }}>
+                  <Award size={18} style={{ color: "#EAB308" }} />
                 </div>
                 <div>
-                  <p className="font-space font-semibold text-white text-sm">500+</p>
-                  <p className="font-inter text-chrome/40 text-xs">Vehículos</p>
+                  <p style={{ fontFamily: "var(--font-space)", fontWeight: 700, color: "#fff", fontSize: 14, margin: "0 0 2px" }}>300+</p>
+                  <p style={{ fontFamily: "var(--font-inter)", color: "rgba(203,213,225,0.4)", fontSize: 11, margin: 0 }}>Vehículos</p>
                 </div>
               </div>
             </motion.div>

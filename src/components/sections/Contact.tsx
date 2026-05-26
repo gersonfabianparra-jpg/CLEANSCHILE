@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Send, Phone, Mail, MapPin, CheckCircle2, Loader2 } from "lucide-react";
+import { Send, Phone, Mail, MapPin, CheckCircle2, Loader2, Clock, Car } from "lucide-react";
 import toast from "react-hot-toast";
 
 function InstagramIcon({ size = 17 }: { size?: number }) {
@@ -15,7 +15,32 @@ function InstagramIcon({ size = 17 }: { size?: number }) {
   );
 }
 
-const services = [
+function FacebookIcon({ size = 17 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+    </svg>
+  );
+}
+
+function TikTokIcon({ size = 17 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/>
+    </svg>
+  );
+}
+
+const CONTACT_ITEMS = [
+  { icon: Phone, label: "+569 520 95 222", href: "tel:+56952095222", color: "#3B82F6" },
+  { icon: Mail, label: "contacto@cleanschile.cl", href: "mailto:contacto@cleanschile.cl", color: "#8B5CF6" },
+  { icon: MapPin, label: "Uruguay #530, La Cisterna, RM", href: "https://maps.google.com/?q=Uruguay+530+La+Cisterna+Santiago", color: "#EAB308", external: true },
+  { icon: InstagramIcon, label: "@cleanschile.detailingcar", href: "https://instagram.com/cleanschile.detailingcar", color: "#EC4899", external: true },
+  { icon: FacebookIcon, label: "CleanSchile · Facebook", href: "https://www.facebook.com/share/1B8W4cT7Ci/?mibextid=wwXIfr", color: "#3B82F6", external: true },
+  { icon: TikTokIcon, label: "@cleanschile · TikTok", href: "https://www.tiktok.com/@cleanschile", color: "#06B6D4", external: true },
+];
+
+const SERVICES = [
   "Detailing Exterior",
   "Recubrimiento Cerámico",
   "Detailing Interior",
@@ -24,6 +49,13 @@ const services = [
   "Mantención Automotriz",
   "Otro / Consulta General",
 ];
+
+const INPUT_STYLE = {
+  width: "100%", padding: "12px 16px", borderRadius: 12,
+  background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)",
+  color: "#fff", fontSize: 14, fontFamily: "var(--font-inter)",
+  outline: "none", boxSizing: "border-box" as const,
+};
 
 export function Contact() {
   const ref = useRef(null);
@@ -65,33 +97,45 @@ export function Contact() {
   };
 
   return (
-    <section id="contacto" className="relative py-32 overflow-hidden" style={{ background: "#07071A" }}>
+    <section id="contacto" style={{ position: "relative", background: "#07071A", overflow: "hidden" }}>
       {/* Background glows */}
-      <div className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse 60% 50% at 20% 50%, rgba(59,130,246,0.04) 0%, transparent 70%)" }} />
-      <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, rgba(139,92,246,0.05) 0%, transparent 70%)" }} />
+      <div style={{
+        position: "absolute", inset: 0, pointerEvents: "none",
+        background: "radial-gradient(ellipse 60% 50% at 20% 50%, rgba(59,130,246,0.04) 0%, transparent 70%)",
+      }} />
+      <div style={{
+        position: "absolute", bottom: 0, right: 0, width: 400, height: 400, pointerEvents: "none",
+        background: "radial-gradient(ellipse, rgba(139,92,246,0.05) 0%, transparent 70%)",
+      }} />
 
-      <div ref={ref} className="relative max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+      <div ref={ref} style={{ position: "relative", maxWidth: "82rem", margin: "0 auto", padding: "8rem 1.5rem" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start" }}
+          className="grid-cols-1 lg:grid-cols-2">
+
           {/* Left — Info */}
           <div>
             <motion.span
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}
-              className="inline-block font-space text-xs text-neon-cyan tracking-[0.4em] uppercase mb-4"
+              style={{ display: "inline-block", fontFamily: "var(--font-space)", fontSize: 11, color: "#06B6D4", letterSpacing: "0.4em", textTransform: "uppercase", marginBottom: "1rem" }}
             >
               Hablemos
             </motion.span>
-            <div className="overflow-hidden mb-6">
+
+            <div style={{ overflow: "hidden", marginBottom: "1.5rem" }}>
               <motion.h2
                 initial={{ y: 60 }}
                 animate={inView ? { y: 0 } : {}}
                 transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className="font-bebas text-[clamp(3rem,7vw,6rem)] leading-none"
+                style={{ fontFamily: "var(--font-bebas)", fontSize: "clamp(3rem,7vw,6rem)", lineHeight: 0.95, margin: 0, color: "#fff" }}
               >
                 COTIZA<br />
-                <span className="gradient-text">GRATIS</span>
+                <span style={{
+                  background: "linear-gradient(135deg, #3B82F6 0%, #8B5CF6 50%, #06B6D4 100%)",
+                  WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
+                }}>
+                  GRATIS
+                </span>
               </motion.h2>
             </div>
 
@@ -99,37 +143,83 @@ export function Contact() {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.3 }}
-              className="font-inter text-chrome/50 text-base leading-relaxed mb-10"
+              style={{ fontFamily: "var(--font-inter)", fontSize: 15, color: "rgba(203,213,225,0.5)", lineHeight: 1.8, marginBottom: "2rem" }}
             >
               Completa el formulario y te respondemos en menos de 24 horas. También puedes contactarnos directamente.
             </motion.p>
 
+            {/* Hours card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.35 }}
+              style={{
+                marginBottom: "1.5rem", padding: "1rem 1.25rem", borderRadius: 14,
+                background: "rgba(6,182,212,0.05)", border: "1px solid rgba(6,182,212,0.15)",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+                <Clock size={14} style={{ color: "#06B6D4" }} />
+                <span style={{ fontFamily: "var(--font-space)", fontSize: 11, color: "#06B6D4", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>
+                  Horario de Atención
+                </span>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                  <span style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: "rgba(203,213,225,0.55)" }}>Lunes – Viernes</span>
+                  <span style={{ fontFamily: "var(--font-space)", fontSize: 12, fontWeight: 600, color: "#fff" }}>9:00 – 19:00</span>
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                  <span style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: "rgba(203,213,225,0.55)" }}>Sábado</span>
+                  <span style={{ fontFamily: "var(--font-space)", fontSize: 12, fontWeight: 600, color: "#fff" }}>10:00 – 15:00</span>
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                  <span style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: "rgba(203,213,225,0.55)" }}>Domingo</span>
+                  <span style={{ fontFamily: "var(--font-space)", fontSize: 12, fontWeight: 600, color: "rgba(203,213,225,0.3)" }}>Cerrado</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Parking note */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.4 }}
-              className="space-y-5"
+              style={{
+                display: "flex", alignItems: "center", gap: 10, marginBottom: "1.75rem",
+                padding: "0.7rem 1rem", borderRadius: 12,
+                background: "rgba(234,179,8,0.05)", border: "1px solid rgba(234,179,8,0.12)",
+              }}
             >
-              {[
-                { icon: Phone, label: "+569 520 95 222", href: "tel:+56952095222", color: "#3B82F6" },
-                { icon: Mail, label: "contacto@cleanschile.cl", href: "mailto:contacto@cleanschile.cl", color: "#8B5CF6" },
-                { icon: MapPin, label: "Uruguay #530, La Cisterna, RM", href: "#", color: "#EAB308" },
-                { icon: InstagramIcon, label: "@cleanschile.detailingcar", href: "https://instagram.com/cleanschile.detailingcar", color: "#EC4899" },
-              ].map(({ icon: Icon, label, href, color }) => (
+              <Car size={14} style={{ color: "#EAB308", flexShrink: 0 }} />
+              <p style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: "rgba(203,213,225,0.5)", margin: 0 }}>
+                Estacionamiento disponible · Solo taller La Cisterna
+              </p>
+            </motion.div>
+
+            {/* Contact links */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.45 }}
+              style={{ display: "flex", flexDirection: "column", gap: 14 }}
+            >
+              {CONTACT_ITEMS.map(({ icon: Icon, label, href, color, external }) => (
                 <a
                   key={label}
                   href={href}
-                  target={href.startsWith("http") ? "_blank" : undefined}
-                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="flex items-center gap-4 group"
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noopener noreferrer" : undefined}
+                  style={{ display: "flex", alignItems: "center", gap: 14, textDecoration: "none" }}
                 >
-                  <div
-                    className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-110"
-                    style={{ background: `${color}10`, border: `1px solid ${color}22` }}
-                  >
-                    <Icon size={17} style={{ color }} />
+                  <div style={{
+                    width: 38, height: 38, borderRadius: 10, flexShrink: 0,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    background: `${color}10`, border: `1px solid ${color}22`,
+                  }}>
+                    <Icon size={16} style={{ color }} />
                   </div>
-                  <span className="font-inter text-chrome/50 text-sm group-hover:text-white/80 transition-colors">
+                  <span style={{ fontFamily: "var(--font-inter)", color: "rgba(203,213,225,0.5)", fontSize: 13 }}>
                     {label}
                   </span>
                 </a>
@@ -143,108 +233,93 @@ export function Contact() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.3, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="relative p-8 rounded-3xl bg-surface border border-white/[0.06] overflow-hidden">
+            <div style={{
+              position: "relative", padding: "2rem", borderRadius: 28,
+              background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.06)",
+              overflow: "hidden",
+            }}>
               {/* Top glow line */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-px bg-gradient-to-r from-transparent via-neon-blue/60 to-transparent" />
+              <div style={{
+                position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)",
+                width: 200, height: 1,
+                background: "linear-gradient(90deg, transparent, rgba(59,130,246,0.6), transparent)",
+              }} />
 
               {sent ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="flex flex-col items-center justify-center h-64 gap-4 text-center"
+                  style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: 256, gap: 16, textAlign: "center" }}
                 >
-                  <div className="w-16 h-16 rounded-full bg-green-500/10 border border-green-500/20 flex items-center justify-center">
-                    <CheckCircle2 size={32} className="text-green-400" />
+                  <div style={{
+                    width: 64, height: 64, borderRadius: "50%",
+                    background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.2)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                  }}>
+                    <CheckCircle2 size={32} style={{ color: "#4ADE80" }} />
                   </div>
-                  <h3 className="font-space font-bold text-white text-xl">¡Mensaje Enviado!</h3>
-                  <p className="font-inter text-chrome/50 text-sm">Te contactaremos en menos de 24 horas.</p>
+                  <h3 style={{ fontFamily: "var(--font-space)", fontWeight: 700, color: "#fff", fontSize: "1.2rem", margin: 0 }}>¡Mensaje Enviado!</h3>
+                  <p style={{ fontFamily: "var(--font-inter)", color: "rgba(203,213,225,0.5)", fontSize: 13, margin: 0 }}>Te contactaremos en menos de 24 horas.</p>
                   <button
                     onClick={() => setSent(false)}
-                    className="mt-2 text-neon-blue font-space text-sm hover:underline"
+                    style={{ fontFamily: "var(--font-space)", color: "#3B82F6", fontSize: 13, background: "none", border: "none", cursor: "pointer", marginTop: 8 }}
                   >
                     Enviar otro mensaje
                   </button>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
                     <div>
-                      <label className="block font-space text-chrome/50 text-xs mb-2 tracking-wider">Nombre *</label>
-                      <input
-                        name="name"
-                        value={form.name}
-                        onChange={handleChange}
-                        placeholder="Tu nombre"
-                        className="w-full px-4 py-3 rounded-xl bg-midnight-2 border border-white/[0.07] text-white text-sm font-inter placeholder:text-chrome/20 hover:border-white/15 transition-all"
-                        required
-                      />
+                      <label style={{ display: "block", fontFamily: "var(--font-space)", color: "rgba(203,213,225,0.5)", fontSize: 11, marginBottom: 8, letterSpacing: "0.1em" }}>Nombre *</label>
+                      <input name="name" value={form.name} onChange={handleChange} placeholder="Tu nombre" style={INPUT_STYLE} required />
                     </div>
                     <div>
-                      <label className="block font-space text-chrome/50 text-xs mb-2 tracking-wider">Teléfono</label>
-                      <input
-                        name="phone"
-                        value={form.phone}
-                        onChange={handleChange}
-                        placeholder="+56 9 ..."
-                        className="w-full px-4 py-3 rounded-xl bg-midnight-2 border border-white/[0.07] text-white text-sm font-inter placeholder:text-chrome/20 hover:border-white/15 transition-all"
-                      />
+                      <label style={{ display: "block", fontFamily: "var(--font-space)", color: "rgba(203,213,225,0.5)", fontSize: 11, marginBottom: 8, letterSpacing: "0.1em" }}>Teléfono</label>
+                      <input name="phone" value={form.phone} onChange={handleChange} placeholder="+56 9 ..." style={INPUT_STYLE} />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block font-space text-chrome/50 text-xs mb-2 tracking-wider">Email *</label>
-                    <input
-                      name="email"
-                      type="email"
-                      value={form.email}
-                      onChange={handleChange}
-                      placeholder="tu@email.com"
-                      className="w-full px-4 py-3 rounded-xl bg-midnight-2 border border-white/[0.07] text-white text-sm font-inter placeholder:text-chrome/20 hover:border-white/15 transition-all"
-                      required
-                    />
+                    <label style={{ display: "block", fontFamily: "var(--font-space)", color: "rgba(203,213,225,0.5)", fontSize: 11, marginBottom: 8, letterSpacing: "0.1em" }}>Email *</label>
+                    <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="tu@email.com" style={INPUT_STYLE} required />
                   </div>
 
                   <div>
-                    <label className="block font-space text-chrome/50 text-xs mb-2 tracking-wider">Servicio de Interés</label>
-                    <select
-                      name="service"
-                      value={form.service}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl bg-midnight-2 border border-white/[0.07] text-white text-sm font-inter hover:border-white/15 transition-all appearance-none"
-                    >
-                      <option value="" className="bg-surface">Selecciona un servicio...</option>
-                      {services.map((s) => (
-                        <option key={s} value={s} className="bg-surface">{s}</option>
+                    <label style={{ display: "block", fontFamily: "var(--font-space)", color: "rgba(203,213,225,0.5)", fontSize: 11, marginBottom: 8, letterSpacing: "0.1em" }}>Servicio de Interés</label>
+                    <select name="service" value={form.service} onChange={handleChange} style={{ ...INPUT_STYLE, appearance: "none" as const }}>
+                      <option value="" style={{ background: "#07071A" }}>Selecciona un servicio...</option>
+                      {SERVICES.map((s) => (
+                        <option key={s} value={s} style={{ background: "#07071A" }}>{s}</option>
                       ))}
                     </select>
                   </div>
 
                   <div>
-                    <label className="block font-space text-chrome/50 text-xs mb-2 tracking-wider">Mensaje *</label>
+                    <label style={{ display: "block", fontFamily: "var(--font-space)", color: "rgba(203,213,225,0.5)", fontSize: 11, marginBottom: 8, letterSpacing: "0.1em" }}>Mensaje *</label>
                     <textarea
-                      name="message"
-                      value={form.message}
-                      onChange={handleChange}
+                      name="message" value={form.message} onChange={handleChange}
                       placeholder="Cuéntanos sobre tu vehículo y qué necesitas..."
-                      rows={4}
-                      className="w-full px-4 py-3 rounded-xl bg-midnight-2 border border-white/[0.07] text-white text-sm font-inter placeholder:text-chrome/20 hover:border-white/15 transition-all resize-none"
-                      required
+                      rows={4} style={{ ...INPUT_STYLE, resize: "none" }} required
                     />
                   </div>
 
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full relative py-4 rounded-xl font-space font-semibold text-sm overflow-hidden group disabled:opacity-70"
+                    style={{
+                      position: "relative", padding: "1rem", borderRadius: 14, border: "none", cursor: "pointer",
+                      fontFamily: "var(--font-space)", fontWeight: 600, fontSize: 14,
+                      background: "linear-gradient(135deg, #3B82F6 0%, #8B5CF6 50%, #06B6D4 100%)",
+                      color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+                      opacity: loading ? 0.7 : 1,
+                    }}
                   >
-                    <span className="absolute inset-0 bg-gradient-to-r from-neon-blue via-neon-violet to-neon-pink group-hover:opacity-90 transition-opacity" />
-                    <span className="relative flex items-center justify-center gap-2 text-white">
-                      {loading ? (
-                        <><Loader2 size={16} className="animate-spin" /> Enviando...</>
-                      ) : (
-                        <><Send size={16} /> Enviar Mensaje</>
-                      )}
-                    </span>
+                    {loading ? (
+                      <><Loader2 size={16} style={{ animation: "spin 1s linear infinite" }} /> Enviando...</>
+                    ) : (
+                      <><Send size={16} /> Enviar Mensaje</>
+                    )}
                   </button>
                 </form>
               )}

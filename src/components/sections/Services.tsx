@@ -2,56 +2,53 @@
 
 import { useState, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { Droplets, Cpu, Armchair, Lightbulb, TrendingUp, Wrench } from "lucide-react";
+import { Sparkles, Shield, Sofa, TrendingUp, Wrench, Car } from "lucide-react";
 
 const SERVICES = [
   {
     num: "01",
-    Icon: Droplets,
-    title: "Detailing Exterior",
+    Icon: Sparkles,
+    title: "Pulido de Vehículos",
     tag: "Exterior",
-    desc: "Protege y restaura el brillo original de la carrocería. Descontaminamos la pintura, eliminamos micro-rayones y aplicamos sellantes de alta calidad.",
+    price: "Desde $80.000",
+    desc: "Eliminamos micro-rayones, oxidación y contaminación de la pintura con técnicas profesionales de pulido. Restauramos el brillo original de tu carrocería.",
     color: "#3B82F6",
   },
   {
     num: "02",
-    Icon: Cpu,
-    title: "Recubrimiento Cerámico",
+    Icon: Shield,
+    title: "Sellado Cerámico",
     tag: "Premium ✦",
-    desc: "Protección de nivel nanotecnológico contra agentes químicos, rayos UV y manchas de agua. Brillo profundo e hidrofóbico extremo que dura años.",
+    price: "Desde $160.000",
+    desc: "Recubrimiento nanotecnológico con marcas Carpro, Koch Chemie y Sonax. Protección duradera contra UV, lluvia ácida y agentes químicos. Hidrofóbico extremo.",
     color: "#8B5CF6",
     featured: true,
   },
   {
     num: "03",
-    Icon: Armchair,
-    title: "Detailing Interior",
+    Icon: Sofa,
+    title: "Full Interior",
     tag: "Interior",
-    desc: "Renovación profunda del habitáculo con desinfección, remoción de manchas y acondicionamiento profesional de plásticos, cuero y textiles.",
+    price: "Desde $70.000",
+    desc: "Limpieza profunda del habitáculo: tapizados, plásticos, cuero, moqueta y techo. Desinfección y acondicionamiento con productos Vonixx y AutoAmerica.",
     color: "#EC4899",
   },
   {
     num: "04",
-    Icon: Lightbulb,
-    title: "Restauración de Faros",
-    tag: "Restauración",
-    desc: "Elimina el amarillamiento y opacidad para restaurar la capacidad de iluminación y la seguridad del vehículo.",
-    color: "#06B6D4",
-  },
-  {
-    num: "05",
     Icon: TrendingUp,
-    title: "Preparación Pre-Venta",
+    title: "Servicio Pre-Venta",
     tag: "Valor",
-    desc: "Preparación estratégica del vehículo diseñada para maximizar el atractivo comercial y el valor de mercado.",
+    price: "Desde $120.000",
+    desc: "Preparación integral diseñada para maximizar el precio de venta de tu vehículo. Interior + exterior + descontaminación completa.",
     color: "#EAB308",
   },
   {
-    num: "06",
+    num: "05",
     Icon: Wrench,
     title: "Mantención Automotriz",
     tag: "Mantención",
-    desc: "Cuidado preventivo y técnico usando lubricantes y filtros premium para un rendimiento óptimo del motor.",
+    price: "Desde $120.000",
+    desc: "Cuidado preventivo y correctivo del motor con lubricantes y filtros de categoría profesional. Diagnóstico incluido.",
     color: "#84CC16",
   },
 ];
@@ -62,11 +59,7 @@ export function Services() {
   const inView = useInView(headRef, { once: true });
 
   return (
-    <section
-      id="servicios"
-      style={{ background: "#040412", position: "relative", overflow: "hidden" }}
-    >
-      {/* Top accent line */}
+    <section id="servicios" style={{ background: "#040412", position: "relative", overflow: "hidden" }}>
       <div style={{
         position: "absolute", top: 0, left: 0, right: 0, height: 1,
         background: "linear-gradient(90deg, transparent 0%, rgba(139,92,246,0.5) 40%, rgba(59,130,246,0.5) 60%, transparent 100%)",
@@ -79,42 +72,34 @@ export function Services() {
           <motion.p
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
-            style={{
-              fontFamily: "var(--font-space)",
-              fontSize: 11,
-              letterSpacing: "0.4em",
-              textTransform: "uppercase",
-              color: "#3B82F6",
-              marginBottom: "1rem",
-            }}
+            style={{ fontFamily: "var(--font-space)", fontSize: 11, letterSpacing: "0.4em", textTransform: "uppercase", color: "#3B82F6", marginBottom: "1rem" }}
           >
             ¿Qué hacemos?
           </motion.p>
-
           <div style={{ overflow: "hidden" }}>
             <motion.h2
               initial={{ y: 80 }}
               animate={inView ? { y: 0 } : {}}
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              style={{
-                fontFamily: "var(--font-bebas)",
-                fontSize: "clamp(3rem,8vw,7rem)",
-                lineHeight: 0.95,
-                margin: 0,
-                color: "#fff",
-              }}
+              style={{ fontFamily: "var(--font-bebas)", fontSize: "clamp(3rem,8vw,7rem)", lineHeight: 0.95, margin: 0, color: "#fff" }}
             >
               NUESTROS{" "}
               <span style={{
                 background: "linear-gradient(135deg, #3B82F6 0%, #8B5CF6 50%, #06B6D4 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
+                WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
               }}>
                 SERVICIOS
               </span>
             </motion.h2>
           </div>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.4 }}
+            style={{ fontFamily: "var(--font-inter)", fontSize: 14, color: "rgba(203,213,225,0.4)", marginTop: "1rem", margin: "1rem 0 0" }}
+          >
+            Solo taller · Retiro y entrega con conductor asignado disponible · Grúa con recargo
+          </motion.p>
         </div>
 
         {/* Editorial list */}
@@ -133,69 +118,49 @@ export function Services() {
                 onMouseLeave={() => setActive(null)}
                 style={{ position: "relative", borderBottom: "1px solid rgba(255,255,255,0.06)", overflow: "hidden", cursor: "default" }}
               >
-                {/* Hover fill — slides from left */}
                 <motion.div
                   animate={{ scaleX: isActive ? 1 : 0 }}
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                   style={{
                     position: "absolute", inset: 0,
                     background: `linear-gradient(90deg, ${svc.color}12 0%, transparent 60%)`,
-                    transformOrigin: "left",
-                    pointerEvents: "none",
+                    transformOrigin: "left", pointerEvents: "none",
                   }}
                 />
 
-                <div style={{
-                  position: "relative",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "clamp(16px,3vw,40px)",
-                  padding: "1.6rem 1rem",
-                }}>
+                <div style={{ position: "relative", display: "flex", alignItems: "center", gap: "clamp(16px,3vw,40px)", padding: "1.6rem 1rem" }}>
                   {/* Number */}
                   <span style={{
-                    fontFamily: "var(--font-bebas)",
-                    fontSize: "clamp(2rem,4vw,3.5rem)",
-                    lineHeight: 1,
-                    color: svc.color,
-                    opacity: isActive ? 1 : 0.22,
-                    transition: "opacity 0.35s",
-                    minWidth: "3rem",
-                    flexShrink: 0,
+                    fontFamily: "var(--font-bebas)", fontSize: "clamp(2rem,4vw,3.5rem)", lineHeight: 1,
+                    color: svc.color, opacity: isActive ? 1 : 0.22, transition: "opacity 0.35s",
+                    minWidth: "3rem", flexShrink: 0,
                   }}>
                     {svc.num}
                   </span>
 
-                  {/* Vertical rule */}
-                  <div style={{
-                    width: 1, height: 44, flexShrink: 0,
-                    background: svc.color,
-                    opacity: isActive ? 0.55 : 0.1,
-                    transition: "opacity 0.35s",
-                  }} />
+                  <div style={{ width: 1, height: 44, flexShrink: 0, background: svc.color, opacity: isActive ? 0.55 : 0.1, transition: "opacity 0.35s" }} />
 
-                  {/* Title + description */}
+                  {/* Content */}
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ display: "flex", alignItems: "baseline", gap: "clamp(8px,2vw,20px)", flexWrap: "wrap" }}>
                       <h3 style={{
-                        fontFamily: "var(--font-bebas)",
-                        fontSize: "clamp(1.6rem,3.5vw,3rem)",
-                        lineHeight: 1,
-                        color: isActive ? "#ffffff" : "rgba(255,255,255,0.8)",
-                        transition: "color 0.35s",
-                        margin: 0,
+                        fontFamily: "var(--font-bebas)", fontSize: "clamp(1.6rem,3.5vw,3rem)", lineHeight: 1,
+                        color: isActive ? "#fff" : "rgba(255,255,255,0.8)", transition: "color 0.35s", margin: 0,
                       }}>
                         {svc.title}
                       </h3>
-                      <span style={{
-                        fontFamily: "var(--font-space)",
-                        fontSize: 10,
-                        letterSpacing: "0.28em",
-                        textTransform: "uppercase",
-                        color: svc.color,
-                        flexShrink: 0,
-                      }}>
+                      <span style={{ fontFamily: "var(--font-space)", fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", color: svc.color, flexShrink: 0 }}>
                         {svc.tag}
+                      </span>
+                      {/* Price badge */}
+                      <span style={{
+                        fontFamily: "var(--font-space)", fontSize: 11, fontWeight: 700,
+                        color: svc.color, flexShrink: 0,
+                        background: `${svc.color}12`, border: `1px solid ${svc.color}25`,
+                        padding: "2px 8px", borderRadius: 999,
+                        opacity: isActive ? 1 : 0.5, transition: "opacity 0.35s",
+                      }}>
+                        {svc.price}
                       </span>
                     </div>
 
@@ -207,15 +172,7 @@ export function Services() {
                           animate={{ opacity: 1, height: "auto", marginTop: 10 }}
                           exit={{ opacity: 0, height: 0, marginTop: 0 }}
                           transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
-                          style={{
-                            fontFamily: "var(--font-inter)",
-                            fontSize: 14,
-                            lineHeight: 1.75,
-                            color: "rgba(203,213,225,0.5)",
-                            maxWidth: "42rem",
-                            margin: 0,
-                            overflow: "hidden",
-                          }}
+                          style={{ fontFamily: "var(--font-inter)", fontSize: 14, lineHeight: 1.75, color: "rgba(203,213,225,0.5)", maxWidth: "42rem", margin: 0, overflow: "hidden" }}
                         >
                           {svc.desc}
                         </motion.p>
@@ -225,14 +182,7 @@ export function Services() {
 
                   {/* Icon + arrow */}
                   <div style={{ display: "flex", alignItems: "center", gap: 14, flexShrink: 0 }}>
-                    <Icon
-                      size={20}
-                      style={{
-                        color: svc.color,
-                        opacity: isActive ? 1 : 0.18,
-                        transition: "opacity 0.35s",
-                      }}
-                    />
+                    <Icon size={20} style={{ color: svc.color, opacity: isActive ? 1 : 0.18, transition: "opacity 0.35s" }} />
                     <motion.span
                       animate={{ x: isActive ? 5 : 0, opacity: isActive ? 1 : 0.15 }}
                       transition={{ duration: 0.25 }}
@@ -247,27 +197,52 @@ export function Services() {
           })}
         </div>
 
-        {/* CTA */}
+        {/* Retiro y entrega highlight */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          style={{ textAlign: "center", marginTop: "3rem" }}
+          transition={{ delay: 0.3 }}
+          style={{
+            marginTop: "2.5rem",
+            padding: "1.25rem 1.75rem",
+            borderRadius: 16,
+            background: "rgba(6,182,212,0.05)",
+            border: "1px solid rgba(6,182,212,0.15)",
+            display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap",
+          }}
         >
+          <Car size={20} style={{ color: "#06B6D4", flexShrink: 0 }} />
+          <div>
+            <p style={{ fontFamily: "var(--font-space)", fontSize: 13, fontWeight: 600, color: "#06B6D4", margin: "0 0 2px" }}>
+              Servicio de Retiro y Entrega
+            </p>
+            <p style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: "rgba(203,213,225,0.45)", margin: 0 }}>
+              Conductor asignado disponible · Servicio de grúa con recargo · Solo taller La Cisterna
+            </p>
+          </div>
+          <a
+            href="#contacto"
+            style={{
+              marginLeft: "auto", fontFamily: "var(--font-space)", fontSize: 12, fontWeight: 600,
+              color: "#06B6D4", textDecoration: "none", flexShrink: 0,
+              border: "1px solid rgba(6,182,212,0.3)", padding: "0.4rem 1rem", borderRadius: 999,
+            }}
+          >
+            Consultar →
+          </a>
+        </motion.div>
+
+        {/* CTA */}
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.5 }} style={{ textAlign: "center", marginTop: "2rem" }}>
           <a
             href="#contacto"
             style={{
               display: "inline-flex", alignItems: "center", gap: 8,
-              padding: "0.85rem 1.75rem",
-              borderRadius: 999,
-              fontFamily: "var(--font-space)",
-              fontSize: 13,
-              fontWeight: 500,
-              color: "rgba(203,213,225,0.55)",
-              border: "1px solid rgba(255,255,255,0.1)",
+              padding: "0.85rem 1.75rem", borderRadius: 999,
+              fontFamily: "var(--font-space)", fontSize: 13, fontWeight: 500,
+              color: "rgba(203,213,225,0.55)", border: "1px solid rgba(255,255,255,0.1)",
               textDecoration: "none",
-              transition: "all 0.3s",
             }}
           >
             Consultar por un servicio →
