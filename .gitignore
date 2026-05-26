@@ -43,6 +43,7 @@ src/generated/
 
 # vercel
 .vercel
+vercel.json
 
 # typescript
 *.tsbuildinfo
