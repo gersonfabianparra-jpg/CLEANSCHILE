@@ -318,7 +318,7 @@ export function Hero() {
               borderRadius: 999,
               fontFamily: "var(--font-space)", fontWeight: 700, fontSize: 13,
               color: "#fff",
-              background: "linear-gradient(135deg, #3B82F6, #8B5CF6)",
+              background: "linear-gradient(135deg, #F97316, #EAB308)",
               textDecoration: "none",
               letterSpacing: "0.03em",
             }}>
@@ -328,7 +328,7 @@ export function Hero() {
             {/* Pulse ring */}
             <span style={{
               position: "absolute", inset: 0, borderRadius: 999,
-              border: "1px solid rgba(59,130,246,0.5)",
+              border: "1px solid rgba(249,115,22,0.5)",
               animation: "pulse-ring 2.5s ease-out infinite",
             }} />
           </a>
@@ -363,7 +363,7 @@ export function Hero() {
           style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: 32, marginTop: 64, paddingTop: 32, borderTop: "1px solid rgba(255,255,255,0.05)" }}
         >
           {[
-            { num: "500+", label: "Autos detallados" },
+            { num: "300+", label: "Autos detallados" },
             { num: "5★", label: "Valoración promedio" },
             { num: "1 Día", label: "Entrega express" },
           ].map(({ num, label }) => (

@@ -9,6 +9,7 @@ import { Logo } from "@/components/ui/Logo";
 
 const links = [
   { href: "#servicios", label: "Servicios" },
+  { href: "#trabajos", label: "Trabajos" },
   { href: "#proceso", label: "Proceso" },
   { href: "#nosotros", label: "Nosotros" },
   { href: "#resenas", label: "Reseñas" },
@@ -40,7 +41,7 @@ export function Navbar() {
           maxWidth: "82rem",
           margin: "0 auto",
           padding: "0 1.5rem",
-          height: 72,
+          height: 84,
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
