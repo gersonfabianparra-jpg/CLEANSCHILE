@@ -140,26 +140,38 @@ export function About() {
               position: "relative", aspectRatio: "3/4", borderRadius: 32, overflow: "hidden",
               border: "1px solid rgba(255,255,255,0.08)",
             }}>
-              {/* Real car photo */}
+              {/* Person placeholder photo */}
               <Image
-                src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&auto=format&fit=crop&q=85"
-                alt="Detailing profesional CleanSchile"
+                src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800&auto=format&fit=crop&q=85"
+                alt="Nicolás Ramírez — CEO CleanSchile"
                 fill
-                style={{ objectFit: "cover", objectPosition: "center" }}
+                style={{ objectFit: "cover", objectPosition: "center top" }}
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
 
-              {/* Overlay */}
+              {/* Gradient overlay */}
               <div style={{
                 position: "absolute", inset: 0,
-                background: "linear-gradient(180deg, rgba(4,4,18,0.15) 0%, rgba(4,4,18,0.7) 100%)",
+                background: "linear-gradient(180deg, rgba(4,4,18,0.05) 30%, rgba(4,4,18,0.75) 100%)",
               }} />
 
-              {/* Top accent line matching logo cyan */}
+              {/* Top accent */}
               <div style={{
                 position: "absolute", top: 0, left: 0, right: 0, height: 3,
                 background: "linear-gradient(90deg, #06B6D4, #F97316)",
               }} />
+
+              {/* UNAB badge top-right */}
+              <div style={{
+                position: "absolute", top: 16, right: 16,
+                background: "rgba(4,4,18,0.75)", backdropFilter: "blur(12px)",
+                border: "1px solid rgba(6,182,212,0.25)",
+                borderRadius: 10, padding: "6px 12px",
+                display: "flex", alignItems: "center", gap: 7,
+              }}>
+                <GraduationCap size={12} style={{ color: "#06B6D4" }} />
+                <span style={{ fontFamily: "var(--font-space)", fontSize: 10, color: "rgba(203,213,225,0.8)", fontWeight: 600, letterSpacing: "0.05em" }}>U. Andrés Bello</span>
+              </div>
 
               {/* Bottom info strip */}
               <div style={{
@@ -183,29 +195,29 @@ export function About() {
               </div>
             </div>
 
-            {/* Floating badge */}
+            {/* Floating quote badge */}
             <motion.div
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               style={{
-                position: "absolute", bottom: -20, left: -20,
-                padding: "14px 18px", borderRadius: 20,
-                background: "rgba(4,4,18,0.88)", backdropFilter: "blur(24px)",
-                border: "1px solid rgba(234,179,8,0.2)",
+                position: "absolute", bottom: -22, left: -24,
+                padding: "14px 18px", borderRadius: 18,
+                background: "rgba(4,4,18,0.90)", backdropFilter: "blur(20px)",
+                border: "1px solid rgba(6,182,212,0.2)",
+                maxWidth: 240,
               }}
             >
-              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                <div style={{
-                  width: 40, height: 40, borderRadius: "50%",
-                  background: "rgba(234,179,8,0.1)", border: "1px solid rgba(234,179,8,0.25)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                }}>
-                  <Award size={18} style={{ color: "#EAB308" }} />
-                </div>
-                <div>
-                  <p style={{ fontFamily: "var(--font-space)", fontWeight: 700, color: "#fff", fontSize: 14, margin: "0 0 2px" }}>300+</p>
-                  <p style={{ fontFamily: "var(--font-inter)", color: "rgba(203,213,225,0.4)", fontSize: 11, margin: 0 }}>Vehículos</p>
-                </div>
+              <p style={{
+                fontFamily: "var(--font-inter)", fontSize: 12, fontStyle: "italic",
+                color: "rgba(203,213,225,0.75)", margin: "0 0 8px", lineHeight: 1.55,
+              }}>
+                "Trato tu vehículo como si fuera el mío."
+              </p>
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <div style={{ width: 24, height: 1, background: "#06B6D4" }} />
+                <span style={{ fontFamily: "var(--font-space)", fontSize: 10, fontWeight: 600, color: "#06B6D4", letterSpacing: "0.08em" }}>
+                  Nicolás Ramírez · CEO
+                </span>
               </div>
             </motion.div>
           </motion.div>
