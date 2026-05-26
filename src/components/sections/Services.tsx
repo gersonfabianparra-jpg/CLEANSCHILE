@@ -92,10 +92,10 @@ export function Services() {
                   onClick={() => setActive(i)}
                   style={{
                     padding: "0.85rem 0",
+                    borderTop: "none", borderLeft: "none", borderRight: "none",
                     borderBottom: "1px solid rgba(255,255,255,0.05)",
                     display: "flex", alignItems: "center", gap: 14,
-                    background: "none", border: "none",
-                    borderBottom: "1px solid rgba(255,255,255,0.05)",
+                    background: "none",
                     cursor: "pointer", textAlign: "left", width: "100%",
                     transition: "all 0.25s",
                   }}
