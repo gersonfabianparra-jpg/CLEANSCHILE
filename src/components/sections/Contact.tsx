@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Send, Phone, Mail, MapPin, CheckCircle2, Loader2 } from "lucide-react";
+import toast from "react-hot-toast";
 
 function InstagramIcon({ size = 17 }: { size?: number }) {
   return (
@@ -13,7 +14,6 @@ function InstagramIcon({ size = 17 }: { size?: number }) {
     </svg>
   );
 }
-import toast from "react-hot-toast";
 
 const services = [
   "Detailing Exterior",
@@ -65,10 +65,12 @@ export function Contact() {
   };
 
   return (
-    <section id="contacto" className="relative py-32 bg-black-deep overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute inset-0 bg-gradient-radial from-electric-blue/5 via-transparent to-transparent pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-electric-purple/5 blur-3xl pointer-events-none" />
+    <section id="contacto" className="relative py-32 overflow-hidden" style={{ background: "#07071A" }}>
+      {/* Background glows */}
+      <div className="absolute inset-0 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse 60% 50% at 20% 50%, rgba(59,130,246,0.04) 0%, transparent 70%)" }} />
+      <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(ellipse, rgba(139,92,246,0.05) 0%, transparent 70%)" }} />
 
       <div ref={ref} className="relative max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
@@ -77,7 +79,7 @@ export function Contact() {
             <motion.span
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}
-              className="inline-block font-space text-xs text-electric-cyan tracking-[0.4em] uppercase mb-4"
+              className="inline-block font-space text-xs text-neon-cyan tracking-[0.4em] uppercase mb-4"
             >
               Hablemos
             </motion.span>
@@ -97,7 +99,7 @@ export function Contact() {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.3 }}
-              className="font-inter text-white/50 text-base leading-relaxed mb-10"
+              className="font-inter text-chrome/50 text-base leading-relaxed mb-10"
             >
               Completa el formulario y te respondemos en menos de 24 horas. También puedes contactarnos directamente.
             </motion.p>
@@ -109,10 +111,10 @@ export function Contact() {
               className="space-y-5"
             >
               {[
-                { icon: Phone, label: "+569 520 95 222", href: "tel:+56952095222", color: "#0066FF" },
-                { icon: Mail, label: "contacto@cleanschile.cl", href: "mailto:contacto@cleanschile.cl", color: "#7B2FFF" },
-                { icon: MapPin, label: "Uruguay #530, La Cisterna, RM", href: "#", color: "#C9A84C" },
-                { icon: InstagramIcon, label: "@cleanschile.detailingcar", href: "https://instagram.com/cleanschile.detailingcar", color: "#FF006E" },
+                { icon: Phone, label: "+569 520 95 222", href: "tel:+56952095222", color: "#3B82F6" },
+                { icon: Mail, label: "contacto@cleanschile.cl", href: "mailto:contacto@cleanschile.cl", color: "#8B5CF6" },
+                { icon: MapPin, label: "Uruguay #530, La Cisterna, RM", href: "#", color: "#EAB308" },
+                { icon: InstagramIcon, label: "@cleanschile.detailingcar", href: "https://instagram.com/cleanschile.detailingcar", color: "#EC4899" },
               ].map(({ icon: Icon, label, href, color }) => (
                 <a
                   key={label}
@@ -123,11 +125,11 @@ export function Contact() {
                 >
                   <div
                     className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-110"
-                    style={{ background: `${color}12`, border: `1px solid ${color}25` }}
+                    style={{ background: `${color}10`, border: `1px solid ${color}22` }}
                   >
                     <Icon size={17} style={{ color }} />
                   </div>
-                  <span className="font-inter text-white/50 text-sm group-hover:text-white/80 transition-colors">
+                  <span className="font-inter text-chrome/50 text-sm group-hover:text-white/80 transition-colors">
                     {label}
                   </span>
                 </a>
@@ -141,9 +143,9 @@ export function Contact() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.3, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="relative p-8 rounded-3xl bg-black-card border border-white/5 overflow-hidden">
-              {/* Card top glow */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-px bg-gradient-to-r from-transparent via-electric-blue/60 to-transparent" />
+            <div className="relative p-8 rounded-3xl bg-surface border border-white/[0.06] overflow-hidden">
+              {/* Top glow line */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-px bg-gradient-to-r from-transparent via-neon-blue/60 to-transparent" />
 
               {sent ? (
                 <motion.div
@@ -155,10 +157,10 @@ export function Contact() {
                     <CheckCircle2 size={32} className="text-green-400" />
                   </div>
                   <h3 className="font-space font-bold text-white text-xl">¡Mensaje Enviado!</h3>
-                  <p className="font-inter text-white/50 text-sm">Te contactaremos en menos de 24 horas.</p>
+                  <p className="font-inter text-chrome/50 text-sm">Te contactaremos en menos de 24 horas.</p>
                   <button
                     onClick={() => setSent(false)}
-                    className="mt-2 text-electric-blue font-space text-sm hover:underline"
+                    className="mt-2 text-neon-blue font-space text-sm hover:underline"
                   >
                     Enviar otro mensaje
                   </button>
@@ -167,65 +169,65 @@ export function Contact() {
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block font-space text-white/50 text-xs mb-2 tracking-wider">Nombre *</label>
+                      <label className="block font-space text-chrome/50 text-xs mb-2 tracking-wider">Nombre *</label>
                       <input
                         name="name"
                         value={form.name}
                         onChange={handleChange}
                         placeholder="Tu nombre"
-                        className="w-full px-4 py-3 rounded-xl bg-black-deep border border-white/8 text-white text-sm font-inter placeholder:text-white/20 hover:border-white/15 focus:border-electric-blue/50 transition-all"
+                        className="w-full px-4 py-3 rounded-xl bg-midnight-2 border border-white/[0.07] text-white text-sm font-inter placeholder:text-chrome/20 hover:border-white/15 transition-all"
                         required
                       />
                     </div>
                     <div>
-                      <label className="block font-space text-white/50 text-xs mb-2 tracking-wider">Teléfono</label>
+                      <label className="block font-space text-chrome/50 text-xs mb-2 tracking-wider">Teléfono</label>
                       <input
                         name="phone"
                         value={form.phone}
                         onChange={handleChange}
                         placeholder="+56 9 ..."
-                        className="w-full px-4 py-3 rounded-xl bg-black-deep border border-white/8 text-white text-sm font-inter placeholder:text-white/20 hover:border-white/15 focus:border-electric-blue/50 transition-all"
+                        className="w-full px-4 py-3 rounded-xl bg-midnight-2 border border-white/[0.07] text-white text-sm font-inter placeholder:text-chrome/20 hover:border-white/15 transition-all"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block font-space text-white/50 text-xs mb-2 tracking-wider">Email *</label>
+                    <label className="block font-space text-chrome/50 text-xs mb-2 tracking-wider">Email *</label>
                     <input
                       name="email"
                       type="email"
                       value={form.email}
                       onChange={handleChange}
                       placeholder="tu@email.com"
-                      className="w-full px-4 py-3 rounded-xl bg-black-deep border border-white/8 text-white text-sm font-inter placeholder:text-white/20 hover:border-white/15 focus:border-electric-blue/50 transition-all"
+                      className="w-full px-4 py-3 rounded-xl bg-midnight-2 border border-white/[0.07] text-white text-sm font-inter placeholder:text-chrome/20 hover:border-white/15 transition-all"
                       required
                     />
                   </div>
 
                   <div>
-                    <label className="block font-space text-white/50 text-xs mb-2 tracking-wider">Servicio de Interés</label>
+                    <label className="block font-space text-chrome/50 text-xs mb-2 tracking-wider">Servicio de Interés</label>
                     <select
                       name="service"
                       value={form.service}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl bg-black-deep border border-white/8 text-white text-sm font-inter hover:border-white/15 focus:border-electric-blue/50 transition-all appearance-none"
+                      className="w-full px-4 py-3 rounded-xl bg-midnight-2 border border-white/[0.07] text-white text-sm font-inter hover:border-white/15 transition-all appearance-none"
                     >
-                      <option value="" className="bg-black-card">Selecciona un servicio...</option>
+                      <option value="" className="bg-surface">Selecciona un servicio...</option>
                       {services.map((s) => (
-                        <option key={s} value={s} className="bg-black-card">{s}</option>
+                        <option key={s} value={s} className="bg-surface">{s}</option>
                       ))}
                     </select>
                   </div>
 
                   <div>
-                    <label className="block font-space text-white/50 text-xs mb-2 tracking-wider">Mensaje *</label>
+                    <label className="block font-space text-chrome/50 text-xs mb-2 tracking-wider">Mensaje *</label>
                     <textarea
                       name="message"
                       value={form.message}
                       onChange={handleChange}
                       placeholder="Cuéntanos sobre tu vehículo y qué necesitas..."
                       rows={4}
-                      className="w-full px-4 py-3 rounded-xl bg-black-deep border border-white/8 text-white text-sm font-inter placeholder:text-white/20 hover:border-white/15 focus:border-electric-blue/50 transition-all resize-none"
+                      className="w-full px-4 py-3 rounded-xl bg-midnight-2 border border-white/[0.07] text-white text-sm font-inter placeholder:text-chrome/20 hover:border-white/15 transition-all resize-none"
                       required
                     />
                   </div>
@@ -235,8 +237,8 @@ export function Contact() {
                     disabled={loading}
                     className="w-full relative py-4 rounded-xl font-space font-semibold text-sm overflow-hidden group disabled:opacity-70"
                   >
-                    <span className="absolute inset-0 bg-gradient-to-r from-electric-blue via-electric-purple to-electric-pink group-hover:opacity-90 transition-opacity" />
-                    <span className="relative flex items-center justify-center gap-2">
+                    <span className="absolute inset-0 bg-gradient-to-r from-neon-blue via-neon-violet to-neon-pink group-hover:opacity-90 transition-opacity" />
+                    <span className="relative flex items-center justify-center gap-2 text-white">
                       {loading ? (
                         <><Loader2 size={16} className="animate-spin" /> Enviando...</>
                       ) : (

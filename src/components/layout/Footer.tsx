@@ -13,23 +13,26 @@ function InstagramIcon({ size = 16 }: { size?: number }) {
 
 export function Footer() {
   return (
-    <footer className="relative bg-black-deep border-t border-white/5 overflow-hidden">
+    <footer className="relative bg-midnight-2 border-t border-white/[0.05] overflow-hidden">
       {/* Background glow */}
-      <div className="absolute inset-0 bg-gradient-radial from-electric-blue/5 via-transparent to-transparent pointer-events-none" />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse 60% 40% at 20% 80%, rgba(59,130,246,0.04) 0%, transparent 70%)" }}
+      />
 
       <div className="relative max-w-7xl mx-auto px-6 py-20">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
           <div className="md:col-span-2 space-y-5">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-electric-blue to-electric-purple flex items-center justify-center">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-neon-blue to-neon-violet flex items-center justify-center">
                 <span className="font-bebas text-lg text-white">C</span>
               </div>
               <div>
-                <span className="font-bebas text-2xl tracking-widest gradient-text-gold">CLEANS CHILE</span>
+                <span className="font-bebas text-2xl tracking-widest gold-text">CLEANS CHILE</span>
               </div>
             </div>
-            <p className="font-inter text-white/40 text-sm leading-relaxed max-w-xs">
+            <p className="font-inter text-chrome/40 text-sm leading-relaxed max-w-xs">
               Detailing y mantención automotriz premium. Tratamos tu vehículo con el cuidado que merece.
             </p>
             <div className="flex gap-3">
@@ -37,19 +40,19 @@ export function Footer() {
                 href="https://instagram.com/cleanschile.detailingcar"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full glass border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-electric-pink/40 hover:bg-electric-pink/5 transition-all group"
+                className="w-10 h-10 rounded-full glass border border-white/10 flex items-center justify-center text-chrome/50 hover:text-white hover:border-neon-pink/40 hover:bg-neon-pink/5 transition-all"
               >
                 <InstagramIcon size={16} />
               </a>
               <a
                 href="tel:+56952095222"
-                className="w-10 h-10 rounded-full glass border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-electric-blue/40 hover:bg-electric-blue/5 transition-all"
+                className="w-10 h-10 rounded-full glass border border-white/10 flex items-center justify-center text-chrome/50 hover:text-white hover:border-neon-blue/40 hover:bg-neon-blue/5 transition-all"
               >
                 <Phone size={16} />
               </a>
               <a
                 href="mailto:contacto@cleanschile.cl"
-                className="w-10 h-10 rounded-full glass border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-gold/40 hover:bg-gold/5 transition-all"
+                className="w-10 h-10 rounded-full glass border border-white/10 flex items-center justify-center text-chrome/50 hover:text-white hover:border-gold/40 hover:bg-gold/5 transition-all"
               >
                 <Mail size={16} />
               </a>
@@ -71,7 +74,7 @@ export function Footer() {
                 <li key={s}>
                   <Link
                     href="#servicios"
-                    className="font-inter text-white/40 text-sm hover:text-white/70 transition-colors flex items-center gap-1 group"
+                    className="font-inter text-chrome/40 text-sm hover:text-chrome/70 transition-colors flex items-center gap-1 group"
                   >
                     <span className="w-0 group-hover:w-3 h-px bg-gold transition-all duration-300 inline-block" />
                     {s}
@@ -87,19 +90,19 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin size={15} className="text-gold mt-0.5 shrink-0" />
-                <span className="font-inter text-white/40 text-sm leading-relaxed">
+                <span className="font-inter text-chrome/40 text-sm leading-relaxed">
                   Uruguay #530,<br />La Cisterna, RM
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={15} className="text-gold shrink-0" />
-                <a href="tel:+56952095222" className="font-inter text-white/40 text-sm hover:text-white/70 transition-colors">
+                <a href="tel:+56952095222" className="font-inter text-chrome/40 text-sm hover:text-chrome/70 transition-colors">
                   +569 520 95 222
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={15} className="text-gold shrink-0" />
-                <a href="mailto:contacto@cleanschile.cl" className="font-inter text-white/40 text-sm hover:text-white/70 transition-colors">
+                <a href="mailto:contacto@cleanschile.cl" className="font-inter text-chrome/40 text-sm hover:text-chrome/70 transition-colors">
                   contacto@cleanschile.cl
                 </a>
               </li>
@@ -108,12 +111,12 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-inter text-white/25 text-xs">
+        <div className="pt-8 border-t border-white/[0.05] flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="font-inter text-chrome/25 text-xs">
             © {new Date().getFullYear()} CleanSchile. Todos los derechos reservados.
           </p>
           <div className="flex items-center gap-6">
-            <Link href="/admin" className="font-inter text-white/20 text-xs hover:text-white/40 transition-colors flex items-center gap-1">
+            <Link href="/admin" className="font-inter text-chrome/20 text-xs hover:text-chrome/40 transition-colors flex items-center gap-1">
               Admin <ArrowUpRight size={10} />
             </Link>
           </div>

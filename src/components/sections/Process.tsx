@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { MessageSquare, CalendarCheck, CarFront, CheckCircle2 } from "lucide-react";
 
 const steps = [
@@ -10,40 +10,43 @@ const steps = [
     icon: MessageSquare,
     title: "Solicita tu Cotización",
     desc: "Contáctanos por WhatsApp, Instagram o nuestro formulario. La consulta es completamente gratuita y sin compromisos.",
-    color: "#0066FF",
+    color: "#3B82F6",
+    glow: "rgba(59,130,246,0.35)",
   },
   {
     num: "02",
     icon: CalendarCheck,
     title: "Agenda tu Cita",
     desc: "Coordinamos el día y hora que mejor se adapte a tu rutina. Disponibilidad de lunes a sábado.",
-    color: "#7B2FFF",
+    color: "#8B5CF6",
+    glow: "rgba(139,92,246,0.35)",
   },
   {
     num: "03",
     icon: CarFront,
     title: "Recibimos tu Vehículo",
     desc: "Realizamos una inspección previa y documentamos el estado del vehículo. Tú decides el alcance del trabajo.",
-    color: "#FF006E",
+    color: "#EC4899",
+    glow: "rgba(236,72,153,0.35)",
   },
   {
     num: "04",
     icon: CheckCircle2,
     title: "Entrega Impecable",
     desc: "Retiras tu vehículo transformado, generalmente el mismo día. Garantizamos tu satisfacción total.",
-    color: "#C9A84C",
+    color: "#EAB308",
+    glow: "rgba(234,179,8,0.35)",
   },
 ];
 
 export function Process() {
-  const containerRef = useRef<HTMLDivElement>(null);
   const headRef = useRef(null);
   const inView = useInView(headRef, { once: true });
 
   return (
-    <section id="proceso" className="relative py-32 bg-black overflow-hidden">
-      {/* Vertical line background */}
-      <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/5 to-transparent hidden lg:block" />
+    <section id="proceso" className="relative py-32 bg-midnight overflow-hidden">
+      {/* Vertical center line */}
+      <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/[0.04] to-transparent hidden lg:block" />
 
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
@@ -51,7 +54,7 @@ export function Process() {
           <motion.span
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
-            className="inline-block font-space text-xs text-electric-purple tracking-[0.4em] uppercase mb-4"
+            className="inline-block font-space text-xs text-neon-violet tracking-[0.4em] uppercase mb-4"
           >
             ¿Cómo funciona?
           </motion.span>
@@ -68,51 +71,58 @@ export function Process() {
         </div>
 
         {/* Steps */}
-        <div ref={containerRef} className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-4 relative">
-          {/* Connector line desktop */}
-          <div className="hidden lg:block absolute top-16 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-electric-blue via-electric-purple via-electric-pink to-gold opacity-20" />
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-4 relative">
+          {/* Animated connector line */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+            className="hidden lg:block absolute top-[3.5rem] left-[12.5%] right-[12.5%] h-px pointer-events-none"
+            style={{
+              background: "linear-gradient(90deg, #3B82F6, #8B5CF6, #EC4899, #EAB308)",
+              opacity: 0.2,
+              transformOrigin: "left",
+            }}
+          />
 
           {steps.map((step, i) => {
             const Icon = step.icon;
             return (
               <motion.div
                 key={step.num}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
-                transition={{ delay: i * 0.15, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ delay: i * 0.15 + 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 className="relative group"
               >
-                {/* Step number accent */}
-                <div className="absolute -top-3 -left-2 font-bebas text-[5rem] leading-none text-white/[0.03] select-none pointer-events-none">
+                {/* Ghost step number */}
+                <div className="absolute -top-4 -left-2 font-bebas text-[5.5rem] leading-none text-white/[0.025] select-none pointer-events-none">
                   {step.num}
                 </div>
 
-                <div className="relative p-6 rounded-2xl bg-black-card border border-white/5 hover:border-white/10 transition-all duration-500 group-hover:bg-surface-hover">
+                <div className="relative p-6 rounded-2xl bg-surface border border-white/[0.06] hover:border-white/10 transition-all duration-500 group-hover:bg-surface-2">
                   {/* Icon circle */}
                   <div
-                    className="w-14 h-14 rounded-full flex items-center justify-center mb-5 relative"
-                    style={{ background: `${step.color}12`, border: `1px solid ${step.color}25` }}
+                    className="w-14 h-14 rounded-full flex items-center justify-center mb-5 relative transition-transform duration-500 group-hover:scale-110"
+                    style={{ background: `${step.color}10`, border: `1px solid ${step.color}22` }}
                   >
                     <Icon size={24} style={{ color: step.color }} />
                     <motion.div
-                      className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                      style={{ boxShadow: `0 0 20px ${step.color}40` }}
+                      className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{ boxShadow: `0 0 24px ${step.glow}` }}
                     />
                   </div>
 
-                  {/* Step num */}
-                  <span
-                    className="font-bebas text-3xl leading-none mb-2 block"
-                    style={{ color: step.color }}
-                  >
+                  <span className="font-bebas text-3xl leading-none mb-2 block" style={{ color: step.color }}>
                     {step.num}
                   </span>
 
                   <h3 className="font-space font-bold text-white text-base mb-2 leading-snug">
                     {step.title}
                   </h3>
-                  <p className="font-inter text-white/40 text-sm leading-relaxed">
+                  <p className="font-inter text-chrome/40 text-sm leading-relaxed">
                     {step.desc}
                   </p>
                 </div>

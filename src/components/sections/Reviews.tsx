@@ -42,27 +42,29 @@ function StarRating({ rating }: { rating: number }) {
 
 function ReviewCard({ review }: { review: Review }) {
   return (
-    <div className="relative shrink-0 w-80 p-6 rounded-2xl bg-black-card border border-white/5 hover:border-white/10 transition-all duration-300 group mx-3">
+    <div className="relative shrink-0 w-80 p-6 rounded-2xl bg-surface border border-white/[0.06] hover:border-white/10 transition-all duration-300 group mx-3">
       <Quote size={20} className="text-gold/20 mb-4" />
       <StarRating rating={review.rating} />
-      <p className="font-inter text-white/55 text-sm leading-relaxed mt-3 mb-5">
+      <p className="font-inter text-chrome/55 text-sm leading-relaxed mt-3 mb-5">
         &quot;{review.text}&quot;
       </p>
       <div className="flex items-center gap-3">
-        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-electric-blue to-electric-purple flex items-center justify-center shrink-0">
+        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-neon-blue to-neon-violet flex items-center justify-center shrink-0">
           <span className="font-space font-bold text-sm text-white">
             {review.name.charAt(0)}
           </span>
         </div>
         <div>
           <p className="font-space font-semibold text-white text-sm">{review.name}</p>
-          <p className="font-inter text-white/30 text-xs">
+          <p className="font-inter text-chrome/30 text-xs">
             {review.carModel && `${review.carModel} · `}{timeAgo(review.createdAt)}
           </p>
         </div>
       </div>
-      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        style={{ boxShadow: "inset 0 0 40px rgba(201,168,76,0.05)" }} />
+      <div
+        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style={{ boxShadow: "inset 0 0 40px rgba(234,179,8,0.04)" }}
+      />
     </div>
   );
 }
@@ -82,7 +84,7 @@ function EmptyState() {
         <MessageSquarePlus size={28} className="text-gold" />
       </div>
       <p className="font-space font-semibold text-white text-base">Las reseñas vienen en camino</p>
-      <p className="font-inter text-white/35 text-sm leading-relaxed">
+      <p className="font-inter text-chrome/35 text-sm leading-relaxed">
         Nuestros clientes pronto compartirán su experiencia. ¿Ya pasaste por el taller? Cuéntanos.
       </p>
       <a
@@ -102,8 +104,11 @@ export function Reviews({ dbReviews }: { dbReviews: Review[] }) {
   const hasReviews = dbReviews.length > 0;
 
   return (
-    <section id="resenas" className="relative py-32 bg-black-deep overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-radial from-gold/3 via-transparent to-transparent pointer-events-none" />
+    <section id="resenas" className="relative py-32 overflow-hidden" style={{ background: "#07071A" }}>
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(234,179,8,0.03) 0%, transparent 70%)" }}
+      />
 
       <div className="max-w-7xl mx-auto px-6 mb-16">
         <div ref={headRef} className="text-center">
@@ -122,7 +127,7 @@ export function Reviews({ dbReviews }: { dbReviews: Review[] }) {
               className="font-bebas text-[clamp(3rem,8vw,7rem)] leading-none"
             >
               RESEÑAS{" "}
-              <span className="gradient-text-gold">REALES</span>
+              <span className="gold-text">REALES</span>
             </motion.h2>
           </div>
 
@@ -138,7 +143,7 @@ export function Reviews({ dbReviews }: { dbReviews: Review[] }) {
                   <Star key={i} size={18} className="fill-gold text-gold" />
                 ))}
               </div>
-              <span className="font-space text-white/50 text-sm">
+              <span className="font-space text-chrome/50 text-sm">
                 {dbReviews.length} reseña{dbReviews.length !== 1 ? "s" : ""} verificada{dbReviews.length !== 1 ? "s" : ""}
               </span>
             </motion.div>
@@ -157,11 +162,11 @@ export function Reviews({ dbReviews }: { dbReviews: Review[] }) {
                 <ReviewCard key={`r1-${i}`} review={r} />
               ))}
             </div>
-            <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-black-deep to-transparent pointer-events-none z-10" />
-            <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-black-deep to-transparent pointer-events-none z-10" />
+            <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-[#07071A] to-transparent pointer-events-none z-10" />
+            <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-[#07071A] to-transparent pointer-events-none z-10" />
           </div>
 
-          {/* Marquee Row 2 (reverse) — solo si hay suficientes */}
+          {/* Marquee Row 2 (reverse) */}
           {dbReviews.length >= 3 && (
             <div className="relative mt-5">
               <div className="flex animate-marquee-reverse">
@@ -169,8 +174,8 @@ export function Reviews({ dbReviews }: { dbReviews: Review[] }) {
                   <ReviewCard key={`r2-${i}`} review={r} />
                 ))}
               </div>
-              <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-black-deep to-transparent pointer-events-none z-10" />
-              <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-black-deep to-transparent pointer-events-none z-10" />
+              <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-[#07071A] to-transparent pointer-events-none z-10" />
+              <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-[#07071A] to-transparent pointer-events-none z-10" />
             </div>
           )}
         </>
