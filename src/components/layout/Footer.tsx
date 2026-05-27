@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Phone, Mail, MapPin, ArrowUpRight } from "lucide-react";
 import { LogoFull } from "@/components/ui/Logo";
+import { prisma } from "@/lib/db";
 
 function InstagramIcon({ size = 16 }: { size?: number }) {
   return (
@@ -28,7 +29,21 @@ function TikTokIcon({ size = 16 }: { size?: number }) {
   );
 }
 
-export function Footer() {
+export async function Footer() {
+  let phone   = "+569 520 95 222";
+  let address = "Uruguay #530, La Cisterna, RM";
+  let email   = "contacto@cleanschile.cl";
+  let whatsapp = "56952095222";
+  try {
+    const rows = await prisma.setting.findMany({ where: { key: { in: ["site_phone","site_address","site_email_public","site_whatsapp"] } } });
+    for (const r of rows) {
+      if (r.key === "site_phone")        phone   = r.value;
+      if (r.key === "site_address")      address = r.value;
+      if (r.key === "site_email_public") email   = r.value;
+      if (r.key === "site_whatsapp")     whatsapp = r.value;
+    }
+  } catch {}
+
   return (
     <footer style={{ position: "relative", background: "#030310", borderTop: "1px solid rgba(255,255,255,0.05)", overflow: "hidden" }}>
       {/* Subtle glow */}
@@ -61,8 +76,8 @@ export function Footer() {
                 { href: "https://instagram.com/cleanschile.detailingcar", icon: <InstagramIcon />, color: "#EC4899" },
                 { href: "https://www.facebook.com/share/1B8W4cT7Ci/?mibextid=wwXIfr", icon: <FacebookIcon />, color: "#3B82F6" },
                 { href: "https://www.tiktok.com/@cleanschile", icon: <TikTokIcon />, color: "#06B6D4" },
-                { href: "tel:+56952095222", icon: <Phone size={15} />, color: "#06B6D4" },
-                { href: "mailto:contacto@cleanschile.cl", icon: <Mail size={15} />, color: "#EAB308" },
+                { href: `tel:${phone.replace(/\s/g,"")}`, icon: <Phone size={15} />, color: "#06B6D4" },
+                { href: `mailto:${email}`, icon: <Mail size={15} />, color: "#EAB308" },
               ].map(({ href, icon }, i) => (
                 <a
                   key={i}
@@ -134,9 +149,9 @@ export function Footer() {
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
               {[
-                { icon: <MapPin size={14} />, text: "Uruguay #530, La Cisterna, RM", href: "#" },
-                { icon: <Phone size={14} />, text: "+569 520 95 222", href: "tel:+56952095222" },
-                { icon: <Mail size={14} />, text: "contacto@cleanschile.cl", href: "mailto:contacto@cleanschile.cl" },
+                { icon: <MapPin size={14} />, text: address, href: `https://maps.google.com/?q=${encodeURIComponent(address)}` },
+                { icon: <Phone size={14} />, text: phone, href: `tel:${phone.replace(/\s/g,"")}` },
+                { icon: <Mail size={14} />, text: email, href: `mailto:${email}` },
               ].map(({ icon, text, href }) => (
                 <a
                   key={text}

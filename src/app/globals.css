@@ -164,3 +164,112 @@ input:focus, textarea:focus, select:focus {
   border-color: rgba(59,130,246,0.5) !important;
   box-shadow: 0 0 0 3px rgba(59,130,246,0.1), 0 0 20px rgba(59,130,246,0.08);
 }
+
+/* ─── GPU Compositing & Smoothness ───────────────── */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Force GPU layer on elements that animate transform/opacity */
+.gpu {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Smooth all CSS transitions site-wide */
+a, button { transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); }
+
+/* ─── Mobile Responsive ──────────────────────────── */
+/* ─── Navbar breakpoints (Tailwind md: unreliable in v4) ─── */
+@media (min-width: 768px) {
+  .rsp-nav-desktop { display: flex !important; }
+  .rsp-nav-mobile  { display: none  !important; }
+}
+@media (max-width: 767px) {
+  .rsp-nav-desktop { display: none  !important; }
+  .rsp-nav-mobile  { display: flex  !important; }
+}
+
+@media (max-width: 767px) {
+  /* Section padding */
+  .rsp-section { padding: 4rem 1.25rem !important; }
+
+  /* 2-col → 1-col grids */
+  .rsp-2col {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+
+  /* Stats 4-col → 2-col */
+  .rsp-stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  /* Remove left border on stat items that wrap to new row */
+  .rsp-stats-grid > *:nth-child(2n+1) { border-left: none !important; }
+
+  /* Services panel: stack top/bottom */
+  .rsp-services-wrap {
+    grid-template-columns: 1fr !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .rsp-services-left {
+    justify-content: flex-start !important;
+    padding: 2.5rem 1.5rem !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+    min-height: auto !important;
+  }
+  .rsp-services-right { height: 300px !important; }
+
+  /* About photo: shorter on mobile */
+  .rsp-photo-card { aspect-ratio: 4/3 !important; }
+
+  /* Form inner 2-col → 1-col */
+  .rsp-form-2col { grid-template-columns: 1fr !important; }
+
+  /* Hide ghost text that overflows */
+  .rsp-ghost { display: none !important; }
+
+  /* Hide review arrows on mobile (no space outside card) */
+  .rsp-arrow-hide { display: none !important; }
+
+  /* Services left panel number font */
+  .rsp-big-num { font-size: clamp(3rem,15vw,5rem) !important; }
+
+  /* Reduce section inner padding */
+  .rsp-inner { padding: 4rem 1.25rem !important; }
+
+  /* Hero: disable heavy GPU effects on mobile for performance */
+  .hero-beams    { display: none !important; }
+  .hero-particles{ display: none !important; }
+  .hero-grain    { display: none !important; }
+  .hero-scan     { display: none !important; }
+  .hero-blobs    { display: none !important; }
+
+  /* Hero content: less top padding on mobile */
+  .rsp-hero-content { padding: 5.5rem 1.25rem 0 !important; }
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}

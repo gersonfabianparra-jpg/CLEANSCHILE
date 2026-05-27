@@ -22,7 +22,7 @@ export default async function AdminDashboard() {
   ];
 
   return (
-    <div className="p-8">
+    <div className="p-4 md:p-8">
       <div className="mb-8">
         <h1 className="font-bebas text-4xl text-white tracking-wider">DASHBOARD</h1>
         <p className="font-inter text-white/40 text-sm mt-1">Panel de control CleanSchile</p>

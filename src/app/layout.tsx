@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
+import { ClientShell } from "@/components/layout/ClientShell";
 import { Providers } from "@/components/Providers";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { Toaster } from "react-hot-toast";
@@ -51,9 +50,7 @@ export default function RootLayout({
         className={`${bebasNeue.variable} ${spaceGrotesk.variable} ${inter.variable} font-inter bg-midnight text-white antialiased overflow-x-hidden`}
       >
         <Providers>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
+          <ClientShell>{children}</ClientShell>
           <WhatsAppButton />
           <Toaster
             position="bottom-right"

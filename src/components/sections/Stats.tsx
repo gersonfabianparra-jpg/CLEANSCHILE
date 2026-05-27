@@ -14,15 +14,17 @@ function Counter({ value, suffix, color, active }: { value: number; suffix: stri
   const [count, setCount] = useState(0);
   useEffect(() => {
     if (!active) return;
-    let n = 0;
-    const dur = 2000, step = 14;
-    const inc = value / (dur / step);
-    const t = setInterval(() => {
-      n += inc;
-      if (n >= value) { setCount(value); clearInterval(t); }
-      else setCount(Math.floor(n));
-    }, step);
-    return () => clearInterval(t);
+    const dur = 2200;
+    const start = performance.now();
+    let raf: number;
+    const tick = (now: number) => {
+      const p = Math.min((now - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 4); // quartic easeOut — fast start, smooth decel
+      setCount(Math.round(eased * value));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
   }, [active, value]);
 
   return (
@@ -40,18 +42,18 @@ export function Stats() {
     <section style={{ position: "relative", overflow: "hidden", background: "linear-gradient(180deg, #040412 0%, #060618 50%, #040412 100%)" }}>
       <div style={{ height: 1, background: "linear-gradient(90deg, transparent, rgba(59,130,246,0.25), rgba(139,92,246,0.25), transparent)" }} />
 
-      {/* Ghost text */}
+      {/* Ghost year — current year */}
       <div style={{
         position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center",
         pointerEvents: "none", userSelect: "none",
       }}>
         <span style={{ fontFamily: "var(--font-bebas)", fontSize: "28vw", color: "rgba(255,255,255,0.012)", lineHeight: 1, whiteSpace: "nowrap" }}>
-          2018
+          {new Date().getFullYear()}
         </span>
       </div>
 
       <div ref={ref} style={{ maxWidth: "82rem", margin: "0 auto" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)" }} className="grid-cols-2 lg:grid-cols-4">
+        <div className="rsp-stats-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)" }}>
           {STATS.map((s, i) => (
             <motion.div
               key={s.label}

@@ -3,8 +3,18 @@ import { prisma } from "@/lib/db";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
+    const url = new URL(req.url);
+    const all = url.searchParams.get("all") === "true";
+
+    if (all) {
+      const session = await getServerSession(authOptions);
+      if (!session) return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+      const reviews = await prisma.review.findMany({ orderBy: { createdAt: "desc" } });
+      return NextResponse.json(reviews);
+    }
+
     const reviews = await prisma.review.findMany({
       where: { published: true },
       orderBy: { createdAt: "desc" },

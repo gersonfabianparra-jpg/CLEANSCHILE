@@ -5,40 +5,23 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Shield, Sofa, TrendingUp, Wrench, Car } from "lucide-react";
 import Image from "next/image";
 
-const SERVICES = [
-  {
-    num: "01", Icon: Sparkles, title: "Pulido de Vehículos", tag: "Exterior", price: "Desde $80.000",
-    desc: "Eliminamos micro-rayones, oxidación y contaminación de la pintura con técnicas profesionales de pulido. Restauramos el brillo original de tu carrocería.",
-    color: "#3B82F6",
-    photo: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&auto=format&fit=crop&q=85",
-  },
-  {
-    num: "02", Icon: Shield, title: "Sellado Cerámico", tag: "Premium ✦", price: "Desde $160.000",
-    desc: "Recubrimiento nanotecnológico con marcas Carpro, Koch Chemie y Sonax. Protección duradera contra UV, lluvia ácida y agentes químicos. Hidrofóbico extremo.",
-    color: "#8B5CF6", featured: true,
-    photo: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=1200&auto=format&fit=crop&q=85",
-  },
-  {
-    num: "03", Icon: Sofa, title: "Full Interior", tag: "Interior", price: "Desde $70.000",
-    desc: "Limpieza profunda del habitáculo: tapizados, plásticos, cuero, moqueta y techo. Desinfección y acondicionamiento con productos Vonixx y AutoAmerica.",
-    color: "#EC4899",
-    photo: "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1200&auto=format&fit=crop&q=85",
-  },
-  {
-    num: "04", Icon: TrendingUp, title: "Servicio Pre-Venta", tag: "Valor", price: "Desde $120.000",
-    desc: "Preparación integral diseñada para maximizar el precio de venta de tu vehículo. Interior + exterior + descontaminación completa.",
-    color: "#EAB308",
-    photo: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&auto=format&fit=crop&q=85",
-  },
-  {
-    num: "05", Icon: Wrench, title: "Mantención Automotriz", tag: "Mantención", price: "Desde $120.000",
-    desc: "Cuidado preventivo y correctivo del motor con lubricantes y filtros de categoría profesional. Diagnóstico incluido.",
-    color: "#84CC16",
-    photo: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&auto=format&fit=crop&q=85",
-  },
+type ServiceContent = { title: string; desc: string; price: string };
+
+const SERVICES_BASE = [
+  { num: "01", Icon: Sparkles, tag: "Exterior",    color: "#3B82F6", photo: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&auto=format&fit=crop&q=85", title: "Pulido de Vehículos",   desc: "Eliminamos micro-rayones, oxidación y contaminación de la pintura con técnicas profesionales de pulido. Restauramos el brillo original de tu carrocería.", price: "Desde $80.000" },
+  { num: "02", Icon: Shield,   tag: "Premium ✦",   color: "#8B5CF6", photo: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=1200&auto=format&fit=crop&q=85", title: "Sellado Cerámico",      desc: "Recubrimiento nanotecnológico con marcas Carpro, Koch Chemie y Sonax. Protección duradera contra UV, lluvia ácida y agentes químicos. Hidrofóbico extremo.", price: "Desde $160.000" },
+  { num: "03", Icon: Sofa,     tag: "Interior",     color: "#EC4899", photo: "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1200&auto=format&fit=crop&q=85", title: "Full Interior",         desc: "Limpieza profunda del habitáculo: tapizados, plásticos, cuero, moqueta y techo. Desinfección y acondicionamiento con productos Vonixx y AutoAmerica.", price: "Desde $70.000" },
+  { num: "04", Icon: TrendingUp, tag: "Valor",      color: "#EAB308", photo: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&auto=format&fit=crop&q=85", title: "Servicio Pre-Venta",    desc: "Preparación integral diseñada para maximizar el precio de venta de tu vehículo. Interior + exterior + descontaminación completa.", price: "Desde $120.000" },
+  { num: "05", Icon: Wrench,   tag: "Mantención",   color: "#84CC16", photo: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&auto=format&fit=crop&q=85", title: "Mantención Automotriz", desc: "Cuidado preventivo y correctivo del motor con lubricantes y filtros de categoría profesional. Diagnóstico incluido.", price: "Desde $120.000" },
 ];
 
-export function Services() {
+export function Services({ content }: { content?: ServiceContent[] }) {
+  const SERVICES = SERVICES_BASE.map((s, i) => ({
+    ...s,
+    title: content?.[i]?.title || s.title,
+    desc:  content?.[i]?.desc  || s.desc,
+    price: content?.[i]?.price || s.price,
+  }));
   const [active, setActive] = useState(0);
   const svc = SERVICES[active];
 
@@ -50,10 +33,10 @@ export function Services() {
         height: "100vh", overflow: "hidden", background: "#040412",
         borderTop: "1px solid rgba(255,255,255,0.04)",
       }}
-        className="flex-col md:grid"
+        className="rsp-services-wrap"
       >
         {/* Left panel */}
-        <div style={{
+        <div className="rsp-services-left" style={{
           display: "flex", flexDirection: "column", justifyContent: "center",
           padding: "0 3rem", position: "relative",
           borderRight: "1px solid rgba(255,255,255,0.05)",
@@ -67,10 +50,10 @@ export function Services() {
             <AnimatePresence mode="wait">
               <motion.p
                 key={active}
-                initial={{ y: 60, opacity: 0 }}
+                initial={{ y: 48, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -60, opacity: 0 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                exit={{ y: -48, opacity: 0 }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 style={{
                   fontFamily: "var(--font-bebas)", fontSize: "clamp(4rem,9vw,8rem)",
                   lineHeight: 1, margin: 0, color: svc.color,
@@ -143,14 +126,14 @@ export function Services() {
         </div>
 
         {/* Right panel — photo */}
-        <div style={{ position: "relative", overflow: "hidden" }}>
+        <div className="rsp-services-right" style={{ position: "relative", overflow: "hidden" }}>
           <AnimatePresence mode="wait">
             <motion.div
               key={active}
-              initial={{ opacity: 0, scale: 1.04 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.98 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0, scale: 1.06, filter: "blur(8px)" }}
+              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              exit={{ opacity: 0, scale: 0.97, filter: "blur(4px)" }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               style={{ position: "absolute", inset: 0 }}
             >
               <Image
@@ -177,10 +160,10 @@ export function Services() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={active}
-                initial={{ y: 30, opacity: 0 }}
+                initial={{ y: 24, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -20, opacity: 0 }}
-                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                exit={{ y: -16, opacity: 0 }}
+                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
               >
                 <span style={{ fontFamily: "var(--font-space)", fontSize: 10, letterSpacing: "0.35em", textTransform: "uppercase", color: svc.color, display: "block", marginBottom: "0.6rem" }}>
                   {svc.tag}

@@ -47,7 +47,7 @@ export default function AdminMensajes() {
   const unread = contacts.filter((c) => !c.read).length;
 
   return (
-    <div className="p-8 h-full">
+    <div className="p-4 md:p-8 h-full">
       <div className="mb-6">
         <h1 className="font-bebas text-4xl text-white tracking-wider">MENSAJES</h1>
         <p className="font-inter text-white/40 text-sm mt-1">
@@ -60,7 +60,7 @@ export default function AdminMensajes() {
           <Loader2 size={24} className="animate-spin text-electric-blue" />
         </div>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-[calc(100vh-200px)]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:h-[calc(100vh-200px)]">
           {/* List */}
           <div className="overflow-y-auto space-y-2 pr-2">
             {contacts.length === 0 ? (

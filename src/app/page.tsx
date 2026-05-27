@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { Hero } from "@/components/sections/Hero";
 import { Services } from "@/components/sections/Services";
 import { Stats } from "@/components/sections/Stats";
@@ -19,19 +21,42 @@ async function getReviews() {
   }
 }
 
+async function getSiteSettings() {
+  try {
+    const rows = await prisma.setting.findMany();
+    const map: Record<string, string> = {};
+    for (const r of rows) map[r.key] = r.value;
+    return map;
+  } catch {
+    return {};
+  }
+}
+
 export default async function HomePage() {
-  const reviews = await getReviews();
+  const [reviews, settings] = await Promise.all([getReviews(), getSiteSettings()]);
+
+  let services: { title: string; desc: string; price: string }[] | undefined;
+  try {
+    if (settings.services) services = JSON.parse(settings.services);
+  } catch {}
+
+  const contactInfo = {
+    phone:    settings.site_phone,
+    whatsapp: settings.site_whatsapp,
+    address:  settings.site_address,
+    email:    settings.site_email_public,
+  };
 
   return (
     <>
-      <Hero />
+      <Hero tagline={settings.hero_tagline} />
       <Stats />
-      <Services />
+      <Services content={services} />
       <Process />
       <Reviews dbReviews={reviews} />
       <About />
       <CTABanner />
-      <Contact />
+      <Contact info={contactInfo} />
     </>
   );
 }

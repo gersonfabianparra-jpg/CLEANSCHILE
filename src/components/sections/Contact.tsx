@@ -31,14 +31,7 @@ function TikTokIcon({ size = 17 }: { size?: number }) {
   );
 }
 
-const CONTACT_ITEMS = [
-  { icon: Phone, label: "+569 520 95 222", href: "tel:+56952095222", color: "#3B82F6" },
-  { icon: Mail, label: "contacto@cleanschile.cl", href: "mailto:contacto@cleanschile.cl", color: "#8B5CF6" },
-  { icon: MapPin, label: "Uruguay #530, La Cisterna, RM", href: "https://maps.google.com/?q=Uruguay+530+La+Cisterna+Santiago", color: "#EAB308", external: true },
-  { icon: InstagramIcon, label: "@cleanschile.detailingcar", href: "https://instagram.com/cleanschile.detailingcar", color: "#EC4899", external: true },
-  { icon: FacebookIcon, label: "CleanSchile · Facebook", href: "https://www.facebook.com/share/1B8W4cT7Ci/?mibextid=wwXIfr", color: "#3B82F6", external: true },
-  { icon: TikTokIcon, label: "@cleanschile · TikTok", href: "https://www.tiktok.com/@cleanschile", color: "#06B6D4", external: true },
-];
+type ContactInfo = { phone?: string; whatsapp?: string; address?: string; email?: string };
 
 const SERVICES = [
   "Detailing Exterior",
@@ -57,7 +50,21 @@ const INPUT_STYLE = {
   outline: "none", boxSizing: "border-box" as const,
 };
 
-export function Contact() {
+export function Contact({ info }: { info?: ContactInfo }) {
+  const phone   = info?.phone   || "+569 520 95 222";
+  const whatsapp = info?.whatsapp || "56952095222";
+  const address = info?.address || "Uruguay #530, La Cisterna, RM";
+  const email   = info?.email   || "contacto@cleanschile.cl";
+
+  const CONTACT_ITEMS = [
+    { icon: Phone, label: phone, href: `tel:${phone.replace(/\s/g, "")}`, color: "#3B82F6" },
+    { icon: Mail, label: email, href: `mailto:${email}`, color: "#8B5CF6" },
+    { icon: MapPin, label: address, href: `https://maps.google.com/?q=${encodeURIComponent(address)}`, color: "#EAB308", external: true },
+    { icon: InstagramIcon, label: "@cleanschile.detailingcar", href: "https://instagram.com/cleanschile.detailingcar", color: "#EC4899", external: true },
+    { icon: FacebookIcon, label: "CleanSchile · Facebook", href: "https://www.facebook.com/share/1B8W4cT7Ci/?mibextid=wwXIfr", color: "#3B82F6", external: true },
+    { icon: TikTokIcon, label: "@cleanschile · TikTok", href: "https://www.tiktok.com/@cleanschile", color: "#06B6D4", external: true },
+  ];
+
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
@@ -108,9 +115,8 @@ export function Contact() {
         background: "radial-gradient(ellipse, rgba(139,92,246,0.05) 0%, transparent 70%)",
       }} />
 
-      <div ref={ref} style={{ position: "relative", maxWidth: "82rem", margin: "0 auto", padding: "8rem 1.5rem" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start" }}
-          className="grid-cols-1 lg:grid-cols-2">
+      <div ref={ref} className="rsp-inner" style={{ position: "relative", maxWidth: "82rem", margin: "0 auto", padding: "8rem 1.5rem" }}>
+        <div className="rsp-2col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start" }}>
 
           {/* Left — Info */}
           <div>
@@ -269,7 +275,7 @@ export function Contact() {
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+                  <div className="rsp-form-2col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
                     <div>
                       <label style={{ display: "block", fontFamily: "var(--font-space)", color: "rgba(203,213,225,0.5)", fontSize: 11, marginBottom: 8, letterSpacing: "0.1em" }}>Nombre *</label>
                       <input name="name" value={form.name} onChange={handleChange} placeholder="Tu nombre" style={INPUT_STYLE} required />

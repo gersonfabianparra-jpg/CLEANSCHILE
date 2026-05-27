@@ -3,7 +3,6 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { ArrowDown, Zap } from "lucide-react";
-import { LogoMark } from "@/components/ui/Logo";
 
 const ROTATING_WORDS = ["Detailing", "Protección", "Perfección", "Excelencia", "Precisión"];
 
@@ -42,14 +41,14 @@ function RotatingWord() {
 /* Spark particles */
 type Spark = { id: number; x: number; y: number; size: number; color: string; delay: number; duration: number };
 const COLORS = ["#3B82F6", "#8B5CF6", "#06B6D4", "#EAB308", "#EC4899", "#CBD5E1"];
-const SPARKS: Spark[] = Array.from({ length: 45 }, (_, i) => ({
+const SPARKS: Spark[] = Array.from({ length: 24 }, (_, i) => ({
   id: i,
   x: Math.random() * 100,
   y: Math.random() * 100,
   size: Math.random() * 2.5 + 0.5,
   color: COLORS[Math.floor(Math.random() * COLORS.length)],
   delay: Math.random() * 10,
-  duration: Math.random() * 8 + 8,
+  duration: Math.random() * 10 + 12,
 }));
 
 /* Light beam angles */
@@ -61,7 +60,8 @@ const BEAMS = [
   { angle: 28, opacity: 0.06, width: 160, delay: 0.8 },
 ];
 
-export function Hero() {
+export function Hero({ tagline }: { tagline?: string }) {
+  const heroTagline = tagline || "Nanotecnología y precisión. Tu vehículo transformado al nivel que merece.";
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 900], [0, -120]);
@@ -93,7 +93,7 @@ export function Hero() {
 
         {/* Spotlight blobs */}
         <motion.div
-          className="animate-spotlight-1"
+          className="hero-blobs animate-spotlight-1"
           style={{
             position: "absolute",
             width: 900, height: 900,
@@ -104,7 +104,7 @@ export function Hero() {
           }}
         />
         <motion.div
-          className="animate-spotlight-2"
+          className="hero-blobs animate-spotlight-2"
           style={{
             position: "absolute",
             width: 700, height: 700,
@@ -115,7 +115,7 @@ export function Hero() {
           }}
         />
         <motion.div
-          className="animate-spotlight-3"
+          className="hero-blobs animate-spotlight-3"
           style={{
             position: "absolute",
             width: 600, height: 600,
@@ -130,6 +130,7 @@ export function Hero() {
         {BEAMS.map((b, i) => (
           <motion.div
             key={i}
+            className="hero-beams"
             initial={{ opacity: 0 }}
             animate={{ opacity: b.opacity }}
             transition={{ delay: b.delay + 1, duration: 1.5 }}
@@ -150,6 +151,7 @@ export function Hero() {
 
         {/* Scan line */}
         <motion.div
+          className="hero-scan"
           style={{
             position: "absolute", left: 0, right: 0, height: 1,
             background: "linear-gradient(90deg, transparent, rgba(59,130,246,0.6), rgba(139,92,246,0.4), transparent)",
@@ -170,6 +172,7 @@ export function Hero() {
         {SPARKS.map((s) => (
           <motion.div
             key={s.id}
+            className="hero-particles"
             style={{
               position: "absolute",
               left: `${s.x}%`, top: `${s.y}%`,
@@ -178,13 +181,13 @@ export function Hero() {
               backgroundColor: s.color,
               boxShadow: `0 0 ${s.size * 5}px ${s.color}`,
             }}
-            animate={{ y: [0, -140, -280], x: [0, (Math.random() - 0.5) * 80], opacity: [0, 0.9, 0], scale: [0, 1, 0] }}
-            transition={{ duration: s.duration, delay: s.delay, repeat: Infinity, ease: "easeOut" }}
+            animate={{ y: [0, -100, -220], x: [0, (Math.random() - 0.5) * 60], opacity: [0, 0.8, 0], scale: [0, 1.2, 0] }}
+            transition={{ duration: s.duration, delay: s.delay, repeat: Infinity, ease: [0.22, 1, 0.36, 1], repeatDelay: Math.random() * 2 }}
           />
         ))}
 
         {/* Film grain overlay */}
-        <div style={{
+        <div className="hero-grain" style={{
           position: "absolute", inset: "-30%",
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
           opacity: 0.038,
@@ -198,25 +201,9 @@ export function Hero() {
 
       {/* ── Main content ── */}
       <motion.div
+        className="gpu rsp-hero-content"
         style={{ y, opacity, position: "relative", zIndex: 10, maxWidth: "80rem", margin: "0 auto", padding: "7rem 1.5rem 0", textAlign: "center" }}
       >
-        {/* Badge — logo + tagline */}
-        <motion.div
-          initial={{ opacity: 0, y: -20, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          style={{ display: "inline-flex", alignItems: "center", gap: 16, marginBottom: 40 }}
-        >
-          <div style={{ height: 1, width: 40, background: "linear-gradient(90deg, transparent, #06B6D4)" }} />
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <LogoMark size={28} />
-            <span style={{ fontFamily: "var(--font-space)", fontSize: 11, letterSpacing: "0.35em", color: "rgba(203,213,225,0.5)", textTransform: "uppercase" as const }}>
-              Taller Premium · La Cisterna
-            </span>
-          </div>
-          <div style={{ height: 1, width: 40, background: "linear-gradient(270deg, transparent, #06B6D4)" }} />
-        </motion.div>
-
         {/* CLEANS — outline ghost */}
         <div style={{ overflow: "hidden" }}>
           <motion.h1
@@ -307,7 +294,7 @@ export function Hero() {
           transition={{ delay: 1, duration: 0.7 }}
           style={{ fontFamily: "var(--font-inter)", color: "rgba(203,213,225,0.4)", fontSize: "clamp(14px,1.5vw,18px)", maxWidth: 420, margin: "0 auto 2.5rem", lineHeight: 1.7 }}
         >
-          Nanotecnología y precisión. Tu vehículo transformado al nivel que merece.
+          {heroTagline}
         </motion.p>
 
         {/* CTAs */}
@@ -401,7 +388,7 @@ export function Hero() {
         transition={{ delay: 1.8 }}
         style={{ position: "absolute", bottom: 32, left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}
       >
-        <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}>
+        <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 2.2, repeat: Infinity, ease: [0.45, 0, 0.55, 1] }}>
           <ArrowDown size={18} style={{ color: "rgba(203,213,225,0.2)" }} />
         </motion.div>
       </motion.div>

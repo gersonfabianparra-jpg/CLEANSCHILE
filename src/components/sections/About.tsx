@@ -27,9 +27,8 @@ export function About() {
         2018
       </div>
 
-      <div ref={ref} style={{ position: "relative", maxWidth: "82rem", margin: "0 auto", padding: "8rem 1.5rem" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}
-          className="grid-cols-1 lg:grid-cols-2">
+      <div ref={ref} className="rsp-inner" style={{ position: "relative", maxWidth: "82rem", margin: "0 auto", padding: "8rem 1.5rem" }}>
+        <div className="rsp-2col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
 
           {/* Left */}
           <div>
@@ -106,17 +105,17 @@ export function About() {
                     transition={{ delay: 0.5 + i * 0.1 }}
                     onMouseMove={(e) => {
                       const r = e.currentTarget.getBoundingClientRect();
-                      const rx = ((e.clientY - r.top) / r.height - 0.5) * -14;
-                      const ry = ((e.clientX - r.left) / r.width - 0.5) * 14;
-                      e.currentTarget.style.transform = `perspective(600px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(6px)`;
+                      const rx = ((e.clientY - r.top) / r.height - 0.5) * -12;
+                      const ry = ((e.clientX - r.left) / r.width - 0.5) * 12;
+                      e.currentTarget.style.transform = `perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(8px)`;
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = "perspective(600px) rotateX(0deg) rotateY(0deg) translateZ(0px)";
+                      e.currentTarget.style.transform = "perspective(700px) rotateX(0deg) rotateY(0deg) translateZ(0px)";
                     }}
                     style={{
                       padding: "1rem 1.1rem", borderRadius: 16,
                       background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.06)",
-                      transition: "transform 0.15s ease, box-shadow 0.15s ease",
+                      transition: "transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s ease",
                       cursor: "default",
                     }}
                   >
@@ -136,7 +135,7 @@ export function About() {
             transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             style={{ position: "relative" }}
           >
-            <div style={{
+            <div className="rsp-photo-card" style={{
               position: "relative", aspectRatio: "3/4", borderRadius: 32, overflow: "hidden",
               border: "1px solid rgba(255,255,255,0.08)",
             }}>
@@ -173,53 +172,28 @@ export function About() {
                 <span style={{ fontFamily: "var(--font-space)", fontSize: 10, color: "rgba(203,213,225,0.8)", fontWeight: 600, letterSpacing: "0.05em" }}>U. Andrés Bello</span>
               </div>
 
-              {/* Bottom info strip */}
-              <div style={{
-                position: "absolute", bottom: 0, left: 0, right: 0, padding: "1.25rem 1.5rem",
-                background: "rgba(4,4,18,0.82)", backdropFilter: "blur(24px)",
-                borderTop: "1px solid rgba(255,255,255,0.06)",
-                display: "flex", alignItems: "center", justifyContent: "space-between",
-              }}>
-                <div>
-                  <p style={{ fontFamily: "var(--font-space)", fontWeight: 600, color: "#fff", fontSize: 13, margin: "0 0 2px" }}>Ing. Industrial</p>
-                  <p style={{ fontFamily: "var(--font-inter)", color: "rgba(203,213,225,0.4)", fontSize: 11, margin: 0 }}>Fundador &amp; CEO · desde 2018</p>
-                </div>
-                <div style={{ textAlign: "right" }}>
-                  <p style={{
-                    fontFamily: "var(--font-bebas)", fontSize: "2rem", margin: "0 0 2px",
-                    background: "linear-gradient(135deg, #EAB308, #FDE047)",
-                    WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
-                  }}>5+</p>
-                  <p style={{ fontFamily: "var(--font-inter)", color: "rgba(203,213,225,0.4)", fontSize: 11, margin: 0 }}>años exp.</p>
-                </div>
+              {/* Floating name badge — center bottom */}
+              <div style={{ position: "absolute", bottom: 24, left: 0, right: 0, display: "flex", justifyContent: "center" }}>
+                <motion.div
+                  animate={{ y: [0, -7, 0] }}
+                  transition={{ duration: 3.5, repeat: Infinity, ease: [0.45, 0, 0.55, 1] }}
+                  style={{
+                    padding: "10px 22px", borderRadius: 999,
+                    background: "rgba(4,4,18,0.85)", backdropFilter: "blur(20px)",
+                    border: "1px solid rgba(6,182,212,0.25)",
+                    display: "flex", flexDirection: "column", alignItems: "center", gap: 2,
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  <span style={{ fontFamily: "var(--font-space)", fontSize: 13, fontWeight: 700, color: "#fff", letterSpacing: "0.04em" }}>
+                    Nicolás Ramírez
+                  </span>
+                  <span style={{ fontFamily: "var(--font-space)", fontSize: 10, fontWeight: 600, color: "#06B6D4", letterSpacing: "0.12em", textTransform: "uppercase" }}>
+                    CEO
+                  </span>
+                </motion.div>
               </div>
             </div>
-
-            {/* Floating quote badge */}
-            <motion.div
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              style={{
-                position: "absolute", bottom: -22, left: -24,
-                padding: "14px 18px", borderRadius: 18,
-                background: "rgba(4,4,18,0.90)", backdropFilter: "blur(20px)",
-                border: "1px solid rgba(6,182,212,0.2)",
-                maxWidth: 240,
-              }}
-            >
-              <p style={{
-                fontFamily: "var(--font-inter)", fontSize: 12, fontStyle: "italic",
-                color: "rgba(203,213,225,0.75)", margin: "0 0 8px", lineHeight: 1.55,
-              }}>
-                "Trato tu vehículo como si fuera el mío."
-              </p>
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <div style={{ width: 24, height: 1, background: "#06B6D4" }} />
-                <span style={{ fontFamily: "var(--font-space)", fontSize: 10, fontWeight: 600, color: "#06B6D4", letterSpacing: "0.08em" }}>
-                  Nicolás Ramírez · CEO
-                </span>
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       </div>

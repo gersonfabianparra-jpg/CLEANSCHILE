@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, Lock } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { Logo } from "@/components/ui/Logo";
 
@@ -18,8 +19,27 @@ const links = [
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [lockGlow, setLockGlow] = useState(false);
   const { scrollY } = useScroll();
   const navOpacity = useTransform(scrollY, [0, 80], [0, 1]);
+  const router = useRouter();
+  const clickCount = useRef(0);
+  const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleLockClick = useCallback(() => {
+    clickCount.current += 1;
+    setLockGlow(true);
+    setTimeout(() => setLockGlow(false), 300);
+
+    if (resetTimer.current) clearTimeout(resetTimer.current);
+    resetTimer.current = setTimeout(() => { clickCount.current = 0; }, 3000);
+
+    if (clickCount.current >= 5) {
+      clickCount.current = 0;
+      if (resetTimer.current) clearTimeout(resetTimer.current);
+      router.push("/admin/login");
+    }
+  }, [router]);
 
   return (
     <>
@@ -52,7 +72,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop nav links */}
-          <nav style={{ display: "flex", alignItems: "center", gap: 32 }} className="hidden md:flex">
+          <nav style={{ display: "flex", alignItems: "center", gap: 32 }} className="rsp-nav-desktop">
             {links.map((link, i) => (
               <motion.div
                 key={link.href}
@@ -89,7 +109,7 @@ export function Navbar() {
           </nav>
 
           {/* CTA group */}
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }} className="hidden md:flex">
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }} className="rsp-nav-desktop">
             <a
               href="tel:+56952095222"
               style={{
@@ -125,6 +145,21 @@ export function Navbar() {
             </a>
           </div>
 
+          {/* Hidden admin lock */}
+          <button
+            onClick={handleLockClick}
+            style={{
+              background: "none", border: "none", cursor: "pointer", padding: 6,
+              color: lockGlow ? "rgba(6,182,212,0.5)" : "rgba(255,255,255,0.07)",
+              transition: "color 0.2s",
+              flexShrink: 0,
+            }}
+            title=""
+            aria-hidden="true"
+          >
+            <Lock size={13} />
+          </button>
+
           {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -132,7 +167,7 @@ export function Navbar() {
               background: "none", border: "none", cursor: "pointer",
               color: "rgba(203,213,225,0.7)", padding: 4,
             }}
-            className="md:hidden"
+            className="rsp-nav-mobile"
           >
             {isOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
