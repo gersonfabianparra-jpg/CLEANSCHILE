@@ -26,13 +26,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "CleanSchile — Detailing & Mantención Automotriz Premium",
+  title: "CleanSchile Detailing Car — Detailing & Mantención Automotriz Premium",
   description:
     "Taller especializado en detailing y mantención automotriz en La Cisterna, Santiago. Protección cerámica, pulido, restauración de faros y más.",
   keywords: ["detailing automotriz", "ceramic coating", "pulido auto", "La Cisterna", "Santiago", "CleanSchile"],
   authors: [{ name: "CleanSchile" }],
   openGraph: {
-    title: "CleanSchile — Detailing Automotriz Premium",
+    title: "CleanSchile Detailing Car — Detailing Automotriz Premium",
     description: "Protección y cuidado premium para tu vehículo. Santiago, Chile.",
     type: "website",
     locale: "es_CL",

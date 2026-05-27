@@ -261,6 +261,70 @@ export function Hero({ tagline }: { tagline?: string }) {
           </motion.h1>
         </div>
 
+        {/* DETAILING CAR — slogan badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ delay: 0.5, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 14, margin: "0.9rem 0 0", position: "relative" }}
+        >
+          {/* Glow halo behind badge */}
+          <motion.div
+            animate={{ opacity: [0.3, 0.7, 0.3], scale: [0.95, 1.05, 0.95] }}
+            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+            style={{
+              position: "absolute", inset: "-6px -20px",
+              background: "radial-gradient(ellipse, rgba(6,182,212,0.12) 0%, transparent 70%)",
+              borderRadius: 99, pointerEvents: "none",
+            }}
+          />
+
+          {/* Left line */}
+          <motion.div
+            animate={{ opacity: [0.4, 1, 0.4], scaleX: [0.7, 1, 0.7] }}
+            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+            style={{ height: 1, width: 48, background: "linear-gradient(90deg, transparent, rgba(6,182,212,0.8))", transformOrigin: "right" }}
+          />
+
+          {/* Left dot */}
+          <motion.div
+            animate={{ opacity: [0.5, 1, 0.5], boxShadow: ["0 0 4px #06B6D4", "0 0 12px #06B6D4, 0 0 24px rgba(6,182,212,0.4)", "0 0 4px #06B6D4"] }}
+            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+            style={{ width: 4, height: 4, borderRadius: "50%", background: "#06B6D4", flexShrink: 0 }}
+          />
+
+          {/* Text with shimmer scan */}
+          <motion.span
+            animate={{ backgroundPosition: ["200% center", "-200% center"] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatDelay: 1.5 }}
+            style={{
+              fontFamily: "var(--font-space)", fontSize: "clamp(10px, 1.4vw, 13px)",
+              fontWeight: 700, letterSpacing: "0.5em", textTransform: "uppercase",
+              background: "linear-gradient(105deg, rgba(6,182,212,0.5) 0%, #67E8F9 30%, #06B6D4 45%, #fff 50%, #06B6D4 55%, #67E8F9 70%, rgba(6,182,212,0.5) 100%)",
+              backgroundSize: "300% auto",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
+            Detailing Car
+          </motion.span>
+
+          {/* Right dot */}
+          <motion.div
+            animate={{ opacity: [0.5, 1, 0.5], boxShadow: ["0 0 4px #06B6D4", "0 0 12px #06B6D4, 0 0 24px rgba(6,182,212,0.4)", "0 0 4px #06B6D4"] }}
+            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+            style={{ width: 4, height: 4, borderRadius: "50%", background: "#06B6D4", flexShrink: 0 }}
+          />
+
+          {/* Right line */}
+          <motion.div
+            animate={{ opacity: [0.4, 1, 0.4], scaleX: [0.7, 1, 0.7] }}
+            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+            style={{ height: 1, width: 48, background: "linear-gradient(270deg, transparent, rgba(6,182,212,0.8))", transformOrigin: "left" }}
+          />
+        </motion.div>
+
         {/* Divider */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 24, margin: "2rem 0" }}>
           <motion.div
