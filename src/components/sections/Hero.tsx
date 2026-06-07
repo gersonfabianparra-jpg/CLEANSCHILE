@@ -356,7 +356,7 @@ export function Hero({ tagline }: { tagline?: string }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.7 }}
-          style={{ fontFamily: "var(--font-inter)", color: "rgba(203,213,225,0.4)", fontSize: "clamp(14px,1.5vw,18px)", maxWidth: 420, margin: "0 auto 2.5rem", lineHeight: 1.7 }}
+          style={{ fontFamily: "var(--font-inter)", color: "rgba(203,213,225,0.75)", fontSize: "clamp(14px,1.5vw,18px)", maxWidth: 420, margin: "0 auto 2.5rem", lineHeight: 1.7 }}
         >
           {heroTagline}
         </motion.p>
@@ -375,7 +375,7 @@ export function Hero({ tagline }: { tagline?: string }) {
               padding: "1rem 2rem",
               borderRadius: 999,
               fontFamily: "var(--font-space)", fontWeight: 700, fontSize: 13,
-              color: "#fff",
+              color: "#0a0a0a",
               background: "linear-gradient(135deg, #EAB308 0%, #FDE047 50%, #EAB308 100%)",
               boxShadow: "0 0 40px rgba(234,179,8,0.4)",
               textDecoration: "none",

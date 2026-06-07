@@ -75,7 +75,7 @@ export function CTABanner() {
             marginBottom: "2.25rem",
           }}
         >
-          Cotización gratuita · Respuesta en menos de 24h · La Cisterna, Santiago
+          Cotización gratuita · Respuesta en menos de 12h · La Cisterna, Santiago
         </motion.p>
 
         <motion.div

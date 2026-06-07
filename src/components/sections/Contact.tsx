@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Send, Phone, Mail, MapPin, CheckCircle2, Loader2, Clock, Car } from "lucide-react";
+import { Send, Phone, Mail, MapPin, CheckCircle2, Loader2, Clock } from "lucide-react";
 import toast from "react-hot-toast";
 
 function InstagramIcon({ size = 17 }: { size?: number }) {
@@ -34,11 +34,11 @@ function TikTokIcon({ size = 17 }: { size?: number }) {
 type ContactInfo = { phone?: string; whatsapp?: string; address?: string; email?: string };
 
 const SERVICES = [
-  "Detailing Exterior",
-  "Recubrimiento Cerámico",
-  "Detailing Interior",
-  "Restauración de Faros",
-  "Preparación Pre-Venta",
+  "Detallado Exterior",
+  "Sellado Cerámico",
+  "Detallado Interior",
+  "Pulido de Focos",
+  "Tratamiento Pre-Venta",
   "Mantención Automotriz",
   "Otro / Consulta General",
 ];
@@ -61,7 +61,7 @@ export function Contact({ info }: { info?: ContactInfo }) {
     { icon: Mail, label: email, href: `mailto:${email}`, color: "#8B5CF6" },
     { icon: MapPin, label: address, href: `https://maps.google.com/?q=${encodeURIComponent(address)}`, color: "#EAB308", external: true },
     { icon: InstagramIcon, label: "@cleanschile.detailingcar", href: "https://instagram.com/cleanschile.detailingcar", color: "#EC4899", external: true },
-    { icon: FacebookIcon, label: "CleanSchile · Facebook", href: "https://www.facebook.com/share/1B8W4cT7Ci/?mibextid=wwXIfr", color: "#3B82F6", external: true },
+    { icon: FacebookIcon, label: "Cleanschile · Facebook", href: "https://www.facebook.com/share/1B8W4cT7Ci/?mibextid=wwXIfr", color: "#3B82F6", external: true },
     { icon: TikTokIcon, label: "@cleanschile · TikTok", href: "https://www.tiktok.com/@cleanschile", color: "#06B6D4", external: true },
   ];
 
@@ -151,7 +151,7 @@ export function Contact({ info }: { info?: ContactInfo }) {
               transition={{ delay: 0.3 }}
               style={{ fontFamily: "var(--font-inter)", fontSize: 15, color: "rgba(203,213,225,0.5)", lineHeight: 1.8, marginBottom: "2rem" }}
             >
-              Completa el formulario y te respondemos en menos de 24 horas. También puedes contactarnos directamente.
+              Completa el formulario y te respondemos en menos de 12 horas. También puedes contactarnos directamente.
             </motion.p>
 
             {/* Hours card */}
@@ -186,22 +186,6 @@ export function Contact({ info }: { info?: ContactInfo }) {
               </div>
             </motion.div>
 
-            {/* Parking note */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.4 }}
-              style={{
-                display: "flex", alignItems: "center", gap: 10, marginBottom: "1.75rem",
-                padding: "0.7rem 1rem", borderRadius: 12,
-                background: "rgba(234,179,8,0.05)", border: "1px solid rgba(234,179,8,0.12)",
-              }}
-            >
-              <Car size={14} style={{ color: "#EAB308", flexShrink: 0 }} />
-              <p style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: "rgba(203,213,225,0.5)", margin: 0 }}>
-                Estacionamiento disponible · Solo taller La Cisterna
-              </p>
-            </motion.div>
 
             {/* Contact links */}
             <motion.div
@@ -265,7 +249,7 @@ export function Contact({ info }: { info?: ContactInfo }) {
                     <CheckCircle2 size={32} style={{ color: "#4ADE80" }} />
                   </div>
                   <h3 style={{ fontFamily: "var(--font-space)", fontWeight: 700, color: "#fff", fontSize: "1.2rem", margin: 0 }}>¡Mensaje Enviado!</h3>
-                  <p style={{ fontFamily: "var(--font-inter)", color: "rgba(203,213,225,0.5)", fontSize: 13, margin: 0 }}>Te contactaremos en menos de 24 horas.</p>
+                  <p style={{ fontFamily: "var(--font-inter)", color: "rgba(203,213,225,0.5)", fontSize: 13, margin: 0 }}>Te contactaremos en menos de 12 horas.</p>
                   <button
                     onClick={() => setSent(false)}
                     style={{ fontFamily: "var(--font-space)", color: "#3B82F6", fontSize: 13, background: "none", border: "none", cursor: "pointer", marginTop: 8 }}
@@ -349,7 +333,7 @@ export function Contact({ info }: { info?: ContactInfo }) {
             }}>
               <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#06B6D4", flexShrink: 0, boxShadow: "0 0 10px #06B6D4" }} />
               <div>
-                <p style={{ fontFamily: "var(--font-space)", fontWeight: 600, fontSize: 12, color: "#fff", margin: 0 }}>CleanSchile Detailing Car</p>
+                <p style={{ fontFamily: "var(--font-space)", fontWeight: 600, fontSize: 12, color: "#fff", margin: 0 }}>Cleanschile Detailing Car</p>
                 <p style={{ fontFamily: "var(--font-inter)", fontSize: 11, color: "rgba(203,213,225,0.45)", margin: 0 }}>Uruguay #530, La Cisterna · Santiago</p>
               </div>
             </div>

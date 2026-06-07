@@ -81,7 +81,7 @@ export function About() {
               transition={{ delay: 0.3, duration: 0.6 }}
               style={{ fontFamily: "var(--font-inter)", fontSize: 15, color: "rgba(203,213,225,0.5)", lineHeight: 1.8, marginBottom: "1.25rem" }}
             >
-              Nicolás fundó CleanSchile en 2018 después de experimentar en carne propia la falta de opciones de calidad en el mercado automotriz chileno. Como Ingeniero Industrial de la Universidad Andrés Bello, aplicó metodologías de procesos y control de calidad al mundo del detailing.
+              Nicolás fundó Cleanschile en 2018 después de experimentar en carne propia la falta de opciones de calidad en el mercado automotriz chileno. Como Ingeniero Industrial de la Universidad Andrés Bello, aplicó metodologías de procesos y control de calidad al mundo del detailing.
             </motion.p>
 
             <motion.p
@@ -90,7 +90,7 @@ export function About() {
               transition={{ delay: 0.4, duration: 0.6 }}
               style={{ fontFamily: "var(--font-inter)", fontSize: 15, color: "rgba(203,213,225,0.5)", lineHeight: 1.8, marginBottom: "2.5rem" }}
             >
-              Hoy, con más de 300 vehículos atendidos y 5 marcas premium de referencia, CleanSchile es sinónimo de excelencia en La Cisterna.
+              Hoy, con más de 300 vehículos atendidos y 5 marcas premium de referencia, Cleanschile es sinónimo de excelencia en La Cisterna.
             </motion.p>
 
             {/* Values grid */}
@@ -139,10 +139,9 @@ export function About() {
               position: "relative", aspectRatio: "3/4", borderRadius: 32, overflow: "hidden",
               border: "1px solid rgba(255,255,255,0.08)",
             }}>
-              {/* Person placeholder photo */}
               <Image
                 src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800&auto=format&fit=crop&q=85"
-                alt="Nicolás Ramírez — CEO CleanSchile"
+                alt="Nicolás Ramírez — CEO Cleanschile"
                 fill
                 style={{ objectFit: "cover", objectPosition: "center top" }}
                 sizes="(max-width: 768px) 100vw, 50vw"

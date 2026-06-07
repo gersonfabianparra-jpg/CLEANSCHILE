@@ -86,7 +86,7 @@ export function Stats() {
                   style={{ position: "absolute", inset: 0, background: s.color, filter: "blur(40px)", pointerEvents: "none" }}
                 />
               </div>
-              <p style={{ fontFamily: "var(--font-space)", fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(203,213,225,0.35)", margin: 0 }}>
+              <p style={{ fontFamily: "var(--font-space)", fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(203,213,225,0.7)", margin: 0 }}>
                 {s.label}
               </p>
             </motion.div>
@@ -98,8 +98,8 @@ export function Stats() {
           <span style={{ fontFamily: "var(--font-space)", fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(203,213,225,0.25)" }}>
             Usamos
           </span>
-          {["Carpro", "Vonixx", "Sonax", "Koch Chemie", "AutoAmerica"].map((b) => (
-            <span key={b} style={{ fontFamily: "var(--font-space)", fontSize: 12, fontWeight: 600, color: "rgba(203,213,225,0.3)", letterSpacing: "0.05em", transition: "color 0.3s" }}>
+          {["Storkar", "Carpro", "Sonax", "Alcance", "Soft99"].map((b) => (
+            <span key={b} style={{ fontFamily: "var(--font-space)", fontSize: 12, fontWeight: 600, color: "rgba(203,213,225,0.65)", letterSpacing: "0.05em", transition: "color 0.3s" }}>
               {b}
             </span>
           ))}

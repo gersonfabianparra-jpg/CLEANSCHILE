@@ -111,11 +111,11 @@ export async function Footer() {
             </p>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
               {[
-                "Detailing Exterior",
-                "Recubrimiento Cerámico",
-                "Detailing Interior",
-                "Restauración de Faros",
-                "Preparación Pre-Venta",
+                "Detallado Exterior",
+                "Sellado Cerámico",
+                "Detallado Interior",
+                "Pulido de Focos",
+                "Tratamiento Pre-Venta",
                 "Mantención Automotriz",
               ].map((s) => (
                 <li key={s}>
@@ -184,20 +184,41 @@ export async function Footer() {
           gap: 12,
         }}>
           <p style={{ fontFamily: "var(--font-inter)", fontSize: 11, color: "rgba(203,213,225,0.22)", margin: 0 }}>
-            © {new Date().getFullYear()} CleanSchile. Todos los derechos reservados.
+            © {new Date().getFullYear()} Cleanschile. Todos los derechos reservados.
           </p>
-          <Link
-            href="/admin"
-            style={{
-              fontFamily: "var(--font-inter)", fontSize: 11,
-              color: "rgba(203,213,225,0.18)",
-              textDecoration: "none",
-              display: "flex", alignItems: "center", gap: 4,
-              transition: "color 0.3s",
-            }}
-          >
-            Admin <ArrowUpRight size={10} />
-          </Link>
+          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+            <a
+              href="https://fixday.cl"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontFamily: "var(--font-space)", fontSize: 10,
+                color: "rgba(203,213,225,0.25)",
+                textDecoration: "none",
+                letterSpacing: "0.08em",
+                display: "flex", alignItems: "center", gap: 5,
+                transition: "color 0.3s",
+              }}
+            >
+              Diseñado y gestionado por
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 5, marginLeft: 4 }}>
+                <img src="/fixday-icon.svg" alt="Fixday" style={{ width: 14, height: 14, opacity: 0.5 }} />
+                <span style={{ color: "rgba(203,213,225,0.45)", fontWeight: 600 }}>Fixday.cl</span>
+              </span>
+            </a>
+            <Link
+              href="/admin"
+              style={{
+                fontFamily: "var(--font-inter)", fontSize: 11,
+                color: "rgba(203,213,225,0.18)",
+                textDecoration: "none",
+                display: "flex", alignItems: "center", gap: 4,
+                transition: "color 0.3s",
+              }}
+            >
+              Admin <ArrowUpRight size={10} />
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

@@ -1,16 +1,17 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Loader2, Save, Mail, CheckCircle } from "lucide-react";
+import { Loader2, Save, Mail, CheckCircle, Star } from "lucide-react";
 import toast from "react-hot-toast";
 
 type Settings = {
   contact_email: string;
   review_email: string;
+  google_reviews_count: string;
 };
 
 export default function AdminConfiguracion() {
-  const [settings, setSettings] = useState<Settings>({ contact_email: "", review_email: "" });
+  const [settings, setSettings] = useState<Settings>({ contact_email: "", review_email: "", google_reviews_count: "5" });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -101,6 +102,30 @@ export default function AdminConfiguracion() {
                 />
                 <p className="font-inter text-white/20 text-xs mt-1.5">Cuando un cliente envíe una reseña desde el enlace público, el aviso llega aquí.</p>
               </div>
+            </div>
+          </div>
+
+          {/* Google Reviews */}
+          <div className="p-6 rounded-2xl border border-white/[0.07]" style={{ background: "rgba(255,255,255,0.025)" }}>
+            <div className="flex items-center gap-2.5 mb-5">
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "rgba(234,179,8,0.1)", border: "1px solid rgba(234,179,8,0.2)" }}>
+                <Star size={15} style={{ color: "#EAB308" }} />
+              </div>
+              <div>
+                <h2 className="font-space font-semibold text-white text-sm">Reseñas de Google</h2>
+                <p className="font-inter text-white/30 text-xs">Cantidad de reseñas de Google que se muestran en el sitio (máximo 5).</p>
+              </div>
+            </div>
+            <div>
+              <label className="block font-space text-white/40 text-xs mb-2 tracking-wide uppercase">Número de reseñas a mostrar (1–5)</label>
+              <input
+                type="number" min={1} max={5}
+                value={settings.google_reviews_count}
+                onChange={(e) => setSettings((p) => ({ ...p, google_reviews_count: e.target.value }))}
+                className="w-full px-4 py-2.5 rounded-xl font-inter text-sm text-white"
+                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
+              />
+              <p className="font-inter text-white/20 text-xs mt-1.5">Google solo entrega las 5 más recientes. Puedes mostrar entre 1 y 5.</p>
             </div>
           </div>
 

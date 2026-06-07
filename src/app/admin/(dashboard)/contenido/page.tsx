@@ -1,24 +1,26 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Loader2, Save, CheckCircle, Sparkles, Shield, Sofa, TrendingUp, Wrench, Phone, MapPin, Mail, MessageCircle, Type } from "lucide-react";
+import { Loader2, Save, CheckCircle, Sparkles, Shield, Sofa, TrendingUp, Wrench, Lightbulb, Phone, MapPin, Mail, MessageCircle, Type } from "lucide-react";
 import toast from "react-hot-toast";
 
 type ServiceItem = { title: string; desc: string; price: string };
 
 const SERVICE_META = [
-  { num: "01", icon: Sparkles, color: "#3B82F6", tag: "Exterior" },
-  { num: "02", icon: Shield,   color: "#8B5CF6", tag: "Premium ✦" },
-  { num: "03", icon: Sofa,     color: "#EC4899", tag: "Interior" },
-  { num: "04", icon: TrendingUp, color: "#EAB308", tag: "Valor" },
-  { num: "05", icon: Wrench,   color: "#84CC16", tag: "Mantención" },
+  { num: "01", icon: Sparkles,   color: "#3B82F6", tag: "Exterior" },
+  { num: "02", icon: Shield,     color: "#8B5CF6", tag: "Premium ✦" },
+  { num: "03", icon: Sofa,       color: "#EC4899", tag: "Interior" },
+  { num: "04", icon: Lightbulb,  color: "#EAB308", tag: "Focos" },
+  { num: "05", icon: TrendingUp, color: "#84CC16", tag: "Valor" },
+  { num: "06", icon: Wrench,     color: "#06B6D4", tag: "Mantención" },
 ];
 
 const DEFAULT_SERVICES: ServiceItem[] = [
-  { title: "Pulido de Vehículos",   desc: "", price: "Desde $80.000" },
+  { title: "Detallado Exterior",    desc: "", price: "Desde $80.000" },
   { title: "Sellado Cerámico",      desc: "", price: "Desde $160.000" },
-  { title: "Full Interior",         desc: "", price: "Desde $70.000" },
-  { title: "Servicio Pre-Venta",    desc: "", price: "Desde $120.000" },
+  { title: "Detallado Interior",    desc: "", price: "Desde $70.000" },
+  { title: "Pulido de Focos",       desc: "", price: "Desde $35.000" },
+  { title: "Tratamiento Pre-Venta", desc: "", price: "Desde $120.000" },
   { title: "Mantención Automotriz", desc: "", price: "Desde $120.000" },
 ];
 

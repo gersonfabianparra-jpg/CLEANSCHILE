@@ -11,12 +11,14 @@ const DEFAULTS: Record<string, string> = {
   site_address: "Uruguay #530, La Cisterna, RM",
   site_email_public: "contacto@cleanschile.cl",
   hero_tagline: "Nanotecnología y precisión. Tu vehículo transformado al nivel que merece.",
+  google_reviews_count: "5",
   services: JSON.stringify([
-    { title: "Pulido de Vehículos", desc: "Eliminamos micro-rayones, oxidación y contaminación de la pintura con técnicas profesionales de pulido. Restauramos el brillo original de tu carrocería.", price: "Desde $80.000" },
-    { title: "Sellado Cerámico", desc: "Recubrimiento nanotecnológico con marcas Carpro, Koch Chemie y Sonax. Protección duradera contra UV, lluvia ácida y agentes químicos. Hidrofóbico extremo.", price: "Desde $160.000" },
-    { title: "Full Interior", desc: "Limpieza profunda del habitáculo: tapizados, plásticos, cuero, moqueta y techo. Desinfección y acondicionamiento con productos Vonixx y AutoAmerica.", price: "Desde $70.000" },
-    { title: "Servicio Pre-Venta", desc: "Preparación integral diseñada para maximizar el precio de venta de tu vehículo. Interior + exterior + descontaminación completa.", price: "Desde $120.000" },
-    { title: "Mantención Automotriz", desc: "Cuidado preventivo y correctivo del motor con lubricantes y filtros de categoría profesional. Diagnóstico incluido.", price: "Desde $120.000" },
+    { title: "Detallado Exterior",    desc: "Protegemos y devolvemos el brillo original a la carrocería. Descontaminamos la pintura, eliminamos micro-rayas y aplicamos selladores de alta calidad para un acabado espejo duradero.", price: "Desde $80.000" },
+    { title: "Sellado Cerámico",      desc: "Máxima protección de nivel nanotecnológico contra agentes químicos, rayos UV y marcas de agua. Aporta un brillo profundo insuperable y propiedades hidrofóbicas extremas.", price: "Desde $160.000" },
+    { title: "Detallado Interior",    desc: "Una renovación profunda y detallada del habitáculo. Desinfectamos, eliminamos manchas difíciles y acondicionamos plásticos, cuero y textiles con productos de grado profesional.", price: "Desde $70.000" },
+    { title: "Pulido de Focos",       desc: "Recupera la transparencia, estética y seguridad de tu vehículo. Eliminamos el tono amarillento y opaco de los focos, restaurando la máxima capacidad de iluminación nocturna.", price: "Desde $35.000" },
+    { title: "Tratamiento Pre-Venta", desc: "Preparamos tu vehículo de manera estratégica para destacar en el mercado. Un refresco estético completo diseñado para maximizar su valor comercial y acelerar la venta.", price: "Desde $120.000" },
+    { title: "Mantención Automotriz", desc: "Cuidado preventivo y técnico para asegurar el rendimiento óptimo de tu motor. Servicios de mantenimiento express realizados con lubricantes y filtros de grado premium.", price: "Desde $120.000" },
   ]),
 };
 

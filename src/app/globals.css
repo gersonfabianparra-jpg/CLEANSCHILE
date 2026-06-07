@@ -223,7 +223,7 @@ a, button { transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); }
     border-bottom: 1px solid rgba(255,255,255,0.05) !important;
     min-height: auto !important;
   }
-  .rsp-services-right { height: 300px !important; }
+  .rsp-services-right { height: 350px !important; }
 
   /* About photo: shorter on mobile */
   .rsp-photo-card { aspect-ratio: 4/3 !important; }

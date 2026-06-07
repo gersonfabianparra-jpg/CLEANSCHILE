@@ -2,17 +2,18 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Shield, Sofa, TrendingUp, Wrench, Car } from "lucide-react";
+import { Sparkles, Shield, Sofa, TrendingUp, Wrench, Lightbulb } from "lucide-react";
 import Image from "next/image";
 
 type ServiceContent = { title: string; desc: string; price: string };
 
 const SERVICES_BASE = [
-  { num: "01", Icon: Sparkles, tag: "Exterior",    color: "#3B82F6", photo: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&auto=format&fit=crop&q=85", title: "Pulido de Vehículos",   desc: "Eliminamos micro-rayones, oxidación y contaminación de la pintura con técnicas profesionales de pulido. Restauramos el brillo original de tu carrocería.", price: "Desde $80.000" },
-  { num: "02", Icon: Shield,   tag: "Premium ✦",   color: "#8B5CF6", photo: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=1200&auto=format&fit=crop&q=85", title: "Sellado Cerámico",      desc: "Recubrimiento nanotecnológico con marcas Carpro, Koch Chemie y Sonax. Protección duradera contra UV, lluvia ácida y agentes químicos. Hidrofóbico extremo.", price: "Desde $160.000" },
-  { num: "03", Icon: Sofa,     tag: "Interior",     color: "#EC4899", photo: "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1200&auto=format&fit=crop&q=85", title: "Full Interior",         desc: "Limpieza profunda del habitáculo: tapizados, plásticos, cuero, moqueta y techo. Desinfección y acondicionamiento con productos Vonixx y AutoAmerica.", price: "Desde $70.000" },
-  { num: "04", Icon: TrendingUp, tag: "Valor",      color: "#EAB308", photo: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&auto=format&fit=crop&q=85", title: "Servicio Pre-Venta",    desc: "Preparación integral diseñada para maximizar el precio de venta de tu vehículo. Interior + exterior + descontaminación completa.", price: "Desde $120.000" },
-  { num: "05", Icon: Wrench,   tag: "Mantención",   color: "#84CC16", photo: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&auto=format&fit=crop&q=85", title: "Mantención Automotriz", desc: "Cuidado preventivo y correctivo del motor con lubricantes y filtros de categoría profesional. Diagnóstico incluido.", price: "Desde $120.000" },
+  { num: "01", Icon: Sparkles,   tag: "Exterior",   color: "#3B82F6", photo: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&auto=format&fit=crop&q=85", title: "Detallado Exterior",    desc: "Protegemos y devolvemos el brillo original a la carrocería. Descontaminamos la pintura, eliminamos micro-rayas y aplicamos selladores de alta calidad para un acabado espejo duradero.", price: "Desde $80.000" },
+  { num: "02", Icon: Shield,     tag: "Premium ✦",  color: "#8B5CF6", photo: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=1200&auto=format&fit=crop&q=85", title: "Sellado Cerámico",      desc: "Máxima protección de nivel nanotecnológico contra agentes químicos, rayos UV y marcas de agua. Aporta un brillo profundo insuperable y propiedades hidrofóbicas extremas.", price: "Desde $160.000" },
+  { num: "03", Icon: Sofa,       tag: "Interior",   color: "#EC4899", photo: "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1200&auto=format&fit=crop&q=85", title: "Detallado Interior",    desc: "Una renovación profunda y detallada del habitáculo. Desinfectamos, eliminamos manchas difíciles y acondicionamos plásticos, cuero y textiles con productos de grado profesional.", price: "Desde $70.000" },
+  { num: "04", Icon: Lightbulb,  tag: "Focos",      color: "#EAB308", photo: "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=1200&auto=format&fit=crop&q=85", title: "Pulido de Focos",       desc: "Recupera la transparencia, estética y seguridad de tu vehículo. Eliminamos el tono amarillento y opaco de los focos, restaurando la máxima capacidad de iluminación nocturna.", price: "Desde $35.000" },
+  { num: "05", Icon: TrendingUp, tag: "Valor",      color: "#84CC16", photo: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&auto=format&fit=crop&q=85", title: "Tratamiento Pre-Venta", desc: "Preparamos tu vehículo de manera estratégica para destacar en el mercado. Un refresco estético completo diseñado para maximizar su valor comercial y acelerar la venta.", price: "Desde $120.000" },
+  { num: "06", Icon: Wrench,     tag: "Mantención", color: "#06B6D4", photo: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&auto=format&fit=crop&q=85", title: "Mantención Automotriz", desc: "Cuidado preventivo y técnico para asegurar el rendimiento óptimo de tu motor. Servicios de mantenimiento express realizados con lubricantes y filtros de grado premium.", price: "Desde $120.000" },
 ];
 
 export function Services({ content }: { content?: ServiceContent[] }) {
@@ -75,6 +76,7 @@ export function Services({ content }: { content?: ServiceContent[] }) {
                   onClick={() => setActive(i)}
                   style={{
                     padding: "0.85rem 0",
+                    minHeight: "3.2rem",
                     borderTop: "none", borderLeft: "none", borderRight: "none",
                     borderBottom: "1px solid rgba(255,255,255,0.05)",
                     display: "flex", alignItems: "center", gap: 14,
@@ -200,38 +202,6 @@ export function Services({ content }: { content?: ServiceContent[] }) {
         </div>
       </div>
 
-      {/* Retiro y entrega */}
-      <div style={{ background: "#040412", padding: "2rem 1.5rem" }}>
-        <div style={{ maxWidth: "82rem", margin: "0 auto" }}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            style={{
-              padding: "1.25rem 1.75rem", borderRadius: 16,
-              background: "rgba(6,182,212,0.05)", border: "1px solid rgba(6,182,212,0.15)",
-              display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap",
-            }}
-          >
-            <Car size={20} style={{ color: "#06B6D4", flexShrink: 0 }} />
-            <div>
-              <p style={{ fontFamily: "var(--font-space)", fontSize: 13, fontWeight: 600, color: "#06B6D4", margin: "0 0 2px" }}>
-                Servicio de Retiro y Entrega
-              </p>
-              <p style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: "rgba(203,213,225,0.45)", margin: 0 }}>
-                Conductor asignado disponible · Servicio de grúa con recargo · Solo taller La Cisterna
-              </p>
-            </div>
-            <a href="#contacto" style={{
-              marginLeft: "auto", fontFamily: "var(--font-space)", fontSize: 12, fontWeight: 600,
-              color: "#06B6D4", textDecoration: "none", flexShrink: 0,
-              border: "1px solid rgba(6,182,212,0.3)", padding: "0.4rem 1rem", borderRadius: 999,
-            }}>
-              Consultar →
-            </a>
-          </motion.div>
-        </div>
-      </div>
     </section>
   );
 }
