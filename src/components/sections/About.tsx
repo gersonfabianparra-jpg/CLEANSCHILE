@@ -140,17 +140,27 @@ export function About() {
               border: "1px solid rgba(255,255,255,0.08)",
             }}>
               <Image
-                src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800&auto=format&fit=crop&q=85"
+                src="/nicolas-perfil.png"
                 alt="Nicolás Ramírez — CEO Cleanschile"
                 fill
-                style={{ objectFit: "cover", objectPosition: "center top" }}
+                style={{
+                  objectFit: "cover", objectPosition: "center top",
+                  filter: "contrast(1.08) brightness(0.88) saturate(0.8)",
+                }}
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
 
-              {/* Gradient overlay */}
+              {/* Color grade overlay — cool cinematic tint */}
               <div style={{
                 position: "absolute", inset: 0,
-                background: "linear-gradient(180deg, rgba(4,4,18,0.05) 30%, rgba(4,4,18,0.75) 100%)",
+                background: "linear-gradient(160deg, rgba(6,12,40,0.35) 0%, rgba(6,182,212,0.06) 50%, rgba(4,4,18,0.82) 100%)",
+                mixBlendMode: "multiply",
+              }} />
+
+              {/* Bottom fade */}
+              <div style={{
+                position: "absolute", inset: 0,
+                background: "linear-gradient(180deg, transparent 40%, rgba(4,4,18,0.85) 100%)",
               }} />
 
               {/* Top accent */}
