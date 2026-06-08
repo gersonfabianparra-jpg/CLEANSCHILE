@@ -4,8 +4,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 
 const DEFAULTS: Record<string, string> = {
-  contact_email: "nicolas@cleanschile.cl",
-  review_email: "nicolas@cleanschile.cl",
+  contact_email: "cleanschile@gmail.com",
+  review_email: "cleanschile@gmail.com",
   site_phone: "+569 520 95 222",
   site_whatsapp: "56952095222",
   site_address: "Uruguay #530, La Cisterna, RM",

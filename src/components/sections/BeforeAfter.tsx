@@ -160,7 +160,7 @@ export function BeforeAfter() {
   if (PAIRS.length === 0) return null;
 
   return (
-    <section style={{ position: "relative", background: "#040412", padding: "7rem 1.5rem", overflow: "hidden" }}>
+    <section id="trabajos" style={{ position: "relative", background: "#040412", padding: "7rem 1.5rem", overflow: "hidden" }}>
       {/* Background glow */}
       <div style={{
         position: "absolute", top: "30%", left: "50%", transform: "translateX(-50%)",

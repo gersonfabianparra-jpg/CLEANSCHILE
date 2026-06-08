@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Shield, Sofa, TrendingUp, Wrench, Lightbulb } from "lucide-react";
 import Image from "next/image";
@@ -8,11 +9,11 @@ import Image from "next/image";
 type ServiceContent = { title: string; desc: string; price: string };
 
 const SERVICES_BASE = [
-  { num: "01", Icon: Sparkles,   tag: "Exterior",   color: "#3B82F6", photo: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&auto=format&fit=crop&q=85", title: "Detallado Exterior",    desc: "Protegemos y devolvemos el brillo original a la carrocería. Descontaminamos la pintura, eliminamos micro-rayas y aplicamos selladores de alta calidad para un acabado espejo duradero.", price: "Desde $80.000" },
-  { num: "02", Icon: Shield,     tag: "Premium ✦",  color: "#8B5CF6", photo: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=1200&auto=format&fit=crop&q=85", title: "Sellado Cerámico",      desc: "Máxima protección de nivel nanotecnológico contra agentes químicos, rayos UV y marcas de agua. Aporta un brillo profundo insuperable y propiedades hidrofóbicas extremas.", price: "Desde $160.000" },
-  { num: "03", Icon: Sofa,       tag: "Interior",   color: "#EC4899", photo: "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1200&auto=format&fit=crop&q=85", title: "Detallado Interior",    desc: "Una renovación profunda y detallada del habitáculo. Desinfectamos, eliminamos manchas difíciles y acondicionamos plásticos, cuero y textiles con productos de grado profesional.", price: "Desde $70.000" },
-  { num: "04", Icon: Lightbulb,  tag: "Focos",      color: "#EAB308", photo: "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=1200&auto=format&fit=crop&q=85", title: "Pulido de Focos",       desc: "Recupera la transparencia, estética y seguridad de tu vehículo. Eliminamos el tono amarillento y opaco de los focos, restaurando la máxima capacidad de iluminación nocturna.", price: "Desde $35.000" },
-  { num: "05", Icon: TrendingUp, tag: "Valor",      color: "#84CC16", photo: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&auto=format&fit=crop&q=85", title: "Tratamiento Pre-Venta", desc: "Preparamos tu vehículo de manera estratégica para destacar en el mercado. Un refresco estético completo diseñado para maximizar su valor comercial y acelerar la venta.", price: "Desde $120.000" },
+  { num: "01", Icon: Sparkles,   tag: "Exterior",   color: "#3B82F6", photo: "/servicios/detallado-exterior/foto.jpg",  title: "Detallado Exterior",    desc: "Protegemos y devolvemos el brillo original a la carrocería. Descontaminamos la pintura, eliminamos micro-rayas y aplicamos selladores de alta calidad para un acabado espejo duradero.", price: "Desde $80.000" },
+  { num: "02", Icon: Shield,     tag: "Premium ✦",  color: "#8B5CF6", photo: "/servicios/sellado-ceramico/foto.jpg",     title: "Sellado Cerámico",      desc: "Máxima protección de nivel nanotecnológico contra agentes químicos, rayos UV y marcas de agua. Aporta un brillo profundo insuperable y propiedades hidrofóbicas extremas.", price: "Desde $160.000" },
+  { num: "03", Icon: Sofa,       tag: "Interior",   color: "#EC4899", photo: "/servicios/detallado-interior/foto.jpg",  title: "Detallado Interior",    desc: "Una renovación profunda y detallada del habitáculo. Desinfectamos, eliminamos manchas difíciles y acondicionamos plásticos, cuero y textiles con productos de grado profesional.", price: "Desde $70.000" },
+  { num: "04", Icon: Lightbulb,  tag: "Focos",      color: "#EAB308", photo: "/servicios/pulido-focos/foto.jpg",        title: "Pulido de Focos",       desc: "Recupera la transparencia, estética y seguridad de tu vehículo. Eliminamos el tono amarillento y opaco de los focos, restaurando la máxima capacidad de iluminación nocturna.", price: "Desde $35.000" },
+  { num: "05", Icon: TrendingUp, tag: "Valor",      color: "#84CC16", photo: "/servicios/pre-venta/foto.jpg",           title: "Tratamiento Pre-Venta", desc: "Preparamos tu vehículo de manera estratégica para destacar en el mercado. Un refresco estético completo diseñado para maximizar su valor comercial y acelerar la venta.", price: "Desde $120.000" },
   { num: "06", Icon: Wrench,     tag: "Mantención", color: "#06B6D4", photo: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&auto=format&fit=crop&q=85", title: "Mantención Automotriz", desc: "Cuidado preventivo y técnico para asegurar el rendimiento óptimo de tu motor. Servicios de mantenimiento express realizados con lubricantes y filtros de grado premium.", price: "Desde $120.000" },
 ];
 
@@ -23,7 +24,16 @@ export function Services({ content }: { content?: ServiceContent[] }) {
     desc:  content?.[i]?.desc  || s.desc,
     price: content?.[i]?.price || s.price,
   }));
+  const searchParams = useSearchParams();
   const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const s = searchParams.get("s");
+    if (s !== null) {
+      const idx = parseInt(s);
+      if (!isNaN(idx) && idx >= 0 && idx < SERVICES.length) setActive(idx);
+    }
+  }, [searchParams]);
   const svc = SERVICES[active];
 
   return (
@@ -42,7 +52,7 @@ export function Services({ content }: { content?: ServiceContent[] }) {
           padding: "0 3rem", position: "relative",
           borderRight: "1px solid rgba(255,255,255,0.05)",
         }}>
-          <p style={{ fontFamily: "var(--font-space)", fontSize: 10, letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(203,213,225,0.3)", marginBottom: "2rem" }}>
+          <p style={{ fontFamily: "var(--font-space)", fontSize: 10, letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(203,213,225,0.6)", marginBottom: "2rem" }}>
             ¿Qué hacemos?
           </p>
 
@@ -95,7 +105,7 @@ export function Services({ content }: { content?: ServiceContent[] }) {
                   />
                   <span style={{
                     fontFamily: "var(--font-space)", fontSize: 13, fontWeight: 600,
-                    color: isActive ? "#fff" : "rgba(203,213,225,0.35)",
+                    color: isActive ? "#fff" : "rgba(203,213,225,0.7)",
                     transition: "color 0.3s", letterSpacing: "0.02em",
                   }}>
                     {s.title}
@@ -173,7 +183,7 @@ export function Services({ content }: { content?: ServiceContent[] }) {
                 <h2 style={{ fontFamily: "var(--font-bebas)", fontSize: "clamp(2.5rem,4.5vw,4.2rem)", lineHeight: 0.95, color: "#fff", margin: "0 0 1rem" }}>
                   {svc.title}
                 </h2>
-                <p style={{ fontFamily: "var(--font-inter)", fontSize: 15, lineHeight: 1.75, color: "rgba(203,213,225,0.6)", maxWidth: "36rem", margin: "0 0 1.5rem" }}>
+                <p style={{ fontFamily: "var(--font-inter)", fontSize: 15, lineHeight: 1.75, color: "rgba(255,255,255,0.9)", maxWidth: "36rem", margin: "0 0 1.5rem" }}>
                   {svc.desc}
                 </p>
                 <div style={{ display: "flex", gap: 12 }}>

@@ -13,7 +13,7 @@ function RotatingWord() {
     return () => clearInterval(t);
   }, []);
   return (
-    <span style={{ position: "relative", display: "inline-block", overflow: "hidden", height: "1.1em", verticalAlign: "bottom" }}>
+    <span style={{ position: "relative", display: "inline-block", overflow: "hidden", height: "1.1em", verticalAlign: "middle" }}>
       <AnimatePresence mode="wait">
         <motion.span
           key={index}
@@ -335,12 +335,13 @@ export function Hero({ tagline }: { tagline?: string }) {
           />
           <motion.div initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.85 }}
             style={{ width: 6, height: 6, borderRadius: "50%", background: "#3B82F6", boxShadow: "0 0 20px #3B82F6, 0 0 60px rgba(59,130,246,0.4)" }} />
-          <motion.p
+          <motion.div
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }}
-            style={{ fontFamily: "var(--font-space)", fontSize: 13, color: "rgba(203,213,225,0.45)", letterSpacing: "0.3em", textTransform: "uppercase", margin: 0 }}
+            style={{ display: "flex", alignItems: "center", gap: 8, fontFamily: "var(--font-space)", fontSize: 13, letterSpacing: "0.3em", textTransform: "uppercase", margin: 0 }}
           >
-            <RotatingWord /> Automotriz
-          </motion.p>
+            <RotatingWord />
+            <span style={{ color: "rgba(203,213,225,0.45)" }}>Automotriz</span>
+          </motion.div>
           <motion.div initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.85 }}
             style={{ width: 6, height: 6, borderRadius: "50%", background: "#EAB308", boxShadow: "0 0 20px #EAB308, 0 0 60px rgba(234,179,8,0.4)" }} />
           <motion.div

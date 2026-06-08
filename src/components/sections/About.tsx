@@ -35,9 +35,9 @@ export function About() {
             <motion.span
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}
-              style={{ display: "inline-block", fontFamily: "var(--font-space)", fontSize: 11, color: "#EC4899", letterSpacing: "0.4em", textTransform: "uppercase", marginBottom: "1rem" }}
+              style={{ display: "inline-block", fontFamily: "var(--font-space)", fontSize: 11, color: "#06B6D4", letterSpacing: "0.4em", textTransform: "uppercase", marginBottom: "1rem" }}
             >
-              Quiénes somos
+              Sobre Nosotros
             </motion.span>
 
             <div style={{ overflow: "hidden", marginBottom: "1.5rem" }}>
@@ -45,19 +45,19 @@ export function About() {
                 initial={{ y: 60 }}
                 animate={inView ? { y: 0 } : {}}
                 transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                style={{ fontFamily: "var(--font-bebas)", fontSize: "clamp(3rem,7vw,6rem)", lineHeight: 0.95, margin: 0, color: "#fff" }}
+                style={{ fontFamily: "var(--font-bebas)", fontSize: "clamp(2.2rem,5vw,4.2rem)", lineHeight: 1.05, margin: 0, color: "#fff" }}
               >
-                NICOLÁS<br />
+                MISIÓN CLARA:{" "}
                 <span style={{
-                  background: "linear-gradient(135deg, #A16207 0%, #EAB308 50%, #FDE047 75%, #EAB308 90%, #CA8A04 100%)",
+                  background: "linear-gradient(135deg, #06B6D4 0%, #3B82F6 60%, #8B5CF6 100%)",
                   WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
                 }}>
-                  RAMÍREZ
+                  SER TU TALLER DE CONFIANZA.
                 </span>
               </motion.h2>
             </div>
 
-            {/* UNAB badge */}
+            {/* Badge */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}
@@ -66,7 +66,7 @@ export function About() {
                 display: "inline-flex", alignItems: "center", gap: 8,
                 padding: "6px 14px", borderRadius: 999,
                 background: "rgba(59,130,246,0.08)", border: "1px solid rgba(59,130,246,0.2)",
-                marginBottom: "1.5rem",
+                marginBottom: "1.75rem",
               }}
             >
               <GraduationCap size={14} style={{ color: "#3B82F6" }} />
@@ -75,23 +75,36 @@ export function About() {
               </span>
             </motion.div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              style={{ fontFamily: "var(--font-inter)", fontSize: 15, color: "rgba(203,213,225,0.5)", lineHeight: 1.8, marginBottom: "1.25rem" }}
-            >
-              Nicolás fundó Cleanschile en 2018 después de experimentar en carne propia la falta de opciones de calidad en el mercado automotriz chileno. Como Ingeniero Industrial de la Universidad Andrés Bello, aplicó metodologías de procesos y control de calidad al mundo del detailing.
-            </motion.p>
+            {[
+              <>Yo también probé alternativas de talleres para <strong style={{ color: "rgba(203,213,225,0.85)" }}>Detallar y Mantener</strong> mi auto, pero siempre quedaba insatisfecho con el servicio. Por eso decidí fundar <strong style={{ color: "#06B6D4" }}>Cleanschile</strong>.</>,
+              <>Para quienes sufran lo mismo, ahora tienen una <strong style={{ color: "rgba(203,213,225,0.85)" }}>opción de confianza al precio justo.</strong></>,
+              <>Aquí no se trata solo de lavar o pulir. Se trata de <strong style={{ color: "rgba(203,213,225,0.85)" }}>restaurar, proteger y cuidar tu auto como si fuera nuestro.</strong> Utilizamos productos de alto nivel, aplicación técnica refinada y nos tomamos el tiempo necesario para asegurar un resultado profesional.</>,
+              <>Gracias por confiar en Cleanschile. Estamos aquí para ayudarte a <strong style={{ color: "rgba(203,213,225,0.85)" }}>cuidar y elevar la estética de tu auto</strong>, con atención personalizada y resultados reales.</>,
+            ].map((text, i) => (
+              <motion.p
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.3 + i * 0.1, duration: 0.6 }}
+                style={{ fontFamily: "var(--font-inter)", fontSize: 14, color: "rgba(203,213,225,0.5)", lineHeight: 1.85, marginBottom: "1rem" }}
+              >
+                {text}
+              </motion.p>
+            ))}
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              style={{ fontFamily: "var(--font-inter)", fontSize: 15, color: "rgba(203,213,225,0.5)", lineHeight: 1.8, marginBottom: "2.5rem" }}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ delay: 0.75 }}
+              style={{ marginBottom: "2rem" }}
             >
-              Hoy, con más de 300 vehículos atendidos y 5 marcas premium de referencia, Cleanschile es sinónimo de excelencia en La Cisterna.
-            </motion.p>
+              <p style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: "rgba(203,213,225,0.35)", margin: "0 0 2px" }}>
+                Nicolás Ramírez, Ing. Industrial.
+              </p>
+              <p style={{ fontFamily: "var(--font-space)", fontSize: 12, fontWeight: 700, color: "#06B6D4", letterSpacing: "0.08em", margin: 0, textTransform: "uppercase" }}>
+                CEO Cleanschile.
+              </p>
+            </motion.div>
 
             {/* Values grid */}
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>

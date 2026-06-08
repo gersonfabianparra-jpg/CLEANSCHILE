@@ -111,16 +111,16 @@ export async function Footer() {
             </p>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
               {[
-                "Detallado Exterior",
-                "Sellado Cerámico",
-                "Detallado Interior",
-                "Pulido de Focos",
-                "Tratamiento Pre-Venta",
-                "Mantención Automotriz",
-              ].map((s) => (
-                <li key={s}>
+                { label: "Detallado Exterior",    idx: 0 },
+                { label: "Sellado Cerámico",      idx: 1 },
+                { label: "Detallado Interior",    idx: 2 },
+                { label: "Pulido de Focos",       idx: 3 },
+                { label: "Tratamiento Pre-Venta", idx: 4 },
+                { label: "Mantención Automotriz", idx: 5 },
+              ].map(({ label, idx }) => (
+                <li key={label}>
                   <Link
-                    href="#servicios"
+                    href={`/?s=${idx}#servicios`}
                     style={{
                       fontFamily: "var(--font-inter)", fontSize: 13,
                       color: "rgba(203,213,225,0.38)",
@@ -131,7 +131,7 @@ export async function Footer() {
                   >
                     <span style={{ width: 0, height: 1, background: "#EAB308", display: "inline-block", transition: "width 0.3s" }}
                       className="group-hover:w-3" />
-                    {s}
+                    {label}
                   </Link>
                 </li>
               ))}

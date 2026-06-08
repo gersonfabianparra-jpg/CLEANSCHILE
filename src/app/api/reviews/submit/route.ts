@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
       const date = new Date().toLocaleDateString("es-CL", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
 
       await resend.emails.send({
-        from: "CleanSchile <onboarding@resend.dev>",
+        from: "CleanSchile <contacto@cleanschile.cl>",
         to: [toEmail],
         subject: `⭐ Nueva reseña de ${nameTrimmed} — CleanSchile`,
         html: `<!DOCTYPE html>
