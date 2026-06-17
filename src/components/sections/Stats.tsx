@@ -4,7 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
 const STATS = [
-  { value: 300, suffix: "+", label: "Vehículos Atendidos", color: "#3B82F6" },
+  { value: 400, suffix: "+", label: "Vehículos Atendidos", color: "#3B82F6" },
   { value: 5,   suffix: "",  label: "Años de Experiencia", color: "#8B5CF6" },
   { value: 5,   suffix: "",  label: "Marcas Premium", color: "#EAB308" },
   { value: 1,   suffix: "",  label: "Entrega en el Día*", color: "#EC4899" },
