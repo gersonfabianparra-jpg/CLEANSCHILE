@@ -902,10 +902,10 @@ export default function SelladoCeramicoPage() {
       </section>
 
       {/* ── BEFORE / AFTER ── */}
-      <section style={{ position: "relative", background: "#030310", padding: "7rem 1.5rem", overflow: "hidden" }}>
-        <div style={{ maxWidth: "72rem", margin: "0 auto" }}>
+      <section style={{ position: "relative", background: "#030310", padding: "5rem 1.5rem", overflow: "hidden" }}>
+        <div style={{ maxWidth: "52rem", margin: "0 auto" }}>
           <FadeInSection>
-            <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
+            <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
               <SectionLabel text="Resultados reales" color="rgba(139,92,246,0.7)" />
               <h2 style={{ fontFamily: "var(--font-bebas)", fontSize: "clamp(2rem,4.5vw,3.5rem)", color: "#fff", margin: "0 0 0.75rem", lineHeight: 1.05 }}>
                 Antes &amp;{" "}
@@ -919,13 +919,9 @@ export default function SelladoCeramicoPage() {
             </div>
           </FadeInSection>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 32 }}>
-            {SLIDER_PAIRS.map((pair, i) => (
-              <FadeInSection key={i} delay={i * 0.12}>
-                <SliderCard before={pair.before} after={pair.after} label={pair.label} />
-              </FadeInSection>
-            ))}
-          </div>
+          <FadeInSection delay={0.1}>
+            <SliderCard before={SLIDER_PAIRS[0].before} after={SLIDER_PAIRS[0].after} label={SLIDER_PAIRS[0].label} />
+          </FadeInSection>
         </div>
       </section>
 
@@ -1020,76 +1016,6 @@ export default function SelladoCeramicoPage() {
             </motion.div>
           )}
         </AnimatePresence>
-      </section>
-
-      {/* ── TESTIMONIALS ── */}
-      <section style={{ position: "relative", background: "#030310", padding: "7rem 1.5rem", overflow: "hidden" }}>
-        <div style={{
-          position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)",
-          width: 700, height: 400,
-          background: "radial-gradient(ellipse, rgba(139,92,246,0.04) 0%, transparent 65%)",
-          pointerEvents: "none",
-        }} />
-        <div style={{ maxWidth: "72rem", margin: "0 auto" }}>
-          <FadeInSection>
-            <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
-              <SectionLabel text="Clientes satisfechos" color="rgba(234,179,8,0.65)" />
-              <h2 style={{ fontFamily: "var(--font-bebas)", fontSize: "clamp(2rem,4.5vw,3.5rem)", color: "#fff", margin: 0, lineHeight: 1.05 }}>
-                Lo que dicen nuestros{" "}
-                <span style={{ background: "linear-gradient(135deg, #A16207, #EAB308, #FDE047)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-                  clientes
-                </span>
-              </h2>
-            </div>
-          </FadeInSection>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 20 }}>
-            {TESTIMONIALS.map((t, i) => (
-              <FadeInSection key={i} delay={i * 0.1}>
-                <div style={{
-                  padding: "2rem", borderRadius: 20,
-                  background: "rgba(255,255,255,0.025)",
-                  border: "1px solid rgba(255,255,255,0.07)",
-                  height: "100%", display: "flex", flexDirection: "column",
-                  position: "relative",
-                }}>
-                  <div style={{ position: "absolute", top: 20, left: 24, fontFamily: "Georgia, serif", fontSize: "4rem", lineHeight: 1, color: "rgba(234,179,8,0.08)", userSelect: "none", pointerEvents: "none" }}>"</div>
-
-                  <div style={{ display: "flex", gap: 2, marginBottom: "1.25rem" }}>
-                    {Array.from({ length: t.stars }, (_, j) => (
-                      <Star key={j} size={13} style={{ color: "#EAB308", fill: "#EAB308" }} />
-                    ))}
-                  </div>
-
-                  <p style={{ fontFamily: "var(--font-inter)", fontSize: 14, lineHeight: 1.8, color: "rgba(203,213,225,0.7)", margin: "0 0 1.5rem", fontStyle: "italic", flex: 1 }}>
-                    {t.text}
-                  </p>
-
-                  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                    <div style={{
-                      width: 38, height: 38, borderRadius: "50%", flexShrink: 0,
-                      background: "linear-gradient(135deg, rgba(139,92,246,0.5), rgba(59,130,246,0.4))",
-                      border: "1px solid rgba(255,255,255,0.1)",
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                    }}>
-                      <span style={{ fontFamily: "var(--font-space)", fontWeight: 700, fontSize: 12, color: "rgba(255,255,255,0.9)" }}>
-                        {t.initials}
-                      </span>
-                    </div>
-                    <div>
-                      <p style={{ fontFamily: "var(--font-space)", fontWeight: 600, fontSize: 13, color: "rgba(255,255,255,0.8)", margin: 0 }}>{t.name}</p>
-                      <p style={{ fontFamily: "var(--font-inter)", fontSize: 11, color: "rgba(255,255,255,0.3)", margin: 0 }}>{t.car}</p>
-                    </div>
-                    <div style={{ marginLeft: "auto", padding: "3px 10px", borderRadius: 999, background: "rgba(34,197,94,0.07)", border: "1px solid rgba(34,197,94,0.18)", display: "flex", alignItems: "center", gap: 5 }}>
-                      <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#4ADE80" }} />
-                      <span style={{ fontFamily: "var(--font-space)", fontSize: 9, color: "rgba(74,222,128,0.8)", fontWeight: 600, letterSpacing: "0.05em" }}>VERIFICADO</span>
-                    </div>
-                  </div>
-                </div>
-              </FadeInSection>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* ── FAQ ── */}
