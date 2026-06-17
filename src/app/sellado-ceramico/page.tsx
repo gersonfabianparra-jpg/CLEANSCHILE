@@ -141,11 +141,6 @@ const SLIDER_PAIRS = [
     after: "/trabajos/IMG_5114.jpg",
     label: "Corrección de Pintura + Sellado",
   },
-  {
-    before: "/trabajos/D68BCFA9-3A41-43B7-A0FC-B26EA40E895A.jpg",
-    after: "/trabajos/0F863A68-4AF8-4DEF-8D11-25D31188C82B.jpg",
-    label: "Descontaminación y Brillo",
-  },
 ];
 
 const GALLERY_IMGS = [
@@ -563,7 +558,7 @@ export default function SelladoCeramicoPage() {
             style={{ display: "flex", flexWrap: "wrap", gap: 32, marginTop: "3.5rem", paddingTop: "2.5rem", borderTop: "1px solid rgba(255,255,255,0.06)" }}
           >
             {[
-              { num: "2–5 años", label: "Duración del sellado" },
+              { num: "1–3 años", label: "Duración del sellado" },
               { num: "80%", label: "Más fácil de lavar" },
               { num: "9H+", label: "Dureza de la capa" },
             ].map(({ num, label }) => (
