@@ -181,7 +181,7 @@ export function Contact({ info }: { info?: ContactInfo }) {
                 </div>
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
                   <span style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: "rgba(203,213,225,0.55)" }}>Domingo</span>
-                  <span style={{ fontFamily: "var(--font-space)", fontSize: 12, fontWeight: 600, color: "rgba(203,213,225,0.3)" }}>Cerrado</span>
+                  <span style={{ fontFamily: "var(--font-space)", fontSize: 11, fontWeight: 600, color: "#EAB308" }}>Solo con agendamiento previo</span>
                 </div>
               </div>
             </motion.div>
