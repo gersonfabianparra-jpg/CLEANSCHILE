@@ -227,56 +227,6 @@ function SectionLabel({ text, color = "rgba(139,92,246,0.7)" }: { text: string; 
   );
 }
 
-function CTAButton({ href, children, variant = "primary" }: {
-  href: string;
-  children: React.ReactNode;
-  variant?: "primary" | "whatsapp" | "outline";
-}) {
-  const styles: Record<string, React.CSSProperties> = {
-    primary: {
-      display: "inline-flex", alignItems: "center", gap: 10,
-      padding: "1rem 2.25rem", borderRadius: 999,
-      fontFamily: "var(--font-space)", fontWeight: 700, fontSize: 14,
-      color: "#000",
-      background: "linear-gradient(135deg, #EAB308 0%, #FDE047 50%, #EAB308 100%)",
-      boxShadow: "0 0 40px rgba(234,179,8,0.35)",
-      textDecoration: "none", letterSpacing: "0.02em",
-      transition: "filter 0.3s, transform 0.2s",
-    },
-    whatsapp: {
-      display: "inline-flex", alignItems: "center", gap: 10,
-      padding: "1rem 2.25rem", borderRadius: 999,
-      fontFamily: "var(--font-space)", fontWeight: 700, fontSize: 14,
-      color: "#fff",
-      background: "linear-gradient(135deg, #25D366, #128C7E)",
-      boxShadow: "0 0 32px rgba(37,211,102,0.35)",
-      textDecoration: "none", letterSpacing: "0.02em",
-      transition: "filter 0.3s, transform 0.2s",
-    },
-    outline: {
-      display: "inline-flex", alignItems: "center", gap: 10,
-      padding: "1rem 2.25rem", borderRadius: 999,
-      fontFamily: "var(--font-space)", fontWeight: 600, fontSize: 14,
-      color: "rgba(203,213,225,0.8)",
-      background: "rgba(255,255,255,0.04)",
-      border: "1px solid rgba(255,255,255,0.12)",
-      textDecoration: "none",
-      transition: "border-color 0.3s, color 0.3s",
-    },
-  };
-  const isExternal = href.startsWith("http");
-  return (
-    <a
-      href={href}
-      target={isExternal ? "_blank" : undefined}
-      rel={isExternal ? "noopener noreferrer" : undefined}
-      style={styles[variant]}
-    >
-      {children}
-    </a>
-  );
-}
-
 // ─── Slider component ──────────────────────────────────────────────────────────
 
 function SliderCard({ before, after, label }: { before: string; after: string; label: string }) {
@@ -501,34 +451,61 @@ export default function SelladoCeramicoPage() {
           </motion.div>
 
           {/* Title */}
-          <motion.h1
-            initial={{ opacity: 0, y: 32 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            style={{
-              fontFamily: "var(--font-bebas)",
-              fontSize: "clamp(2.8rem, 7vw, 6rem)",
-              lineHeight: 1.0,
-              margin: "0 0 1.5rem",
-              color: "#fff",
-              maxWidth: "820px",
-              letterSpacing: "0.01em",
-            }}
-          >
-            Sellado cerámico de{" "}
-            <span style={{
-              background: "linear-gradient(135deg, #7C3AED 0%, #A78BFA 50%, #C4B5FD 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}>
-              alta gama
-            </span>{" "}
-            para mantener tu auto impecable,{" "}
-            <span style={{ color: "rgba(203,213,225,0.7)" }}>
-              protegido contra el clima y con un brillo de exhibición por años.
-            </span>
-          </motion.h1>
+          <div style={{ margin: "0 0 1.5rem" }}>
+            {/* Línea 1 — nombre del servicio */}
+            <motion.h1
+              initial={{ opacity: 0, y: 32 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              style={{
+                fontFamily: "var(--font-bebas)",
+                fontSize: "clamp(3.5rem, 9vw, 7.5rem)",
+                lineHeight: 0.92,
+                margin: 0,
+                color: "#fff",
+                letterSpacing: "0.01em",
+              }}
+            >
+              Sellado Cerámico
+            </motion.h1>
+
+            {/* Línea 2 — diferenciador en gradiente */}
+            <motion.p
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              style={{
+                fontFamily: "var(--font-bebas)",
+                fontSize: "clamp(3.5rem, 9vw, 7.5rem)",
+                lineHeight: 0.92,
+                margin: "0 0 1.25rem",
+                background: "linear-gradient(135deg, #7C3AED 0%, #A78BFA 50%, #C4B5FD 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                letterSpacing: "0.01em",
+              }}
+            >
+              de Alta Gama
+            </motion.p>
+
+            {/* Línea 3 — beneficios como subtítulo */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.7, delay: 0.45 }}
+              style={{
+                fontFamily: "var(--font-inter)",
+                fontSize: "clamp(15px, 1.6vw, 18px)",
+                lineHeight: 1.65,
+                color: "rgba(203,213,225,0.6)",
+                margin: 0,
+                maxWidth: "520px",
+              }}
+            >
+              Impecable · Protegido contra el clima · Brillo de exhibición por años.
+            </motion.p>
+          </div>
 
           {/* CTA */}
           <motion.div
