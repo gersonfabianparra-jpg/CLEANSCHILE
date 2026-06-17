@@ -10,6 +10,7 @@ import { Logo } from "@/components/ui/Logo";
 
 const links = [
   { href: "#servicios", label: "Servicios" },
+  { href: "/sellado-ceramico", label: "Sellado Cerámico", highlight: true },
   { href: "#trabajos", label: "Trabajos" },
   { href: "#proceso", label: "Proceso" },
   { href: "#nosotros", label: "Nosotros" },
@@ -72,7 +73,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop nav links */}
-          <nav style={{ display: "flex", alignItems: "center", gap: 32 }} className="rsp-nav-desktop">
+          <nav style={{ display: "flex", alignItems: "center", gap: 28 }} className="rsp-nav-desktop">
             {links.map((link, i) => (
               <motion.div
                 key={link.href}
@@ -80,30 +81,50 @@ export function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.07, duration: 0.4 }}
               >
-                <Link
-                  href={link.href}
-                  style={{
-                    fontFamily: "var(--font-space)",
-                    fontSize: 13,
-                    color: "rgba(203,213,225,0.6)",
-                    textDecoration: "none",
-                    position: "relative",
-                    transition: "color 0.3s",
-                  }}
-                  className="group hover:text-white"
-                >
-                  {link.label}
-                  <span style={{
-                    position: "absolute",
-                    bottom: -2, left: 0,
-                    height: 1,
-                    width: 0,
-                    background: "linear-gradient(90deg, #06B6D4, #3B82F6)",
-                    transition: "width 0.3s",
-                  }}
-                    className="group-hover:w-full"
-                  />
-                </Link>
+                {link.highlight ? (
+                  <Link
+                    href={link.href}
+                    style={{
+                      display: "inline-flex", alignItems: "center", gap: 5,
+                      fontFamily: "var(--font-space)", fontSize: 11, fontWeight: 700,
+                      color: "#A78BFA",
+                      textDecoration: "none",
+                      padding: "4px 12px", borderRadius: 999,
+                      background: "rgba(139,92,246,0.1)",
+                      border: "1px solid rgba(139,92,246,0.28)",
+                      letterSpacing: "0.02em",
+                      transition: "all 0.3s",
+                    }}
+                  >
+                    <span style={{ fontSize: 8, lineHeight: 1 }}>✦</span>
+                    {link.label}
+                  </Link>
+                ) : (
+                  <Link
+                    href={link.href}
+                    style={{
+                      fontFamily: "var(--font-space)",
+                      fontSize: 13,
+                      color: "rgba(203,213,225,0.6)",
+                      textDecoration: "none",
+                      position: "relative",
+                      transition: "color 0.3s",
+                    }}
+                    className="group hover:text-white"
+                  >
+                    {link.label}
+                    <span style={{
+                      position: "absolute",
+                      bottom: -2, left: 0,
+                      height: 1,
+                      width: 0,
+                      background: "linear-gradient(90deg, #06B6D4, #3B82F6)",
+                      transition: "width 0.3s",
+                    }}
+                      className="group-hover:w-full"
+                    />
+                  </Link>
+                )}
               </motion.div>
             ))}
           </nav>
@@ -200,11 +221,21 @@ export function Navbar() {
                       href={link.href}
                       style={{
                         fontFamily: "var(--font-space)", fontSize: 15,
-                        color: "rgba(203,213,225,0.7)",
+                        color: link.highlight ? "#A78BFA" : "rgba(203,213,225,0.7)",
                         textDecoration: "none",
+                        display: "flex", alignItems: "center", gap: 8,
                       }}
                       onClick={() => setIsOpen(false)}
                     >
+                      {link.highlight && (
+                        <span style={{
+                          fontSize: 9, color: "#8B5CF6",
+                          background: "rgba(139,92,246,0.15)",
+                          border: "1px solid rgba(139,92,246,0.3)",
+                          padding: "1px 8px", borderRadius: 999,
+                          fontWeight: 700, letterSpacing: "0.1em",
+                        }}>NUEVO</span>
+                      )}
                       {link.label}
                     </Link>
                   </motion.div>
