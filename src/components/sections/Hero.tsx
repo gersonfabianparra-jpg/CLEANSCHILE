@@ -423,7 +423,7 @@ export function Hero({ tagline }: { tagline?: string }) {
           style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: 32, marginTop: 64, paddingTop: 32, borderTop: "1px solid rgba(255,255,255,0.05)" }}
         >
           {[
-            { num: "300+", label: "Autos detallados" },
+            { num: "400+", label: "Autos detallados" },
             { num: "5★", label: "Valoración promedio" },
             { num: "1 Día", label: "Entrega express" },
           ].map(({ num, label }) => (
