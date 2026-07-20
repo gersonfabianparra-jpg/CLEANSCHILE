@@ -223,12 +223,13 @@ export function Hero({ tagline }: { tagline?: string }) {
             style={{ fontFamily: "var(--font-bebas)", margin: 0, lineHeight: 1.02 }}
           >
             {/* Línea 1 — servicios, protagonista */}
-            <span style={{ display: "block", fontSize: "clamp(2.7rem, 7.2vw, 5.6rem)", letterSpacing: "-0.01em" }}>
+            <span style={{ display: "block", fontSize: "clamp(3.4rem, 9.5vw, 7.8rem)", letterSpacing: "-0.02em" }}>
               <span style={{
                 background: "linear-gradient(105deg, #A16207 0%, #EAB308 25%, #FDE047 50%, #EAB308 75%, #A16207 100%)",
                 backgroundSize: "300% auto",
                 WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
                 animation: "shimmer 3s linear infinite",
+                filter: "drop-shadow(0 0 30px rgba(234,179,8,0.45))",
               }}>
                 Detallado
               </span>
@@ -238,6 +239,7 @@ export function Hero({ tagline }: { tagline?: string }) {
                 backgroundSize: "300% auto",
                 WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
                 animation: "shimmer 3.6s linear infinite",
+                filter: "drop-shadow(0 0 30px rgba(6,182,212,0.45))",
               }}>
                 Mantenimiento
               </span>
@@ -245,9 +247,9 @@ export function Hero({ tagline }: { tagline?: string }) {
 
             {/* Línea 2 — contexto, subordinada */}
             <span style={{
-              display: "block", fontSize: "clamp(1.3rem, 3.3vw, 2.3rem)",
-              letterSpacing: "0.02em", marginTop: "0.35rem",
-              color: "rgba(226,232,240,0.5)", fontWeight: 400,
+              display: "block", fontSize: "clamp(1.6rem, 4.2vw, 3rem)",
+              letterSpacing: "0.03em", marginTop: "0.5rem",
+              color: "rgba(226,232,240,0.55)", fontWeight: 400,
             }}>
               automotriz en Santiago de Chile
             </span>
