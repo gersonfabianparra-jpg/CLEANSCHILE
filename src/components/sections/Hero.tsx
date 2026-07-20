@@ -220,22 +220,37 @@ export function Hero({ tagline }: { tagline?: string }) {
             initial={{ y: "110%" }}
             animate={{ y: "0%" }}
             transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-            style={{
-              fontFamily: "var(--font-bebas)",
-              fontSize: "clamp(2.4rem, 6vw, 5rem)",
-              lineHeight: 1.08,
-              letterSpacing: "-0.01em",
-              margin: "0 auto",
-              maxWidth: "18ch",
-              background: "linear-gradient(105deg, #A16207 0%, #EAB308 25%, #FDE047 50%, #EAB308 75%, #A16207 100%)",
-              backgroundSize: "300% auto",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              animation: "shimmer 3s linear infinite",
-            }}
+            style={{ fontFamily: "var(--font-bebas)", margin: 0, lineHeight: 1.02 }}
           >
-            Detallado y Mantenimiento automotriz en Santiago de Chile
+            {/* Línea 1 — servicios, protagonista */}
+            <span style={{ display: "block", fontSize: "clamp(2.7rem, 7.2vw, 5.6rem)", letterSpacing: "-0.01em" }}>
+              <span style={{
+                background: "linear-gradient(105deg, #A16207 0%, #EAB308 25%, #FDE047 50%, #EAB308 75%, #A16207 100%)",
+                backgroundSize: "300% auto",
+                WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
+                animation: "shimmer 3s linear infinite",
+              }}>
+                Detallado
+              </span>
+              <span style={{ color: "rgba(203,213,225,0.4)" }}> y </span>
+              <span style={{
+                background: "linear-gradient(105deg, #0E7490 0%, #06B6D4 30%, #67E8F9 50%, #06B6D4 70%, #0E7490 100%)",
+                backgroundSize: "300% auto",
+                WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
+                animation: "shimmer 3.6s linear infinite",
+              }}>
+                Mantenimiento
+              </span>
+            </span>
+
+            {/* Línea 2 — contexto, subordinada */}
+            <span style={{
+              display: "block", fontSize: "clamp(1.3rem, 3.3vw, 2.3rem)",
+              letterSpacing: "0.02em", marginTop: "0.35rem",
+              color: "rgba(226,232,240,0.5)", fontWeight: 400,
+            }}>
+              automotriz en Santiago de Chile
+            </span>
           </motion.h1>
         </div>
 
