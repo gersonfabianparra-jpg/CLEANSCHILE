@@ -223,13 +223,17 @@ export function Hero({ tagline }: { tagline?: string }) {
             style={{ fontFamily: "var(--font-bebas)", margin: 0, lineHeight: 1.02 }}
           >
             {/* Línea 1 — servicios, protagonista */}
-            <span style={{ display: "block", fontSize: "clamp(3.4rem, 9.5vw, 7.8rem)", letterSpacing: "-0.02em" }}>
+            <motion.span
+              animate={{ scale: [1, 1.025, 1] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              style={{ display: "block", fontSize: "clamp(4.2rem, 13vw, 11rem)", letterSpacing: "-0.03em", transformOrigin: "center" }}
+            >
               <span style={{
                 background: "linear-gradient(105deg, #A16207 0%, #EAB308 25%, #FDE047 50%, #EAB308 75%, #A16207 100%)",
                 backgroundSize: "300% auto",
                 WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
                 animation: "shimmer 3s linear infinite",
-                filter: "drop-shadow(0 0 30px rgba(234,179,8,0.45))",
+                filter: "drop-shadow(0 0 45px rgba(234,179,8,0.65)) drop-shadow(0 0 90px rgba(234,179,8,0.35))",
               }}>
                 Detallado
               </span>
@@ -239,17 +243,17 @@ export function Hero({ tagline }: { tagline?: string }) {
                 backgroundSize: "300% auto",
                 WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
                 animation: "shimmer 3.6s linear infinite",
-                filter: "drop-shadow(0 0 30px rgba(6,182,212,0.45))",
+                filter: "drop-shadow(0 0 45px rgba(6,182,212,0.65)) drop-shadow(0 0 90px rgba(6,182,212,0.35))",
               }}>
                 Mantenimiento
               </span>
-            </span>
+            </motion.span>
 
             {/* Línea 2 — contexto, subordinada */}
             <span style={{
-              display: "block", fontSize: "clamp(1.6rem, 4.2vw, 3rem)",
-              letterSpacing: "0.03em", marginTop: "0.5rem",
-              color: "rgba(226,232,240,0.55)", fontWeight: 400,
+              display: "block", fontSize: "clamp(2.1rem, 5.8vw, 4.2rem)",
+              letterSpacing: "0.04em", marginTop: "0.6rem",
+              color: "rgba(226,232,240,0.6)", fontWeight: 400,
             }}>
               automotriz en Santiago de Chile
             </span>
