@@ -215,7 +215,24 @@ export function Hero({ tagline }: { tagline?: string }) {
         </motion.div>
 
         {/* Título */}
-        <div style={{ overflow: "hidden", marginTop: "1.5rem" }}>
+        <div style={{ position: "relative", marginTop: "1.5rem" }}>
+          {/* Spotlight pulsante detrás del título */}
+          <motion.div
+            aria-hidden
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0.5, 0.85, 0.5], scale: [0.92, 1.05, 0.92] }}
+            transition={{ opacity: { duration: 4, repeat: Infinity, ease: "easeInOut" }, scale: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
+            style={{
+              position: "absolute", left: "50%", top: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "min(1100px, 130%)", height: "80%",
+              background: "radial-gradient(ellipse, rgba(234,179,8,0.22) 0%, rgba(6,182,212,0.16) 45%, transparent 72%)",
+              filter: "blur(70px)",
+              pointerEvents: "none",
+              zIndex: 0,
+            }}
+          />
+          <div style={{ position: "relative", overflow: "hidden", zIndex: 1 }}>
           <motion.h1
             initial={{ y: "110%" }}
             animate={{ y: "0%" }}
@@ -258,6 +275,7 @@ export function Hero({ tagline }: { tagline?: string }) {
               automotriz en Santiago de Chile
             </span>
           </motion.h1>
+          </div>
         </div>
 
         {/* Neon separator */}
