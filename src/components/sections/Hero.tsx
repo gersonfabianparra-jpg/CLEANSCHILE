@@ -83,6 +83,32 @@ export function Hero({ tagline }: { tagline?: string }) {
       {/* ── Background layers ── */}
       <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none" }}>
 
+        {/* Split background photos — left / right halves */}
+        <div style={{
+          position: "absolute", inset: 0,
+          backgroundImage: `url("/header/header-left.jpg")`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          clipPath: "inset(0 50% 0 0)",
+        }} />
+        <div style={{
+          position: "absolute", inset: 0,
+          backgroundImage: `url("/header/header-right.jpg")`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          clipPath: "inset(0 0 0 50%)",
+        }} />
+
+        {/* Gradient overlay to keep content legible over the photos */}
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "radial-gradient(ellipse 90% 70% at 50% 45%, rgba(4,4,15,0.94) 0%, rgba(4,4,15,0.75) 45%, rgba(4,4,15,0.35) 75%, rgba(4,4,15,0.15) 100%)",
+        }} />
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "linear-gradient(180deg, rgba(2,2,8,0.55) 0%, rgba(2,2,8,0.1) 20%, rgba(2,2,8,0.1) 70%, rgba(2,2,8,0.75) 100%)",
+        }} />
+
         {/* Deep blue atmospheric glow — top */}
         <div style={{
           position: "absolute", top: "-20%", left: "50%", transform: "translateX(-50%)",
