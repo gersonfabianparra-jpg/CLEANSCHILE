@@ -10,7 +10,7 @@ const DEFAULTS: Record<string, string> = {
   site_whatsapp: "56952095222",
   site_address: "Uruguay #530, La Cisterna, RM",
   site_email_public: "contacto@cleanschile.cl",
-  hero_tagline: "Nanotecnología y precisión. Tu vehículo transformado al nivel que merece.",
+  hero_tagline: "Preservamos la estética, el valor y el rendimiento de tu vehículo.",
   google_reviews_count: "5",
   services: JSON.stringify([
     { title: "Detallado Exterior",    desc: "Protegemos y devolvemos el brillo original a la carrocería. Descontaminamos la pintura, eliminamos micro-rayas y aplicamos selladores de alta calidad para un acabado espejo duradero.", price: "Desde $80.000" },

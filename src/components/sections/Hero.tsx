@@ -1,42 +1,8 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { ArrowDown, Zap } from "lucide-react";
-
-const ROTATING_WORDS = ["Detailing", "Protección", "Perfección", "Excelencia", "Precisión"];
-
-function RotatingWord() {
-  const [index, setIndex] = useState(0);
-  useEffect(() => {
-    const t = setInterval(() => setIndex((i) => (i + 1) % ROTATING_WORDS.length), 4000);
-    return () => clearInterval(t);
-  }, []);
-  return (
-    <span style={{ position: "relative", display: "inline-block", overflow: "hidden", height: "1.1em", verticalAlign: "middle" }}>
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={index}
-          initial={{ y: "100%", opacity: 0 }}
-          animate={{ y: "0%", opacity: 1 }}
-          exit={{ y: "-100%", opacity: 0 }}
-          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          style={{
-            display: "inline-block",
-            background: "linear-gradient(105deg, #A16207 0%, #EAB308 25%, #FDE047 50%, #EAB308 75%, #A16207 100%)",
-            backgroundSize: "300% auto",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-            animation: "shimmer 3s linear infinite",
-          }}
-        >
-          {ROTATING_WORDS[index]}
-        </motion.span>
-      </AnimatePresence>
-    </span>
-  );
-}
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowDown, Zap, Wrench, MapPin } from "lucide-react";
 
 /* Spark particles */
 type Spark = { id: number; x: number; y: number; size: number; color: string; delay: number; duration: number };
@@ -61,7 +27,7 @@ const BEAMS = [
 ];
 
 export function Hero({ tagline }: { tagline?: string }) {
-  const heroTagline = tagline || "Nanotecnología y precisión. Tu vehículo transformado al nivel que merece.";
+  const heroTagline = tagline || "Preservamos la estética, el valor y el rendimiento de tu vehículo.";
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 900], [0, -120]);
@@ -230,52 +196,38 @@ export function Hero({ tagline }: { tagline?: string }) {
         className="gpu rsp-hero-content"
         style={{ y, opacity, position: "relative", zIndex: 10, maxWidth: "80rem", margin: "0 auto", padding: "7rem 1.5rem 0", textAlign: "center" }}
       >
-        {/* CLEANS — outline ghost */}
-        <div style={{ overflow: "hidden" }}>
-          <motion.h1
-            initial={{ y: "110%" }}
-            animate={{ y: "0%" }}
-            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            style={{
-              fontFamily: "var(--font-bebas)",
-              fontSize: "clamp(5.5rem, 21vw, 21rem)",
-              lineHeight: 0.9,
-              letterSpacing: "-0.02em",
-              margin: 0,
-              color: "transparent",
-              WebkitTextStroke: "2px rgba(180,210,240,0.38)",
-            }}
-          >
-            CLEANS
-          </motion.h1>
-        </div>
-
-        {/* Neon separator */}
+        {/* Location badge */}
         <motion.div
-          initial={{ scaleX: 0, opacity: 0 }}
-          animate={{ scaleX: 1, opacity: 1 }}
-          transition={{ delay: 0.7, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0, y: -14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           style={{
-            height: 3, margin: "0.4rem 0",
-            background: "linear-gradient(90deg, transparent 0%, #06B6D4 30%, #F97316 70%, transparent 100%)",
-            transformOrigin: "left",
-            boxShadow: "0 0 24px rgba(6,182,212,0.5), 0 0 48px rgba(249,115,22,0.3)",
+            display: "inline-flex", alignItems: "center", gap: 8,
+            padding: "0.5rem 1.1rem", borderRadius: 999,
+            border: "1px solid rgba(234,179,8,0.25)",
+            background: "rgba(234,179,8,0.06)",
+            fontFamily: "var(--font-space)", fontSize: 12, fontWeight: 600,
+            color: "rgba(253,224,71,0.85)", letterSpacing: "0.08em",
           }}
-        />
+        >
+          <MapPin size={13} />
+          La Cisterna, Santiago de Chile
+        </motion.div>
 
-        {/* CHILE — solid gold */}
-        <div style={{ overflow: "hidden" }}>
+        {/* Título */}
+        <div style={{ overflow: "hidden", marginTop: "1.5rem" }}>
           <motion.h1
             initial={{ y: "110%" }}
             animate={{ y: "0%" }}
-            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
+            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
             style={{
               fontFamily: "var(--font-bebas)",
-              fontSize: "clamp(5.5rem, 21vw, 21rem)",
-              lineHeight: 0.9,
-              letterSpacing: "-0.02em",
-              margin: 0,
-              background: "linear-gradient(105deg, #A16207 0%, #EAB308 30%, #FDE047 55%, #EAB308 75%, #A16207 100%)",
+              fontSize: "clamp(2.4rem, 6vw, 5rem)",
+              lineHeight: 1.08,
+              letterSpacing: "-0.01em",
+              margin: "0 auto",
+              maxWidth: "18ch",
+              background: "linear-gradient(105deg, #A16207 0%, #EAB308 25%, #FDE047 50%, #EAB308 75%, #A16207 100%)",
               backgroundSize: "300% auto",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
@@ -283,107 +235,28 @@ export function Hero({ tagline }: { tagline?: string }) {
               animation: "shimmer 3s linear infinite",
             }}
           >
-            CHILE
+            Detallado y Mantenimiento automotriz en Santiago de Chile
           </motion.h1>
         </div>
 
-        {/* DETAILING CAR — slogan badge */}
+        {/* Neon separator */}
         <motion.div
-          initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ delay: 0.5, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 14, margin: "0.9rem 0 0", position: "relative" }}
-        >
-          {/* Glow halo behind badge */}
-          <motion.div
-            animate={{ opacity: [0.3, 0.7, 0.3], scale: [0.95, 1.05, 0.95] }}
-            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-            style={{
-              position: "absolute", inset: "-6px -20px",
-              background: "radial-gradient(ellipse, rgba(6,182,212,0.12) 0%, transparent 70%)",
-              borderRadius: 99, pointerEvents: "none",
-            }}
-          />
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={{ scaleX: 1, opacity: 1 }}
+          transition={{ delay: 0.6, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            height: 3, width: 120, margin: "1.5rem auto 0",
+            background: "linear-gradient(90deg, transparent 0%, #06B6D4 30%, #F97316 70%, transparent 100%)",
+            boxShadow: "0 0 24px rgba(6,182,212,0.5), 0 0 48px rgba(249,115,22,0.3)",
+          }}
+        />
 
-          {/* Left line */}
-          <motion.div
-            animate={{ opacity: [0.4, 1, 0.4], scaleX: [0.7, 1, 0.7] }}
-            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-            style={{ height: 1, width: 48, background: "linear-gradient(90deg, transparent, rgba(6,182,212,0.8))", transformOrigin: "right" }}
-          />
-
-          {/* Left dot */}
-          <motion.div
-            animate={{ opacity: [0.5, 1, 0.5], boxShadow: ["0 0 4px #06B6D4", "0 0 12px #06B6D4, 0 0 24px rgba(6,182,212,0.4)", "0 0 4px #06B6D4"] }}
-            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-            style={{ width: 4, height: 4, borderRadius: "50%", background: "#06B6D4", flexShrink: 0 }}
-          />
-
-          {/* Text with shimmer scan */}
-          <motion.span
-            animate={{ backgroundPosition: ["200% center", "-200% center"] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatDelay: 1.5 }}
-            style={{
-              fontFamily: "var(--font-space)", fontSize: "clamp(10px, 1.4vw, 13px)",
-              fontWeight: 700, letterSpacing: "0.5em", textTransform: "uppercase",
-              background: "linear-gradient(105deg, rgba(6,182,212,0.5) 0%, #67E8F9 30%, #06B6D4 45%, #fff 50%, #06B6D4 55%, #67E8F9 70%, rgba(6,182,212,0.5) 100%)",
-              backgroundSize: "300% auto",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
-            Detailing Car
-          </motion.span>
-
-          {/* Right dot */}
-          <motion.div
-            animate={{ opacity: [0.5, 1, 0.5], boxShadow: ["0 0 4px #06B6D4", "0 0 12px #06B6D4, 0 0 24px rgba(6,182,212,0.4)", "0 0 4px #06B6D4"] }}
-            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
-            style={{ width: 4, height: 4, borderRadius: "50%", background: "#06B6D4", flexShrink: 0 }}
-          />
-
-          {/* Right line */}
-          <motion.div
-            animate={{ opacity: [0.4, 1, 0.4], scaleX: [0.7, 1, 0.7] }}
-            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-            style={{ height: 1, width: 48, background: "linear-gradient(270deg, transparent, rgba(6,182,212,0.8))", transformOrigin: "left" }}
-          />
-        </motion.div>
-
-        {/* Divider */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 24, margin: "2rem 0" }}>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ delay: 0.7, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            style={{ height: 1, flex: 1, maxWidth: 120, background: "linear-gradient(90deg, transparent, rgba(59,130,246,0.5))", transformOrigin: "right" }}
-          />
-          <motion.div initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.85 }}
-            style={{ width: 6, height: 6, borderRadius: "50%", background: "#3B82F6", boxShadow: "0 0 20px #3B82F6, 0 0 60px rgba(59,130,246,0.4)" }} />
-          <motion.div
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }}
-            style={{ display: "flex", alignItems: "center", gap: 8, fontFamily: "var(--font-space)", fontSize: 13, letterSpacing: "0.3em", textTransform: "uppercase", margin: 0 }}
-          >
-            <RotatingWord />
-            <span style={{ color: "rgba(203,213,225,0.45)" }}>Automotriz</span>
-          </motion.div>
-          <motion.div initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.85 }}
-            style={{ width: 6, height: 6, borderRadius: "50%", background: "#EAB308", boxShadow: "0 0 20px #EAB308, 0 0 60px rgba(234,179,8,0.4)" }} />
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ delay: 0.7, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            style={{ height: 1, flex: 1, maxWidth: 120, background: "linear-gradient(270deg, transparent, rgba(234,179,8,0.5))", transformOrigin: "left" }}
-          />
-        </div>
-
-        {/* Tagline */}
+        {/* Subtítulo */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.7 }}
-          style={{ fontFamily: "var(--font-inter)", color: "rgba(203,213,225,0.75)", fontSize: "clamp(14px,1.5vw,18px)", maxWidth: 420, margin: "0 auto 2.5rem", lineHeight: 1.7 }}
+          transition={{ delay: 0.6, duration: 0.7 }}
+          style={{ fontFamily: "var(--font-inter)", color: "rgba(203,213,225,0.8)", fontSize: "clamp(15px,1.6vw,19px)", maxWidth: 480, margin: "1.5rem auto 0", lineHeight: 1.7 }}
         >
           {heroTagline}
         </motion.p>
@@ -392,10 +265,10 @@ export function Hero({ tagline }: { tagline?: string }) {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.1, duration: 0.7 }}
-          style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: 16 }}
+          transition={{ delay: 0.85, duration: 0.7 }}
+          style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: 16, marginTop: "2.5rem" }}
         >
-          {/* Primary */}
+          {/* Primary — Detailing */}
           <a href="#contacto" style={{ position: "relative", display: "inline-block" }}>
             <span style={{
               position: "relative", zIndex: 1, display: "inline-flex", alignItems: "center", gap: 10,
@@ -409,7 +282,7 @@ export function Hero({ tagline }: { tagline?: string }) {
               letterSpacing: "0.03em",
             }}>
               <Zap size={15} />
-              Cotizar Ahora
+              Cotizar Detailing Automotriz
             </span>
             {/* Pulse ring */}
             <span style={{
@@ -419,27 +292,35 @@ export function Hero({ tagline }: { tagline?: string }) {
             }} />
           </a>
 
-          {/* WhatsApp */}
+          {/* Secondary — Mantenimiento */}
           <a
-            href="https://wa.me/56952095222"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#contacto"
             style={{
               display: "inline-flex", alignItems: "center", gap: 10,
               padding: "1rem 2rem",
               borderRadius: 999,
-              fontFamily: "var(--font-space)", fontSize: 13,
-              color: "rgba(203,213,225,0.55)",
-              border: "1px solid rgba(255,255,255,0.1)",
+              fontFamily: "var(--font-space)", fontWeight: 700, fontSize: 13,
+              color: "#67E8F9",
+              border: "1px solid rgba(6,182,212,0.4)",
+              background: "rgba(6,182,212,0.06)",
               textDecoration: "none",
+              letterSpacing: "0.03em",
             }}
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style={{ color: "#25D366" }}>
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-            </svg>
-            WhatsApp directo
+            <Wrench size={15} />
+            Cotizar Mantenimiento Automotriz
           </a>
         </motion.div>
+
+        {/* Disclaimer */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.05, duration: 0.7 }}
+          style={{ fontFamily: "var(--font-inter)", fontSize: 12.5, color: "rgba(203,213,225,0.45)", marginTop: "1.25rem" }}
+        >
+          Cotiza <span style={{ color: "rgba(253,224,71,0.75)", fontWeight: 600 }}>100% Gratis</span> el servicio ideal para tu vehículo. Te respondemos en menos de 12hrs hábiles.
+        </motion.p>
 
         {/* Mini stats */}
         <motion.div
