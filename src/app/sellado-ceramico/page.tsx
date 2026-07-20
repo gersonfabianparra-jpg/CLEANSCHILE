@@ -378,7 +378,7 @@ export default function SelladoCeramicoPage() {
         {/* Background image */}
         <div style={{ position: "absolute", inset: 0 }}>
           <Image
-            src="/servicios/sellado-ceramico/foto.jpg"
+            src="/servicios/sellado-ceramico/hero-hidrofobico.jpg"
             alt="Sellado Cerámico"
             fill
             style={{ objectFit: "cover", filter: "brightness(0.45) saturate(1.2)" }}
@@ -471,9 +471,9 @@ export default function SelladoCeramicoPage() {
               transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               style={{
                 fontFamily: "var(--font-bebas)",
-                fontSize: "clamp(3.5rem, 9vw, 7.5rem)",
-                lineHeight: 0.92,
-                margin: "0 0 1.25rem",
+                fontSize: "clamp(1.8rem, 4.6vw, 3.4rem)",
+                lineHeight: 1.1,
+                margin: "0.4rem 0 1.25rem",
                 background: "linear-gradient(135deg, #7C3AED 0%, #A78BFA 50%, #C4B5FD 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
@@ -481,7 +481,7 @@ export default function SelladoCeramicoPage() {
                 letterSpacing: "0.01em",
               }}
             >
-              de Alta Gama
+              Protección para tu vehículo
             </motion.p>
 
             {/* Línea 3 — beneficios como subtítulo */}
@@ -568,6 +568,130 @@ export default function SelladoCeramicoPage() {
               </div>
             ))}
           </motion.div>
+        </div>
+      </section>
+
+      {/* ── PACKS / PRICING ── */}
+      <section id="packs" style={{ position: "relative", background: "#040412", padding: "7rem 1.5rem", overflow: "hidden" }}>
+        <div style={{
+          position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)",
+          width: 800, height: 400,
+          background: "radial-gradient(ellipse, rgba(234,179,8,0.04) 0%, transparent 65%)",
+          pointerEvents: "none",
+        }} />
+        <div style={{ maxWidth: "72rem", margin: "0 auto" }}>
+          <FadeInSection>
+            <div style={{ textAlign: "center", marginBottom: "4rem" }}>
+              <SectionLabel text="Nuestros packs" color="rgba(234,179,8,0.7)" />
+              <h2 style={{ fontFamily: "var(--font-bebas)", fontSize: "clamp(2rem,4.5vw,3.5rem)", color: "#fff", margin: 0, lineHeight: 1.05 }}>
+                Elige el{" "}
+                <span style={{ background: "linear-gradient(135deg, #A16207, #EAB308, #FDE047)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+                  Pack ideal
+                </span>{" "}
+                para tu auto
+              </h2>
+            </div>
+          </FadeInSection>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 24 }}>
+            {PACKS.map((pack, i) => (
+              <FadeInSection key={i} delay={i * 0.15}>
+                <div style={{
+                  borderRadius: 24,
+                  border: `1px solid ${pack.highlight ? "rgba(234,179,8,0.35)" : "rgba(255,255,255,0.08)"}`,
+                  background: pack.highlight ? "rgba(234,179,8,0.04)" : "rgba(255,255,255,0.025)",
+                  padding: "2rem",
+                  position: "relative",
+                  overflow: "hidden",
+                  height: "100%",
+                  display: "flex", flexDirection: "column",
+                }}>
+                  {/* Recommended badge */}
+                  {pack.highlight && (
+                    <div style={{
+                      position: "absolute", top: 18, right: 18,
+                      fontFamily: "var(--font-space)", fontSize: 9, fontWeight: 700,
+                      color: "#000", background: "#EAB308",
+                      padding: "3px 12px", borderRadius: 999, letterSpacing: "0.1em",
+                    }}>
+                      RECOMENDADO
+                    </div>
+                  )}
+
+                  {/* Top stripe */}
+                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: `linear-gradient(90deg, transparent, ${pack.color}, transparent)` }} />
+
+                  {/* Header */}
+                  <div style={{ marginBottom: "1.5rem" }}>
+                    <span style={{
+                      fontFamily: "var(--font-space)", fontSize: 10, fontWeight: 700,
+                      color: pack.color, letterSpacing: "0.3em", textTransform: "uppercase",
+                    }}>
+                      {pack.name}
+                    </span>
+                    <p style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: "rgba(203,213,225,0.45)", margin: "6px 0 0" }}>
+                      {pack.tagline}
+                    </p>
+                  </div>
+
+                  {/* Items */}
+                  <ul style={{ listStyle: "none", padding: 0, margin: "0 0 1.5rem", display: "flex", flexDirection: "column", gap: 10, flex: 1 }}>
+                    {pack.items.map((item, j) => (
+                      <li key={j} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
+                        <Check size={14} style={{ color: pack.color, flexShrink: 0, marginTop: 3 }} />
+                        <span style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: "rgba(203,213,225,0.65)", lineHeight: 1.5 }}>
+                          {item}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Prices */}
+                  <div style={{ borderTop: `1px solid ${pack.color}20`, paddingTop: "1.25rem", marginBottom: "1.5rem" }}>
+                    {pack.prices.map((p, j) => (
+                      <div key={j} style={{
+                        display: "flex", justifyContent: "space-between", alignItems: "center",
+                        padding: "0.5rem 0",
+                        borderBottom: j < pack.prices.length - 1 ? "1px solid rgba(255,255,255,0.04)" : "none",
+                      }}>
+                        <span style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: "rgba(203,213,225,0.45)" }}>
+                          {p.label}
+                        </span>
+                        <span style={{
+                          fontFamily: "var(--font-space)", fontSize: 14, fontWeight: 700,
+                          color: pack.color,
+                        }}>
+                          {p.price}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* CTA */}
+                  <a
+                    href={WA_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+                      padding: "0.85rem", borderRadius: 999,
+                      fontFamily: "var(--font-space)", fontWeight: 700, fontSize: 13,
+                      color: pack.highlight ? "#000" : pack.color,
+                      background: pack.highlight
+                        ? "linear-gradient(135deg, #EAB308, #FDE047)"
+                        : `${pack.color}12`,
+                      border: pack.highlight ? "none" : `1px solid ${pack.color}35`,
+                      textDecoration: "none",
+                      letterSpacing: "0.03em",
+                    }}
+                  >
+                    <MessageCircle size={14} />
+                    Cotizar {pack.name.toLowerCase().replace(/(^|\s)\S/g, (c) => c.toUpperCase())}
+                  </a>
+                </div>
+              </FadeInSection>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -770,130 +894,6 @@ export default function SelladoCeramicoPage() {
                   <p style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: "rgba(203,213,225,0.45)", margin: 0, lineHeight: 1.7 }}>
                     {step.desc}
                   </p>
-                </div>
-              </FadeInSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── PACKS / PRICING ── */}
-      <section id="packs" style={{ position: "relative", background: "#040412", padding: "7rem 1.5rem", overflow: "hidden" }}>
-        <div style={{
-          position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)",
-          width: 800, height: 400,
-          background: "radial-gradient(ellipse, rgba(234,179,8,0.04) 0%, transparent 65%)",
-          pointerEvents: "none",
-        }} />
-        <div style={{ maxWidth: "72rem", margin: "0 auto" }}>
-          <FadeInSection>
-            <div style={{ textAlign: "center", marginBottom: "4rem" }}>
-              <SectionLabel text="Nuestros packs" color="rgba(234,179,8,0.7)" />
-              <h2 style={{ fontFamily: "var(--font-bebas)", fontSize: "clamp(2rem,4.5vw,3.5rem)", color: "#fff", margin: 0, lineHeight: 1.05 }}>
-                Elige el{" "}
-                <span style={{ background: "linear-gradient(135deg, #A16207, #EAB308, #FDE047)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-                  Pack ideal
-                </span>{" "}
-                para tu auto
-              </h2>
-            </div>
-          </FadeInSection>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 24 }}>
-            {PACKS.map((pack, i) => (
-              <FadeInSection key={i} delay={i * 0.15}>
-                <div style={{
-                  borderRadius: 24,
-                  border: `1px solid ${pack.highlight ? "rgba(234,179,8,0.35)" : "rgba(255,255,255,0.08)"}`,
-                  background: pack.highlight ? "rgba(234,179,8,0.04)" : "rgba(255,255,255,0.025)",
-                  padding: "2rem",
-                  position: "relative",
-                  overflow: "hidden",
-                  height: "100%",
-                  display: "flex", flexDirection: "column",
-                }}>
-                  {/* Recommended badge */}
-                  {pack.highlight && (
-                    <div style={{
-                      position: "absolute", top: 18, right: 18,
-                      fontFamily: "var(--font-space)", fontSize: 9, fontWeight: 700,
-                      color: "#000", background: "#EAB308",
-                      padding: "3px 12px", borderRadius: 999, letterSpacing: "0.1em",
-                    }}>
-                      RECOMENDADO
-                    </div>
-                  )}
-
-                  {/* Top stripe */}
-                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: `linear-gradient(90deg, transparent, ${pack.color}, transparent)` }} />
-
-                  {/* Header */}
-                  <div style={{ marginBottom: "1.5rem" }}>
-                    <span style={{
-                      fontFamily: "var(--font-space)", fontSize: 10, fontWeight: 700,
-                      color: pack.color, letterSpacing: "0.3em", textTransform: "uppercase",
-                    }}>
-                      {pack.name}
-                    </span>
-                    <p style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: "rgba(203,213,225,0.45)", margin: "6px 0 0" }}>
-                      {pack.tagline}
-                    </p>
-                  </div>
-
-                  {/* Items */}
-                  <ul style={{ listStyle: "none", padding: 0, margin: "0 0 1.5rem", display: "flex", flexDirection: "column", gap: 10, flex: 1 }}>
-                    {pack.items.map((item, j) => (
-                      <li key={j} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
-                        <Check size={14} style={{ color: pack.color, flexShrink: 0, marginTop: 3 }} />
-                        <span style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: "rgba(203,213,225,0.65)", lineHeight: 1.5 }}>
-                          {item}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Prices */}
-                  <div style={{ borderTop: `1px solid ${pack.color}20`, paddingTop: "1.25rem", marginBottom: "1.5rem" }}>
-                    {pack.prices.map((p, j) => (
-                      <div key={j} style={{
-                        display: "flex", justifyContent: "space-between", alignItems: "center",
-                        padding: "0.5rem 0",
-                        borderBottom: j < pack.prices.length - 1 ? "1px solid rgba(255,255,255,0.04)" : "none",
-                      }}>
-                        <span style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: "rgba(203,213,225,0.45)" }}>
-                          {p.label}
-                        </span>
-                        <span style={{
-                          fontFamily: "var(--font-space)", fontSize: 14, fontWeight: 700,
-                          color: pack.color,
-                        }}>
-                          {p.price}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* CTA */}
-                  <a
-                    href={WA_LINK}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
-                      padding: "0.85rem", borderRadius: 999,
-                      fontFamily: "var(--font-space)", fontWeight: 700, fontSize: 13,
-                      color: pack.highlight ? "#000" : pack.color,
-                      background: pack.highlight
-                        ? "linear-gradient(135deg, #EAB308, #FDE047)"
-                        : `${pack.color}12`,
-                      border: pack.highlight ? "none" : `1px solid ${pack.color}35`,
-                      textDecoration: "none",
-                      letterSpacing: "0.03em",
-                    }}
-                  >
-                    <MessageCircle size={14} />
-                    Cotizar este Pack
-                  </a>
                 </div>
               </FadeInSection>
             ))}
