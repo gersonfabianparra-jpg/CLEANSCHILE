@@ -12,6 +12,12 @@ import Link from "next/link";
 const WA_LINK =
   "https://wa.me/56952095222?text=Hola%20Cleanschile%2C%20me%20interesa%20cotizar%20el%20Sellado%20Cer%C3%A1mico%20para%20mi%20veh%C3%ADculo";
 
+function packWaLink(waLabel: string) {
+  return `https://wa.me/56952095222?text=${encodeURIComponent(
+    `Hola Cleanschile, me interesa cotizar el ${waLabel} para mi vehículo`
+  )}`;
+}
+
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const PAIN_POINTS = [
@@ -92,6 +98,7 @@ const PROCESS_STEPS = [
 const PACKS = [
   {
     name: "MEDIUM POLISH",
+    waLabel: "Servicio Medium Polish",
     tagline: "Protección cerámica en spray — hasta 18 meses",
     color: "#38BDF8",
     highlight: false,
@@ -113,6 +120,7 @@ const PACKS = [
   },
   {
     name: "CERÁMICO TOP GOLD",
+    waLabel: "Servicio Top Gold",
     tagline: "Sellado cerámico profesional con curado UV",
     color: "#EAB308",
     highlight: true,
@@ -669,7 +677,7 @@ export default function SelladoCeramicoPage() {
 
                   {/* CTA */}
                   <a
-                    href={WA_LINK}
+                    href={packWaLink(pack.waLabel)}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
