@@ -215,67 +215,33 @@ export function Hero({ tagline }: { tagline?: string }) {
         </motion.div>
 
         {/* Título */}
-        <div style={{ position: "relative", marginTop: "1.5rem" }}>
-          {/* Spotlight pulsante detrás del título */}
-          <motion.div
-            aria-hidden
-            initial={{ opacity: 0 }}
-            animate={{ opacity: [0.5, 0.85, 0.5], scale: [0.92, 1.05, 0.92] }}
-            transition={{ opacity: { duration: 4, repeat: Infinity, ease: "easeInOut" }, scale: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
-            style={{
-              position: "absolute", left: "50%", top: "50%",
-              transform: "translate(-50%, -50%)",
-              width: "min(1100px, 130%)", height: "80%",
-              background: "radial-gradient(ellipse, rgba(234,179,8,0.1) 0%, rgba(6,182,212,0.07) 45%, transparent 72%)",
-              filter: "blur(70px)",
-              pointerEvents: "none",
-              zIndex: 0,
-            }}
-          />
-          <div style={{ position: "relative", overflow: "hidden", zIndex: 1 }}>
+        <div style={{ overflow: "hidden", marginTop: "1.5rem" }}>
           <motion.h1
             initial={{ y: "110%" }}
             animate={{ y: "0%" }}
             transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-            style={{ fontFamily: "var(--font-bebas)", margin: 0, lineHeight: 1.02 }}
+            style={{ fontFamily: "var(--font-bebas)", margin: 0, lineHeight: 1.05 }}
           >
             {/* Línea 1 — servicios, protagonista */}
-            <motion.span
-              animate={{ scale: [1, 1.025, 1] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              style={{ display: "block", fontSize: "clamp(2.7rem, 13vw, 11rem)", letterSpacing: "-0.03em", transformOrigin: "center" }}
-            >
-              <span style={{
-                background: "linear-gradient(105deg, #A16207 0%, #EAB308 25%, #FDE047 50%, #EAB308 75%, #A16207 100%)",
-                backgroundSize: "300% auto",
-                WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
-                animation: "shimmer 3s linear infinite",
-                filter: "drop-shadow(0 0 16px rgba(234,179,8,0.3))",
-              }}>
+            <span style={{ display: "block", fontSize: "clamp(2.4rem, 7vw, 4.6rem)", letterSpacing: "-0.01em" }}>
+              <span style={{ color: "#C89116" }}>
                 Detallado
               </span>
               <span style={{ color: "rgba(203,213,225,0.4)" }}> y </span>
-              <span style={{
-                background: "linear-gradient(105deg, #0E7490 0%, #06B6D4 30%, #67E8F9 50%, #06B6D4 70%, #0E7490 100%)",
-                backgroundSize: "300% auto",
-                WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
-                animation: "shimmer 3.6s linear infinite",
-                filter: "drop-shadow(0 0 16px rgba(6,182,212,0.3))",
-              }}>
+              <span style={{ color: "#2AA9C4" }}>
                 Mantenimiento
               </span>
-            </motion.span>
+            </span>
 
             {/* Línea 2 — contexto, subordinada */}
             <span style={{
-              display: "block", fontSize: "clamp(1.4rem, 5.8vw, 4.2rem)",
-              letterSpacing: "0.04em", marginTop: "0.6rem",
-              color: "rgba(226,232,240,0.6)", fontWeight: 400,
+              display: "block", fontSize: "clamp(1.2rem, 3.2vw, 2.2rem)",
+              letterSpacing: "0.03em", marginTop: "0.5rem",
+              color: "rgba(226,232,240,0.5)", fontWeight: 400,
             }}>
               automotriz en Santiago de Chile
             </span>
           </motion.h1>
-          </div>
         </div>
 
         {/* Neon separator */}
