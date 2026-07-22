@@ -584,9 +584,9 @@ export default function SelladoCeramicoPage() {
             <div style={{ textAlign: "center", marginBottom: "4rem" }}>
               <SectionLabel text="Nuestros packs" color="rgba(234,179,8,0.7)" />
               <h2 style={{ fontFamily: "var(--font-bebas)", fontSize: "clamp(2rem,4.5vw,3.5rem)", color: "#fff", margin: 0, lineHeight: 1.05 }}>
-                Elige el{" "}
+                Elige la{" "}
                 <span style={{ background: "linear-gradient(135deg, #A16207, #EAB308, #FDE047)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-                  Pack ideal
+                  PROTECCIÓN IDEAL
                 </span>{" "}
                 para tu auto
               </h2>
