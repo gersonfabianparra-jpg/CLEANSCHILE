@@ -226,7 +226,7 @@ export function Hero({ tagline }: { tagline?: string }) {
               position: "absolute", left: "50%", top: "50%",
               transform: "translate(-50%, -50%)",
               width: "min(1100px, 130%)", height: "80%",
-              background: "radial-gradient(ellipse, rgba(234,179,8,0.22) 0%, rgba(6,182,212,0.16) 45%, transparent 72%)",
+              background: "radial-gradient(ellipse, rgba(234,179,8,0.1) 0%, rgba(6,182,212,0.07) 45%, transparent 72%)",
               filter: "blur(70px)",
               pointerEvents: "none",
               zIndex: 0,
@@ -250,7 +250,7 @@ export function Hero({ tagline }: { tagline?: string }) {
                 backgroundSize: "300% auto",
                 WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
                 animation: "shimmer 3s linear infinite",
-                filter: "drop-shadow(0 0 45px rgba(234,179,8,0.65)) drop-shadow(0 0 90px rgba(234,179,8,0.35))",
+                filter: "drop-shadow(0 0 16px rgba(234,179,8,0.3))",
               }}>
                 Detallado
               </span>
@@ -260,7 +260,7 @@ export function Hero({ tagline }: { tagline?: string }) {
                 backgroundSize: "300% auto",
                 WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
                 animation: "shimmer 3.6s linear infinite",
-                filter: "drop-shadow(0 0 45px rgba(6,182,212,0.65)) drop-shadow(0 0 90px rgba(6,182,212,0.35))",
+                filter: "drop-shadow(0 0 16px rgba(6,182,212,0.3))",
               }}>
                 Mantenimiento
               </span>
