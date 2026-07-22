@@ -243,7 +243,7 @@ export function Hero({ tagline }: { tagline?: string }) {
             <motion.span
               animate={{ scale: [1, 1.025, 1] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              style={{ display: "block", fontSize: "clamp(4.2rem, 13vw, 11rem)", letterSpacing: "-0.03em", transformOrigin: "center" }}
+              style={{ display: "block", fontSize: "clamp(2.7rem, 13vw, 11rem)", letterSpacing: "-0.03em", transformOrigin: "center" }}
             >
               <span style={{
                 background: "linear-gradient(105deg, #A16207 0%, #EAB308 25%, #FDE047 50%, #EAB308 75%, #A16207 100%)",
@@ -268,7 +268,7 @@ export function Hero({ tagline }: { tagline?: string }) {
 
             {/* Línea 2 — contexto, subordinada */}
             <span style={{
-              display: "block", fontSize: "clamp(2.1rem, 5.8vw, 4.2rem)",
+              display: "block", fontSize: "clamp(1.4rem, 5.8vw, 4.2rem)",
               letterSpacing: "0.04em", marginTop: "0.6rem",
               color: "rgba(226,232,240,0.6)", fontWeight: 400,
             }}>
