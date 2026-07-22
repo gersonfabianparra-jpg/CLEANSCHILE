@@ -2,7 +2,6 @@ export const dynamic = "force-dynamic";
 
 import { Hero } from "@/components/sections/Hero";
 import { Services } from "@/components/sections/Services";
-import { Stats } from "@/components/sections/Stats";
 import { Process } from "@/components/sections/Process";
 import { Reviews } from "@/components/sections/Reviews";
 import { BeforeAfter } from "@/components/sections/BeforeAfter";
@@ -56,7 +55,6 @@ export default async function HomePage() {
   return (
     <>
       <Hero tagline={settings.hero_tagline} />
-      <Stats />
       <Services content={services} />
       <Process />
       <BeforeAfter />
