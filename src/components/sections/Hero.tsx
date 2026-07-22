@@ -223,21 +223,24 @@ export function Hero({ tagline }: { tagline?: string }) {
             style={{ fontFamily: "var(--font-bebas)", margin: 0, lineHeight: 1.05 }}
           >
             {/* Línea 1 — servicios, protagonista */}
-            <span style={{ display: "block", fontSize: "clamp(2.4rem, 7vw, 4.6rem)", letterSpacing: "-0.01em" }}>
-              <span style={{ color: "#C89116" }}>
+            <span style={{
+              display: "block", fontSize: "clamp(3.2rem, 9.5vw, 8.4rem)", letterSpacing: "-0.02em",
+              filter: "drop-shadow(0 6px 18px rgba(0,0,0,0.45))",
+            }}>
+              <span style={{ color: "#D4A017" }}>
                 Detallado
               </span>
               <span style={{ color: "rgba(203,213,225,0.4)" }}> y </span>
-              <span style={{ color: "#2AA9C4" }}>
+              <span style={{ color: "#2FB8D6" }}>
                 Mantenimiento
               </span>
             </span>
 
             {/* Línea 2 — contexto, subordinada */}
             <span style={{
-              display: "block", fontSize: "clamp(1.2rem, 3.2vw, 2.2rem)",
-              letterSpacing: "0.03em", marginTop: "0.5rem",
-              color: "rgba(226,232,240,0.5)", fontWeight: 400,
+              display: "block", fontSize: "clamp(1.5rem, 4.2vw, 3.2rem)",
+              letterSpacing: "0.03em", marginTop: "0.6rem",
+              color: "rgba(226,232,240,0.55)", fontWeight: 400,
             }}>
               automotriz en Santiago de Chile
             </span>
